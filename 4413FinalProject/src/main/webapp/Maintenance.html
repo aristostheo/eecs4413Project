@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance Account Info</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #12c2e9 0%, #c471ed 50%, #f7797d 100%);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            color: #333;
+            padding-top: 20px;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+            width: 500px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #12c2e9;
+            font-weight: 700;
+        }
+        .welcome-message {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .account-info {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        .account-info p {
+            margin: 5px 0;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .btn {
+            flex: 1;
+            margin: 5px;
+            padding: 10px;
+            background-color: #c471ed;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+        .btn:hover {
+            background-color: #9b5de5;
+        }
+        .btn:active {
+            background-color: #6a11cb;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Account Maintenance</h2>
+    <div class="welcome-message">
+        Welcome, [User's Name]!
+    </div>
+    <div class="account-info">
+        <p><strong>Email:</strong> user@example.com</p>
+        <p><strong>Account Created:</strong> January 1, 2022</p>
+        <p><strong>Last Login:</strong> August 16, 2024</p>
+    </div>
+    <div class="button-group">
+        <button class="btn" onclick="location.href='ChangeEmail.html'">Change Email</button>
+        <button class="btn" onclick="location.href='ChangePassword.html'">Change Password</button>
+        <button class="btn" onclick="location.href='UpdateInventory.html'">Manage Inventory</button>
+    </div>
+    <h3>Purchase History</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>12345</td>
+                <td>August 1, 2024</td>
+                <td>$120.00</td>
+                <td>Shipped</td>
+            </tr>
+            <tr>
+                <td>12346</td>
+                <td>July 15, 2024</td>
+                <td>$85.00</td>
+                <td>Delivered</td>
+            </tr>
+            <tr>
+                <td>12347</td>
+                <td>June 25, 2024</td>
+                <td>$45.00</td>
+                <td>Processing</td>
+            </tr>
+            <!-- More rows as needed -->
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
