@@ -11,6 +11,7 @@ import java.util.List;
 
 
 import model.Product;
+import model.Category;
 import model.Customer;
 
 public class ProductDAO{
@@ -23,23 +24,7 @@ public class ProductDAO{
 		}
 	}
 
-	// complete this method
-//	private Connection getConnection() throws SQLException {
-//		if(this.context!=null) {
-//			String path = context.getRealPath("/Books.db");
-//			return DriverManager.getConnection("jdbc:sqlite:" + path);
-//		}
-//		return DriverManager.getConnection("jdbc:sqlite:/Books.db");
-//	}
 
-	private void closeConnection(Connection connection) {
-		if (connection == null)
-			return;
-		try {
-			connection.close();
-		} catch (SQLException ex) {
-		}
-	}
 
 	//complete this method
 	public ArrayList<Product> findAllProducts() {
@@ -48,17 +33,16 @@ public class ProductDAO{
         // join 3 tables to get needed info
 		String sql = "select * from products;";
 				
-		Connection connection = null;
+		Connection con = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore","root","EECS4413");
+			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore","root","EECS4413");
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				
 				Product product = new Product();
 				
-				// populate book and author beans with needed info, and then set author to book
 				product.setId(rs.getInt("ProductID"));
 				product.setBrand(rs.getString("BrandName"));
 				product.setName(rs.getString("ProductName"));
@@ -67,43 +51,69 @@ public class ProductDAO{
 				product.setStockQty(rs.getInt("StockQuantity"));
 				product.setDesc(rs.getString("Description"));
 
-//	            for(Customer cat : this.findAllCategories()) {
-//	            	if(resultSet.getLong("category_id")==(cat.getId())) {
-//	            		book.setCategory(cat.getCategoryDescription());
-//	            		break;
-//	            	}
-//	            }
-	            // Populate author object
-//	            author.setId(resultSet.getLong("ID"));
-//	            author.setFirstName(resultSet.getString("first_name"));
-//	            author.setLastName(resultSet.getString("last_name"));
-//	            
-//	            book.setAuthor(author);
-
-//				...
-				 				
+		
 				result.add(product);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 
 		} finally {
-			closeConnection(connection);
+			try {
+	            if (con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return result;
 	}
+	public ArrayList<Category> findAllCategories() {
+		ArrayList<Category> result = new ArrayList<Category>();
+		
+        // join 3 tables to get needed info
+		String sql = "select * from categories;";
+				
+		Connection con = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore","root","EECS4413");
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				
+				Category category = new Category();
+				
+				category.setId(rs.getInt("CategoryID"));
+				category.setName(rs.getString("Categoryname"));
+				category.setDescription(rs.getString("Description"));
+	
+				result.add(category);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
 
+		} finally {
+			try {
+	            if (con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		return result;
+	}
 	// complete this method
 	public List<Product> getProductsByBrand(String brand) {
 		List<Product> result = new ArrayList<Product>();
 		
 		String sql = "select * from Products where BrandName like '%" + brand.trim();
 
-		Connection connection = null;
+		Connection con = null;
 		try {
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore","root","EECS4413");
+			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore","root","EECS4413");
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
@@ -123,7 +133,12 @@ public class ProductDAO{
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			closeConnection(connection);
+			try {
+	            if (con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		return result;
@@ -134,10 +149,10 @@ public class ProductDAO{
 		List<Customer> result = new ArrayList<Customer>();
 		String sql = "select * from Customers";
 
-		Connection connection = null;
+		Connection con = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore","root","EECS4413");
+			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore","root","EECS4413");
 			PreparedStatement statement = con.prepareStatement(sql);
 			ResultSet resultSet =  statement.executeQuery();
 			while (resultSet.next()) {
@@ -158,7 +173,13 @@ public class ProductDAO{
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			closeConnection(connection);
+			try {
+	            if (con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+			
 		}
 		return result;
 	}	
@@ -167,10 +188,10 @@ public class ProductDAO{
 		List<String> result = new ArrayList<>();
 		String sql = "select DISTINCT BrandName from Products";
 
-		Connection connection = null;
+		Connection con = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore","root","EECS4413");
+			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore","root","EECS4413");
 			PreparedStatement statement = con.prepareStatement(sql);
 			ResultSet resultSet =  statement.executeQuery();
 			while (resultSet.next()) {
@@ -182,63 +203,65 @@ public class ProductDAO{
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			closeConnection(connection);
+				try {
+		            if (con != null) con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		}
 		return result;
 	}
 
 	
 	
-//	
-//	public List<Book> findProductsByCategory(String category) {
-//		List<Book> result = new ArrayList<Book>();
-//		 
-//
-//		String sql = "select * from book inner join author, category on book.id = author.book_id and book.category_id = category.id  where "
-//				+ "CATEGORY_DESCRIPTION='" + category + "'";
-//
-//		Connection connection = null;
-//		try {
-//			connection = getConnection();
-//			PreparedStatement statement = connection.prepareStatement(sql);
-//			ResultSet resultSet =  statement.executeQuery();
-//			while (resultSet.next()) {
-//				Book book = new Book();
-//				Author author = new Author();
-//				Category category1 = new Category();
-//				// populate book and author beans with needed info, and then set author to book
-//	            book.setId(resultSet.getLong("id"));
-//	            book.setBookTitle(resultSet.getString("book_title"));
+	
+	public ArrayList<Product> findProductsByCategory(String category) {
+		ArrayList<Product> result = new ArrayList<Product>();
+		 
+
+		String sql = "select * from products join categories on products.CategoryID = categories.CategoryID where "+ "categories.CategoryName='" + category + "'";
+
+		Connection con = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore","root","EECS4413");
+			PreparedStatement statement = con.prepareStatement(sql);
+			ResultSet rs =  statement.executeQuery();
+			while (rs.next()) {
+				Product product = new Product();
+				Category category1 = new Category();
+				// populate book and author beans with needed info, and then set author to book
+				product.setId(rs.getInt("ProductID"));
+				product.setBrand(rs.getString("BrandName"));
+				product.setName(rs.getString("ProductName"));
+				product.setCatID(rs.getInt("CategoryID"));				
+				product.setPrice(rs.getFloat("Price"));
+				product.setStockQty(rs.getInt("StockQuantity"));
+				product.setDesc(rs.getString("Description"));
 //	            for(Category cat : this.findAllCategories()) {
-//	            	if(category.equals(cat.getCategoryDescription())) {
-//	            		book.setCategory(cat.getCategoryDescription());
+//	            	if(category.equals(cat.getDescription())) {
+//	            		product.setCatID(cat.getId());
 //	            		break;
 //	            	}
 //	            }
-////	            book.setCategory();
-////	            book.setAuthor(resultSet.getString("author"));
-////	            book.setAuthor((Author)resultSet.getObject("author"));
-//	            
-//	            // Populate author object
-//	            author.setId(resultSet.getLong("id"));
-//	            author.setFirstName(resultSet.getString("first_name"));
-//	            author.setLastName(resultSet.getString("last_name"));
-//	            
-//	            book.setAuthor(author);
-////	            category1.setId(resultSet.getLong("id"));
-////	            category1.setCategoryDescription(resultSet.getString("category_description"));
-//	            
-////				...
-//				
-//				result.add(book);
-//			}
-//		} catch (SQLException ex) {
-//			ex.printStackTrace();
-//		} finally {
-//			closeConnection(connection);
-//		}
-//		return result;
-//	}
+
+				
+				result.add(product);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+	            if (con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		return result;
+	}
 	
 	
 	public void insert(Product product) {
