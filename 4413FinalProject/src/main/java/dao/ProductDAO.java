@@ -14,6 +14,8 @@ import model.Product;
 import model.Customer;
 
 public class ProductDAO{
+	
+	
 
 
 	static {
@@ -23,14 +25,17 @@ public class ProductDAO{
 		}
 	}
 
-	// complete this method
-//	private Connection getConnection() throws SQLException {
-//		if(this.context!=null) {
-//			String path = context.getRealPath("/Books.db");
-//			return DriverManager.getConnection("jdbc:sqlite:" + path);
-//		}
-//		return DriverManager.getConnection("jdbc:sqlite:/Books.db");
-//	}
+	public static Connection connection() {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql:localhost:3306/eStore", "root", "xi3yyqokgCiPn_e");
+			System.out.println("Worked!");
+			return con;
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
+	}
 
 	private void closeConnection(Connection connection) {
 		if (connection == null)
@@ -50,15 +55,14 @@ public class ProductDAO{
 				
 		Connection connection = null;
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore","root","EECS4413");
+			Connection con = connection();
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				
 				Product product = new Product();
 				
-				// populate book and author beans with needed info, and then set author to book
+				// populate product  with needed info
 				product.setId(rs.getInt("ProductID"));
 				product.setBrand(rs.getString("BrandName"));
 				product.setName(rs.getString("ProductName"));
@@ -66,21 +70,6 @@ public class ProductDAO{
 				product.setPrice(rs.getFloat("Price"));
 				product.setStockQty(rs.getInt("StockQuantity"));
 				product.setDesc(rs.getString("Description"));
-
-//	            for(Customer cat : this.findAllCategories()) {
-//	            	if(resultSet.getLong("category_id")==(cat.getId())) {
-//	            		book.setCategory(cat.getCategoryDescription());
-//	            		break;
-//	            	}
-//	            }
-	            // Populate author object
-//	            author.setId(resultSet.getLong("ID"));
-//	            author.setFirstName(resultSet.getString("first_name"));
-//	            author.setLastName(resultSet.getString("last_name"));
-//	            
-//	            book.setAuthor(author);
-
-//				...
 				 				
 				result.add(product);
 			}
@@ -143,14 +132,14 @@ public class ProductDAO{
 			while (resultSet.next()) {
 				Customer customer = new Customer();
 				
-				// populate category bean with needed info
-//                ...
-//	            customer.setId(resultSet.getLong("CustomerID"));
-//	            customer.setFirstName(resultSet.getString("FirstName"));
-//	            customer.setLastName(resultSet.getString("LastName"));
-//	            customer.setPhoneNumber(resultSet.getInt("Phone"));
-//	            customer.setEmail(resultSet.getString("Email"));
-//	            customer.setAddressId(resultSet.getString("AddressID"));
+				
+	            customer.setCustomerId(resultSet.getInt("CustomerID"));
+	            customer.setFirstName(resultSet.getString("FirstName"));
+	            customer.setLastName(resultSet.getString("LastName"));
+	            customer.setPhoneNumber(resultSet.getInt("Phone"));
+	            customer.setEmail(resultSet.getString("Email"));
+	            customer.setAddress(resultSet.getString("AddressID"));
+	            //customer.setPassword(resultSet.getString("Password"));
             
 
 				result.add(customer);
