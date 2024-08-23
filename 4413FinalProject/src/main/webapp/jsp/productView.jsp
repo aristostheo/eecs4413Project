@@ -91,12 +91,10 @@
         text-decoration: underline;
     }
 </style>
-=======
 	<meta charset="UTF-8">
 	<title>eStore</title>
 	<!-- <link rel='StyleSheet' href='style.css' type='text/css'>
 	 -->
->>>>>>> branch 'main' of https://github.com/aristostheo/eecs4413Project.git
 </head>
 <body>
 
