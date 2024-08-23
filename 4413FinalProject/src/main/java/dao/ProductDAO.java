@@ -13,7 +13,7 @@ import java.util.List;
 import model.Product;
 import model.Customer;
 
-public class ProductDAO{
+public class ProductDAO implements ProductDAOInterface{
 	
 	
 
