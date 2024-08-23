@@ -15,6 +15,8 @@ import model.Category;
 import model.Customer;
 
 public class ProductDAO{
+	
+	
 
 
 	static {
@@ -25,11 +27,23 @@ public class ProductDAO{
 	}
 
 
+	public static Connection connection() {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql:localhost:3306/eStore", "root", "EECS4413");
+			System.out.println("Worked!");
+			return con;
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
+	}
+
 
 	//complete this method
 	public ArrayList<Product> findAllProducts() {
 		ArrayList<Product> result = new ArrayList<Product>();
-		
+	
         // join 3 tables to get needed info
 		String sql = "select * from products;";
 				
@@ -43,6 +57,8 @@ public class ProductDAO{
 				
 				Product product = new Product();
 				
+
+				// populate product  with needed info
 				product.setId(rs.getInt("ProductID"));
 				product.setBrand(rs.getString("BrandName"));
 				product.setName(rs.getString("ProductName"));
@@ -51,7 +67,6 @@ public class ProductDAO{
 				product.setStockQty(rs.getInt("StockQuantity"));
 				product.setDesc(rs.getString("Description"));
 
-		
 				result.add(product);
 			}
 		} catch (Exception ex) {
@@ -158,14 +173,14 @@ public class ProductDAO{
 			while (resultSet.next()) {
 				Customer customer = new Customer();
 				
-				// populate category bean with needed info
-//                ...
-//	            customer.setId(resultSet.getLong("CustomerID"));
-//	            customer.setFirstName(resultSet.getString("FirstName"));
-//	            customer.setLastName(resultSet.getString("LastName"));
-//	            customer.setPhoneNumber(resultSet.getInt("Phone"));
-//	            customer.setEmail(resultSet.getString("Email"));
-//	            customer.setAddressId(resultSet.getString("AddressID"));
+				
+	            customer.setCustomerId(resultSet.getInt("CustomerID"));
+	            customer.setFirstName(resultSet.getString("FirstName"));
+	            customer.setLastName(resultSet.getString("LastName"));
+	            customer.setPhoneNumber(resultSet.getInt("Phone"));
+	            customer.setEmail(resultSet.getString("Email"));
+	            customer.setAddress(resultSet.getString("AddressID"));
+	            //customer.setPassword(resultSet.getString("Password"));
             
 
 				result.add(customer);
