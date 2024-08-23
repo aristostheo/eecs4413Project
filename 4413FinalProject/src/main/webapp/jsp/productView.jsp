@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
 <meta charset="UTF-8">
 <title>eStore</title>
 <!-- <link rel='StyleSheet' href='style.css' type='text/css'>
