@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
@@ -57,6 +60,27 @@
 	<button onclick="">SORT BY PRICE</button><br/>
 	<button onclick="">SORT BY NAME</button>
   	<p>Search: <input type="text"/></p>
+	</div>
+	
+	<div class="products">
+  	<table class="productListing" border='1'>
+		<tr>
+			<th>ADD TO CART</th>
+      		<th>NAME</th>
+			<th>PRICE</th>
+			<th>DETAILS</th>
+		</tr>
+		
+		<c:forEach items="${products}" var="e">
+ 			<tr>
+ 			<th><input type="checkbox" name="add"/></th>
+ 			<td> ${e.getId()} </td>
+ 			<td> ${e.getName()}</td>
+ 			<td> ${e.getPrice()}</td>
+ 			</tr>
+		</c:forEach>
+  			<!--- JSP here for filling table + add checkbox will then with submit add to cart or smth-->
+    </table>
 	</div>
    
 </body>
