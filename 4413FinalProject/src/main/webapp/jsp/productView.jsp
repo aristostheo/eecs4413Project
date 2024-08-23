@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>eStore</title>
-<!-- <link rel='StyleSheet' href='style.css' type='text/css'>
- -->
+	<meta charset="UTF-8">
+	<title>eStore</title>
+	<!-- <link rel='StyleSheet' href='style.css' type='text/css'>
+	 -->
 </head>
 <body>
 
