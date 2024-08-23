@@ -18,5 +18,7 @@
 			<attribute name="javadoc_location" value="https://javaee.github.io/javaee-spec/javadocs/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/Users/aristos/eclipse-workspace/callRESTfulPlants/src/main/webapp/WEB-INF/lib/jakarta.inject-2.6.1.jar"/>
+	<classpathentry kind="lib" path="/Users/aristos/eclipse-workspace/callRESTfulPlants/src/main/webapp/WEB-INF/lib/jakarta.ws.rs-api-2.1.6.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
