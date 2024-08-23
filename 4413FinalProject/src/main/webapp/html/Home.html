@@ -6,44 +6,21 @@
 <title>Home Page</title>
 <body>
     <!-- CSS here for aligning?-->
-    <p>Store Name:</p><button onclick="">View Cart </button> <button onclick="window.location.href='LoginPage.html';">Login</button>
-
-
-    <form action="../QueryServlet" method="get">
-        <table border="1" cellpadding="6">
-        <tr>
-            <th>Filter</th>
-        </tr>
-        <tr>
-            <th><p>Categories: <select name="categories">
-            <option value="Peripherals ">Peripherals</option>
-            <option value="Accessories">Accessories</option>
-            <option value="Computers">Computers</option>
-            </select></p></th>
-        </tr>
-        <tr>
-            <th><p>Genre: <select name="genres">
-            <option value=" ">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-            </select></p></th>
-        </tr>
-        <tr>
-            <th><p>Brand: <select name="brand">
-            <option value=" ">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-            </select></p></th>
-        </tr>
-        <tr>
-            <th><input type="submit" value="APPLY FILTER"/></th>
-        </tr>
-        </table>
-    </form>
-
-    <button onclick="">SORT BY PRICE</button><button onclick="">SORT BY NAME</button>
-    <p>Search: <input type="text"/></p>
-    <table border='1' cellpadding='6'>
+    <h1 class="titleText">Store Name</h1>
+    <div class="buttonsRight">
+		<form action="html/Cart.html" method="get">
+			<input class="adminButton" type="submit" value="View Cart"/>
+		</form>
+		<form action="html/LoginPage.html" method="get">
+			<input class="adminButton" type="submit" value="Login"/>
+		</form>
+	</div>
+	<form method="get" action="PullProductsServlet" >
+		<input type="submit" value="SHOW ALL PRODUCTS"/>
+	</form>
+	<div class="filters">
+	<form action="" method="get">
+		<table border="1">
 		<tr>
 			<th>Filters</th>
 		</tr>
