@@ -333,6 +333,40 @@ public class ProductDAO implements ProductDAOInterface{
 		return result;
 	}
 	
+	public ArrayList<Product> findProductByKeyword(String query){
+		ArrayList<Product> result = new ArrayList<>();
+		String sql = "select * from Products where BrandName like '%" + query + "%' "
+				+ "or ProductName like '%" + query + "%' or Description like '%" + query + "%';";
+		
+		Connection con = connection();
+		try {
+			PreparedStatement statement = con.prepareStatement(sql);
+			ResultSet rs =  statement.executeQuery();
+			while (rs.next()) {
+				Product product = new Product();
+				product.setId(rs.getInt("ProductID"));
+				product.setBrand(rs.getString("BrandName"));
+				product.setName(rs.getString("ProductName"));
+				product.setCatID(rs.getInt("CategoryID"));				
+				product.setPrice(rs.getFloat("Price"));
+				product.setStockQty(rs.getInt("StockQuantity"));
+				product.setDesc(rs.getString("Description"));
+				result.add(product);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+	            if (con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return result;
+	}
+	
 	
 	public void insert(Product product) {
 	    Connection con = null;

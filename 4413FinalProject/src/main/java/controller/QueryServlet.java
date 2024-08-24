@@ -37,7 +37,7 @@ public class QueryServlet extends HttpServlet {
 			String action = request.getParameter("button");
 			ProductDAO dao = new ProductDAO();
 			ArrayList<Product> productList = new ArrayList<>();
-			if (action.equals("APPLY FILTER")) {
+			if (action.equals("APPLY FILTER")) { // filter results
 				System.out.println("Get filtered products");
 				ArrayList<Product> catList = new ArrayList<>();
 				ArrayList<Product> brandList = new ArrayList<>();
@@ -73,10 +73,11 @@ public class QueryServlet extends HttpServlet {
 						}
 					}
 				}
-			} else if (action.equals("SUBMIT")) {
+			} else if (action.equals("SUBMIT")) { // search keyword
 				String searchQuery = request.getParameter("searchQuery");
 				System.out.println("get keyword search products");
 				System.out.println(searchQuery);
+				productList = dao.findProductByKeyword(searchQuery);
 			} else if (action.equals("SORT BY PRICE")) {
 				System.out.println("Sort by price");
 				productList = dao.sortProductsPrice();
