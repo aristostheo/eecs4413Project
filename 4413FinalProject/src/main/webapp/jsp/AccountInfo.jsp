@@ -1,13 +1,14 @@
-<!--- Use JSP here for all the vars putting jsp filler for the minute-->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
 </head>
 <title>Account Info</title>
 <body>
-    <h1>Welcome, ${fname} ${lname}!</h1>
+    <h1>Welcome, ${customer.getFullName()}!</h1>
     <hr>
-    <p>Email: ${email}</p>
+    <p>Email: ${customer.getEmail()}</p>
     <div><button onclick="">Change Email</button><button onclick="">Change Password</button></div>
     <hr>
     <h1>Purchase History:</h1>

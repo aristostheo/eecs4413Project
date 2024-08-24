@@ -36,10 +36,8 @@ public class CustomerDAO implements CustomerDAOInterface {
 		List<Customer> result = new ArrayList<Customer>();
 		String sql = "select * from Customers";
 
-		Connection con = null;
+		Connection con = connection();
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore","root","EECS4413");
 			PreparedStatement statement = con.prepareStatement(sql);
 			ResultSet resultSet =  statement.executeQuery();
 			while (resultSet.next()) {
@@ -52,7 +50,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 	            customer.setPhoneNumber(resultSet.getInt("Phone"));
 	            customer.setEmail(resultSet.getString("Email"));
 	            customer.setAddress(resultSet.getString("AddressID"));
-	            //customer.setPassword(resultSet.getString("Password"));
+	            customer.setPassword(resultSet.getString("Password"));
             
 
 				result.add(customer);
@@ -69,6 +67,38 @@ public class CustomerDAO implements CustomerDAOInterface {
 			
 		}
 		return result;
+	}
+	
+	public Customer findCustomerByEmailPassword(String email, String password) {
+		Customer cust = new Customer();
+		
+		String sql = "select * from customers where email='" + email + "' and password='" + password + "';";
+
+		Connection con = connection();
+		try {
+			PreparedStatement statement = con.prepareStatement(sql);
+			ResultSet resultSet =  statement.executeQuery();
+			while (resultSet.next()) {
+	            cust.setCustomerId(resultSet.getInt("CustomerID"));
+	            cust.setFirstName(resultSet.getString("FirstName"));
+	            cust.setLastName(resultSet.getString("LastName"));
+	            cust.setPhoneNumber(resultSet.getInt("Phone"));
+	            cust.setEmail(resultSet.getString("Email"));
+	            cust.setAddress(resultSet.getString("AddressID"));
+	            cust.setPassword(resultSet.getString("Password"));
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+	            if (con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+			
+		}
+		return cust;
 	}
 
 }

@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.CustomerDAO;
+import model.Customer;
+
 /**
  * Servlet implementation class AccountInfoServlet
  */
@@ -27,9 +30,19 @@ public class AccountInfoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath()); 
 		
-		
+		CustomerDAO dao = new CustomerDAO();
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		Customer customer = dao.findCustomerByEmailPassword(email, password);
+		System.out.println(customer.getFullName());
+		if (customer.getFirstName() != null) {
+			request.setAttribute("customer", customer);
+			String target = "/jsp/AccountInfo.jsp";
+			request.getRequestDispatcher(target).forward(request, response);
+		} else {
+			
+		}
 		
 	}
 
