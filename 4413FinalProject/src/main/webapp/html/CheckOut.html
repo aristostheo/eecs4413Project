@@ -127,7 +127,7 @@
     <input type="text" id="cardNumber" name="cardNumber" placeholder="Enter your credit card number" required>
     <button type="submit">Confirm Order</button>
 </form>
-
+</div>
 <script>
     document.getElementById('paymentForm').addEventListener('submit', function(e) {
         e.preventDefault();
@@ -144,9 +144,10 @@
         })
         .then(response => response.json())
         .then(data => {
-            if (response.ok) {
-                alert(data.message);
-                // Redirect or update UI to show order summary
+            if (data.success) {
+                // Assuming the API response contains the POID (order ID)
+                const poid = data.orderID; // Change this according to your API response format
+                window.location.href = `orderSummary.jsp?POID=${poid}`;
             } else {
                 alert(data.message);
                 // Optionally allow retry or handle error
@@ -155,14 +156,7 @@
         .catch(error => console.error('Error:', error));
     });
 </script>
-</div>
 
-<script>
-    function confirmOrder() {
-        // Placeholder function to simulate order confirmation
-        alert('Order confirmed!');
-    }
-</script>
 
 </body>
 </html>

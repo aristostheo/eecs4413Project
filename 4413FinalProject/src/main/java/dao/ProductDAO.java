@@ -119,8 +119,8 @@ public class ProductDAO implements ProductDAOInterface{
 		return result;
 	}
 	// complete this method
-	public List<Product> getProductsByBrand(String brand) {
-		List<Product> result = new ArrayList<Product>();
+	public ArrayList<Product> getProductsByBrand(String brand) {
+		ArrayList<Product> result = new ArrayList<Product>();
 		
 		String sql = "select * from Products where BrandName like '%" + brand.trim();
 
@@ -160,8 +160,8 @@ public class ProductDAO implements ProductDAOInterface{
 	}	
 
 	// complete this method
-	public List<Customer> findAllCustomers() {
-		List<Customer> result = new ArrayList<Customer>();
+	public ArrayList<Customer> findAllCustomers() {
+		ArrayList<Customer> result = new ArrayList<Customer>();
 		String sql = "select * from Customers";
 
 		Connection con = null;
@@ -199,8 +199,8 @@ public class ProductDAO implements ProductDAOInterface{
 		return result;
 	}	
 	// complete this method
-	public List<String> findAllBrands() {
-		List<String> result = new ArrayList<>();
+	public ArrayList<String> findAllBrands() {
+		ArrayList<String> result = new ArrayList<>();
 		String sql = "select DISTINCT BrandName from Products";
 
 		Connection con = null;
@@ -235,7 +235,7 @@ public class ProductDAO implements ProductDAOInterface{
 		ArrayList<Product> result = new ArrayList<Product>();
 		 
 
-		String sql = "select * from products join categories on products.CategoryID = categories.CategoryID where "+ "categories.CategoryName='" + category + "'";
+		String sql = "select * from products join categories on products.CategoryID = categories.CategoryID where categories.CategoryName='" + category + "';";
 
 		Connection con = null;
 		try {
@@ -245,7 +245,6 @@ public class ProductDAO implements ProductDAOInterface{
 			ResultSet rs =  statement.executeQuery();
 			while (rs.next()) {
 				Product product = new Product();
-				Category category1 = new Category();
 				// populate book and author beans with needed info, and then set author to book
 				product.setId(rs.getInt("ProductID"));
 				product.setBrand(rs.getString("BrandName"));
@@ -260,6 +259,45 @@ public class ProductDAO implements ProductDAOInterface{
 //	            		break;
 //	            	}
 //	            }
+
+				
+				result.add(product);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+	            if (con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		return result;
+	}
+	public ArrayList<Product> findProductsByPrice(int price) {
+		ArrayList<Product> result = new ArrayList<Product>();
+		 
+
+		String sql = "select * from products where price <" + price+";";
+
+		Connection con = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore","root","EECS4413");
+			PreparedStatement statement = con.prepareStatement(sql);
+			ResultSet rs =  statement.executeQuery();
+			while (rs.next()) {
+				Product product = new Product();
+				product.setId(rs.getInt("ProductID"));
+				product.setBrand(rs.getString("BrandName"));
+				product.setName(rs.getString("ProductName"));
+				product.setCatID(rs.getInt("CategoryID"));				
+				product.setPrice(rs.getFloat("Price"));
+				product.setStockQty(rs.getInt("StockQuantity"));
+				product.setDesc(rs.getString("Description"));
+
 
 				
 				result.add(product);
