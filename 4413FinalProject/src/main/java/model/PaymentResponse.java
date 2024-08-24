@@ -3,14 +3,23 @@ package model;
 public class PaymentResponse {
     private String message;
     private double amount;
+    private int orderId; // Add this field
 
-    // Constructor
+    // Constructor for successful payment
+    public PaymentResponse(String message, double amount, int orderId) {
+        this.message = message;
+        this.amount = amount;
+        this.orderId = orderId;
+    }
+
+    // Constructor for failed payment
     public PaymentResponse(String message, double amount) {
         this.message = message;
         this.amount = amount;
+        this.orderId = -1; // Default value indicating no valid order ID
     }
 
-    // Getters and Setters
+    // Getters and setters
     public String getMessage() {
         return message;
     }
@@ -25,5 +34,13 @@ public class PaymentResponse {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 }

@@ -12,7 +12,8 @@ public interface ProductDAOInterface {
 	public List<Product> getProductsByBrand(String brand);
 	public List<Customer> findAllCustomers();
 	public List<String> findAllBrands();
-	//public List<Book> findProductsByCategory(String category) // is this being used? 
+	public List<Product> findProductsByCategory(String category); // is this being used? 
+	public List<Product> findProductsByPrice(int price); // is this being used? 
 	public void insert(Product product);
 	public void delete(int productid);
 	
