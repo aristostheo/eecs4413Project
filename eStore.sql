@@ -101,7 +101,7 @@ CREATE TABLE `Customers` (
 
 LOCK TABLES `Customers` WRITE;
 /*!40000 ALTER TABLE `Customers` DISABLE KEYS */;
-INSERT INTO `Customers` VALUES (1,'John','Doe','john.doe@example.com',NULL,'1234567890',1),(2,'Jane','Smith','jane.smith@example.com',NULL,'0987654321',2),(3,'Aristos','Theo','aristos@my.yorku.ca','ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f','6789012345',2),(4,'Tom','Testing','tom@gmail.com','27cc6994fc1c01ce6659c6bddca9b69c4c6a9418065e612c69d110b3f7b11f8a','4167678888',3);
+INSERT INTO `Customers` VALUES (1,'John','Doe','john.doe@example.com','password123','1234567890',1),(2,'Jane','Smith','jane.smith@example.com',NULL,'0987654321',2),(3,'Aristos','Theo','aristos@my.yorku.ca','ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f','6789012345',2),(4,'Tom','Testing','tom@gmail.com','27cc6994fc1c01ce6659c6bddca9b69c4c6a9418065e612c69d110b3f7b11f8a','4167678888',3);
 /*!40000 ALTER TABLE `Customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -299,8 +299,4 @@ UNLOCK TABLES;
 
 -- Dump completed on 2024-08-23 19:55:03
 
-select products.BrandName, products.ProductName, products.Price, products.StockQuantity
-from products, categories
-where products.CategoryID = categories.CategoryID 
-and (categories.CategoryName = "Smartphones"
-or categories.CategoryName = "Laptops");
+select * from customers;

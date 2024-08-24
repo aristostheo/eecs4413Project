@@ -10,7 +10,6 @@ public interface ProductDAOInterface {
 
 	public ArrayList<Product> findAllProducts();
 	public List<Product> getProductsByBrand(String brand);
-	public List<Customer> findAllCustomers();
 	public List<String> findAllBrands();
 	public ArrayList<Product> findProductsByCategory(String category);
 	public ArrayList<Product> sortProductsPrice();

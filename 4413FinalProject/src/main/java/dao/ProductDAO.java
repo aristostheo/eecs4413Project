@@ -147,46 +147,7 @@ public class ProductDAO implements ProductDAOInterface{
 
 		return result;
 	}	
-
-	// complete this method
-	public List<Customer> findAllCustomers() {
-		List<Customer> result = new ArrayList<Customer>();
-		String sql = "select * from Customers";
-
-		Connection con = null;
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore","root","EECS4413");
-			PreparedStatement statement = con.prepareStatement(sql);
-			ResultSet resultSet =  statement.executeQuery();
-			while (resultSet.next()) {
-				Customer customer = new Customer();
-				
-				
-	            customer.setCustomerId(resultSet.getInt("CustomerID"));
-	            customer.setFirstName(resultSet.getString("FirstName"));
-	            customer.setLastName(resultSet.getString("LastName"));
-	            customer.setPhoneNumber(resultSet.getInt("Phone"));
-	            customer.setEmail(resultSet.getString("Email"));
-	            customer.setAddress(resultSet.getString("AddressID"));
-	            //customer.setPassword(resultSet.getString("Password"));
-            
-
-				result.add(customer);
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			try {
-	            if (con != null) con.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}		
-			
-		}
-		return result;
-	}	
+	
 	// complete this method
 	public List<String> findAllBrands() {
 		List<String> result = new ArrayList<>();
@@ -216,9 +177,6 @@ public class ProductDAO implements ProductDAOInterface{
 		}
 		return result;
 	}
-
-	
-	
 	
 	public ArrayList<Product> findProductsByCategory(String category) {
 		ArrayList<Product> result = new ArrayList<Product>();
