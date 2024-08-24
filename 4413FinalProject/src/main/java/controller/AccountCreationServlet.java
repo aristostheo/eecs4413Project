@@ -119,7 +119,7 @@ public class AccountCreationServlet extends HttpServlet {
 
             con.commit();
             System.out.println("Transaction committed successfully.");
-            response.sendRedirect("/html/SuccessAccount.html");
+            response.sendRedirect("./html/SuccessAccount.html");
         } catch (SQLException e) {
             System.out.println("SQL error during account creation process.");
             e.printStackTrace();
