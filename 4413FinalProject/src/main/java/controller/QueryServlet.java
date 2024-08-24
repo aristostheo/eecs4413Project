@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.ProductDAO;
+//import dao.ProductDAO;
 import model.Product;
 
 /**
@@ -31,13 +31,16 @@ public class QueryServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		// get author selections from index.html, and search for the books, get a arraylist of books
+		
 			response.setContentType("text/html;charset=UTF-8");
-
+			
+			System.out.println("Hello world");
+			
+			/*
             	ProductDAO dao = new ProductDAO();
             	ArrayList<Product> productList = dao.findAllProducts();
             	request.setAttribute("productList", productList);
-
+*/
 
 			String target = "/jsp/productView.jsp";
 			request.getRequestDispatcher(target).forward(request, response);
