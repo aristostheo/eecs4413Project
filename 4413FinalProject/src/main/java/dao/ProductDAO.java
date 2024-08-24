@@ -16,9 +16,6 @@ import model.Customer;
 
 public class ProductDAO implements ProductDAOInterface{
 	
-	
-
-
 	static {
 		try {
 			Class.forName("org.sqlite.JDBC");
