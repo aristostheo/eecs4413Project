@@ -215,7 +215,6 @@ CREATE TABLE `products` (
   CONSTRAINT `products_ibfk_1` FOREIGN KEY (`CategoryID`) REFERENCES `Categories` (`CategoryID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
 --
 -- Dumping data for table `products`
 --
@@ -299,3 +298,9 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2024-08-23 19:55:03
+
+select products.BrandName, products.ProductName, products.Price, products.StockQuantity
+from products, categories
+where products.CategoryID = categories.CategoryID 
+and (categories.CategoryName = "Smartphones"
+or categories.CategoryName = "Laptops");

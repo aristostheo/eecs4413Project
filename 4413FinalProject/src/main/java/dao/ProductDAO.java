@@ -26,8 +26,8 @@ public class ProductDAO implements ProductDAOInterface{
 
 	public static Connection connection() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql:localhost:3306/eStore", "root", "EECS4413");
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/4413project", "root", "xi3yyqokgCiPn_e");
 			System.out.println("Worked!");
 			return con;
 		} catch (Exception e) {
@@ -40,14 +40,11 @@ public class ProductDAO implements ProductDAOInterface{
 	//complete this method
 	public ArrayList<Product> findAllProducts() {
 		ArrayList<Product> result = new ArrayList<Product>();
-	
-        // join 3 tables to get needed info
+		
 		String sql = "select * from products;";
-				
 		Connection con = null;
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore","root","EECS4413");
+			con = connection();
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
@@ -85,10 +82,8 @@ public class ProductDAO implements ProductDAOInterface{
         // join 3 tables to get needed info
 		String sql = "select * from categories;";
 				
-		Connection con = null;
+		Connection con = connection();
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore","root","EECS4413");
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
@@ -119,13 +114,10 @@ public class ProductDAO implements ProductDAOInterface{
 	public List<Product> getProductsByBrand(String brand) {
 		List<Product> result = new ArrayList<Product>();
 		
-		String sql = "select * from Products where BrandName like '%" + brand.trim();
+		String sql = "select * from Products where BrandName like '%" + brand.trim() + "'";
 
-		Connection con = null;
+		Connection con = connection();
 		try {
-
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore","root","EECS4413");
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
@@ -234,10 +226,8 @@ public class ProductDAO implements ProductDAOInterface{
 
 		String sql = "select * from products join categories on products.CategoryID = categories.CategoryID where "+ "categories.CategoryName='" + category + "'";
 
-		Connection con = null;
+		Connection con = connection();
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore","root","EECS4413");
 			PreparedStatement statement = con.prepareStatement(sql);
 			ResultSet rs =  statement.executeQuery();
 			while (rs.next()) {
@@ -272,6 +262,74 @@ public class ProductDAO implements ProductDAOInterface{
 			}
 			
 		}
+		return result;
+	}
+	
+	public ArrayList<Product> sortProductsPrice(){
+		ArrayList<Product> result = new ArrayList<>();
+		String sql = "select * from products order by Price;";
+		
+		Connection con = connection();
+		try {
+			PreparedStatement statement = con.prepareStatement(sql);
+			ResultSet rs =  statement.executeQuery();
+			while (rs.next()) {
+				Product product = new Product();
+				product.setId(rs.getInt("ProductID"));
+				product.setBrand(rs.getString("BrandName"));
+				product.setName(rs.getString("ProductName"));
+				product.setCatID(rs.getInt("CategoryID"));				
+				product.setPrice(rs.getFloat("Price"));
+				product.setStockQty(rs.getInt("StockQuantity"));
+				product.setDesc(rs.getString("Description"));
+				result.add(product);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+	            if (con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return result;
+	}
+	
+	public ArrayList<Product> sortProductsName(){
+		ArrayList<Product> result = new ArrayList<>();
+		String sql = "select * from products order by ProductName;";
+		
+		Connection con = connection();
+		try {
+			PreparedStatement statement = con.prepareStatement(sql);
+			ResultSet rs =  statement.executeQuery();
+			while (rs.next()) {
+				Product product = new Product();
+				product.setId(rs.getInt("ProductID"));
+				product.setBrand(rs.getString("BrandName"));
+				product.setName(rs.getString("ProductName"));
+				product.setCatID(rs.getInt("CategoryID"));				
+				product.setPrice(rs.getFloat("Price"));
+				product.setStockQty(rs.getInt("StockQuantity"));
+				product.setDesc(rs.getString("Description"));
+				result.add(product);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+	            if (con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
 		return result;
 	}
 	

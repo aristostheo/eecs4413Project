@@ -30,6 +30,7 @@
     }
 
     h2 {
+    	clear:center;
         text-align: center;
         color: #333;
         margin-bottom: 20px;
@@ -125,6 +126,6 @@
         <input type="submit" value="Add to my SHOPPING CART" />
         <input type="reset" value="Reset" />
     </form>
-    <p><a href="index.html">Back to Search Menu</a></p>
+    <p><a href="Home.html">Back to Search Menu</a></p>
 </body>
 </html>
