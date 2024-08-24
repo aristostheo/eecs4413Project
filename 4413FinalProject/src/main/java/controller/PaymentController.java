@@ -34,8 +34,9 @@ public class PaymentController {
         if (paymentSuccess) {
             try {
 //                int orderId = orderService.createOrder(request.getAmount());
-                int orderId = 1; // TODO: Replace with some sort of OrderService
-                PaymentResponse response = new PaymentResponse("Order successfully placed!", request.getAmount(), orderId);
+
+                int orderId = 1; // \TODO: replace with orderID of some orderService class
+            	PaymentResponse response = new PaymentResponse("Order successfully placed!", request.getAmount(), orderId);
                 return Response.ok(response).build();
             } catch (Exception e) {
                 e.printStackTrace();
