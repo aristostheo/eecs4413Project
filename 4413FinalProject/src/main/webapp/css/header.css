@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+ .prata-regular {
+	font-family: "Prata", serif;
+	font-weight: 400;
+	font-style: normal;
+} 
+
+body {
+	font-family: "Prata", serif;
+	background-image: radial-gradient(lavender 2px, transparent 0);
+	background-size: 40px 40px;
+	background-position: center;
+}
+
+.topnav {
+	padding: 10px;
+	border: 1pt solid lavender;
+	background-color: lavender;
+	border-radius: 7px;
+	overflow: hidden;
+	background-color: white;
+}
+
+.topnav a {
+	padding: 10px;
+	text-decoration: none;
+}
+
+.topnav a:hover, .topnav a:visited, .topnav a:active, .topnav a:link {
+	color: black;
+}
+
+.topnav a.left {
+	float: left;
+}
+
+.topnav a.right {
+	float: right;
+}
+
+#logo {
+	font-weight: bolder;
+	font-style: italic;
+	
+	/* text-decoration: mediumpurple line-through solid 10pt; */
+	border-radius: 100px;
+	
+	
+	letter-spacing: 1px;
+	text-shadow: 1px -2px slategray;
+	/* text-shadow: 2px -3px gray; */
+ }
+
+#logo span {
+	text-transform: uppercase;
+	/* color: mediumpurple ; */
+	letter-spacing: 3px;
+	color: black;
+	
+	text-shadow: -1px 2px slategray;
+	/* text-shadow: -2px 3px gray; */
+	
+}
+
+input, button {
+	font-family: "Prata", serif;
+}

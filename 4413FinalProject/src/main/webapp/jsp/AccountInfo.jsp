@@ -8,10 +8,18 @@
 <title>Account Info</title>
 <body>
     <h1>Welcome, ${customer.getFullName()}!</h1>
-    <hr>
+    <hr/>
     <p>Email: ${customer.getEmail()}</p>
-    <div><button onclick="">Change Email</button><button onclick="">Change Password</button></div>
-    <hr>
+    <form action="ChangeEmail.html" method="post">
+    	<input type="submit" name="changeButton" value="CHANGE EMAIL">
+    </form>
+    <form action="ChangePassword.html" method="post">
+    	<input type="submit" name="changeButton" value="CHANGE PASSWORD">
+    </form>
+    <form action="Home.html">
+    	<input type="submit" value="LOG OUT"> 
+    </form>
+    <hr/>
     <h1>Purchase History:</h1>
     <!-- Table needs to be populated with JSP-->
     <table border='1' cellpadding='6'>

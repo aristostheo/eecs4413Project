@@ -4,92 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Change Email</title>
-    <style>
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #333;
-        }
-        .container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-            width: 350px;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 25px;
-            color: #ff7e5f;
-            font-weight: 700;
-        }
-        .input-group {
-            margin-bottom: 20px;
-        }
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            font-size: 14px;
-            color: #555;
-        }
-        .input-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-        .input-group input:focus {
-            border-color: #ff7e5f;
-            outline: none;
-        }
-        .btn {
-            width: 100%;
-            padding: 15px;
-            background-color: #feb47b;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .btn:hover {
-            background-color: #f88c68;
-        }
-        .btn:active {
-            background-color: #f07250;
-        }
-        .back-btn {
-            background-color: #555;
-            margin-top: 10px;
-        }
-        .back-btn:hover {
-            background-color: #333;
-        }
-    </style>
+    <link rel="stylesheet" href="css/ChangeEmail.css">
 </head>
 <body>
 
 <div class="container">
     <h2>Change Email</h2>
-    <form action="changeEmail.jsp" method="POST">
+    <form action="ChangeEmailServlet" method="POST">
         <div class="input-group">
             <label for="current-email">Current Email</label>
             <input type="email" id="current-email" name="current_email" required>

@@ -1,8 +1,11 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,6 +39,7 @@ public class AccountInfoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		ArrayList<PurchaseOrder> purchaseHist = new ArrayList<>();
 		ArrayList<PurchaseOrder> purchaseHistoryFinal = new ArrayList<>();
 		ArrayList<Product> products = new ArrayList<>();
@@ -64,7 +68,11 @@ public class AccountInfoServlet extends HttpServlet {
 			String target = "/jsp/AccountInfo.jsp";
 			request.getRequestDispatcher(target).forward(request, response);
 		} else {
-			
+			response.setContentType("text/html");
+			PrintWriter pwriter = response.getWriter();
+			pwriter.print("<p><b>Your email or password was incorrect</b></p>");
+			RequestDispatcher back=request.getRequestDispatcher("LoginPage.html");
+			back.include(request, response);
 		}
 		
 	}
