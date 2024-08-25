@@ -16,8 +16,14 @@
     <form action="" method="post">
     	<input type="submit" name="changeButton" value="CHANGE PASSWORD">
     </form>
+    <form action="AdminTasksServlet">
+    	<input type="submit" name="adminAction" value="VIEW ORDERS"> 
+    	<input type="submit" name="adminAction" value="CUSTOMER INFORMATION">
+    	<input type="submit" name="adminAction" value="UPDATE INVENTORY">
+    </form>
     <form action="Home.html">
     	<input type="submit" value="LOG OUT"> 
     </form>
+    
     <hr/>
 </body>

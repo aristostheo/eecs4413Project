@@ -371,7 +371,7 @@ CREATE TABLE `Admin` (
   `LastName` varchar(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
   `Password` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`CustomerID`),
+  PRIMARY KEY (`AdminID`),
   UNIQUE KEY `Email` (`Email`)
   ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -391,3 +391,19 @@ INSERT INTO `Admin` VALUES
 UNLOCK TABLES;
 
 -- Dump completed on 2024-08-23 19:55:03
+
+select purchaseorders.POID, products.BrandName, products.ProductName,
+categories.CategoryName, customers.FirstName, customers.LastName, 
+customers.Email, addresses.AddressLine1, addresses.AddressLine2,
+addresses.City, addresses.State, addresses.ZipCode, addresses.Country,
+purchaseorders.OrderDate, purchaseorders.TotalAmount, 
+purchaseorders.Status, purchaseorders.ExpectedDeliveryDate,
+purchaseorderdetails.Quantity
+from purchaseorders, products, categories, customers, addresses, 
+purchaseorderdetails
+where purchaseorders.POID = purchaseorderdetails.POID AND
+purchaseorders.CustomerID = customers.CustomerID AND
+purchaseorders.ShippingAddressID = addresses.AddressID AND
+purchaseorderdetails.ProductID = products.ProductID AND
+products.CategoryID = categories.CategoryID
+order by purchaseorders.CustomerID;

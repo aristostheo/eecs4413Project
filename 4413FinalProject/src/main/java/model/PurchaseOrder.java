@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class PurchaseOrder {
+public class PurchaseOrder implements Serializable{
 	
 	private int purchaseID;
 	private int productID;

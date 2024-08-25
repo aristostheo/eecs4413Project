@@ -1,6 +1,8 @@
 package model;
 
-public class CartTotals {
+import java.io.Serializable;
+
+public class CartTotals implements Serializable {
 	private double subtotal;
 	private double tax;
 	private double shipping;
