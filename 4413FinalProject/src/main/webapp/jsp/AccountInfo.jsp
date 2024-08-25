@@ -16,7 +16,7 @@
     <form action="ChangePassword.html" method="post">
     	<input type="submit" name="changeButton" value="CHANGE PASSWORD">
     </form>
-    <form action="jsp/Home.jsp">
+    <form action="LogoutServlet">
     	<input type="submit" value="LOG OUT"> 
     </form>
     <hr/>
@@ -40,5 +40,5 @@
                 </tr>
             </c:forEach>
         </table><br />
-
+	<p><a href="/4413FinalProject/HomeServlet">Return to home screen</a></p>
 </body>

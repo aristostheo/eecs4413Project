@@ -6,18 +6,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import model.Customer;
 
 /**
- * Servlet implementation class AdminCustomerAccountChangeServlet
+ * Servlet implementation class LoginServlet
  */
-@WebServlet("/AdminCustomerAccountChangeServlet")
-public class AdminCustomerAccountChangeServlet extends HttpServlet {
+@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminCustomerAccountChangeServlet() {
+    public LoginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,23 +32,13 @@ public class AdminCustomerAccountChangeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		// get all the elements
 		
+		HttpSession session = request.getSession();
+		Customer cust = (Customer) session.getAttribute("customer");
+		System.out.println(cust); 
 		
-		
-		
-		
-		// figure out which ones aren't null
-		
-		
-		
-		// run a bunch of customerDAOs to update everything
-		
-		
-		// return to somewhere, with suceed message
-		
-		
-		
+		String target = "test.html";
+		request.getRequestDispatcher(target).forward(request, response);
 		
 	}
 

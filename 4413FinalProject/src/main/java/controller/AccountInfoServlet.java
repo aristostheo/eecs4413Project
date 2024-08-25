@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.CustomerDAO;
 import dao.ProductDAO;
@@ -39,7 +40,7 @@ public class AccountInfoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		HttpSession session = request.getSession();
 		ArrayList<PurchaseOrder> purchaseHist = new ArrayList<>();
 		ArrayList<PurchaseOrder> purchaseHistoryFinal = new ArrayList<>();
 		ArrayList<Product> products = new ArrayList<>();
@@ -51,7 +52,7 @@ public class AccountInfoServlet extends HttpServlet {
 		Customer customer = custdao.findCustomerByEmailPassword(email, password);
 		System.out.println(customer.getFullName());
 		if (customer.getFirstName() != null) {
-			request.setAttribute("customer", customer);
+			session.setAttribute("customer", customer);
 			purchaseHist = purdao.getPurchaseOrderbyCustID(customer.getCustomerId());
 			
 			for (int i = 0; i < purchaseHist.size(); i++) { // get product ID and the product's themselves
@@ -64,7 +65,7 @@ public class AccountInfoServlet extends HttpServlet {
 				purchaseHistoryFinal.get(i).setProductDesc(products.get(i).getDesc());
 			}
 			
-			request.setAttribute("purchaseHistory", purchaseHistoryFinal);			
+			session.setAttribute("purchaseHistory", purchaseHistoryFinal);			
 			String target = "/jsp/AccountInfo.jsp";
 			request.getRequestDispatcher(target).forward(request, response);
 		} else {

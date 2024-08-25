@@ -16,7 +16,7 @@
 			<input type="hidden" name ="todo" value="view"/>
 			<input class="adminButton" type="submit" value="View Cart"/>
 		</form>
-		<form action="LoginPage.html" method="get">
+		<form action="" method="get">
 			<input class="adminButton" type="submit" value="Login"/>
 		</form>
 	</div> -->

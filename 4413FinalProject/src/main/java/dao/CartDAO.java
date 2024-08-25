@@ -25,7 +25,7 @@ public class CartDAO implements CartDAOInterface {
 	public static Connection connection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore", "root", "4413");
+			Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/4413project", "root", "xi3yyqokgCiPn_e");
 //			System.out.println("Worked!");
 			return con;
 		} catch (Exception e) {
