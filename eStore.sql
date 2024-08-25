@@ -252,6 +252,8 @@ CREATE TABLE `PurchaseOrderDetails` (
 
 LOCK TABLES `PurchaseOrderDetails` WRITE;
 /*!40000 ALTER TABLE `PurchaseOrderDetails` DISABLE KEYS */;
+INSERT INTO `PurchaseOrderDetails` VALUES (1, 1, 2, 1, 1199.99), (2, 2, 5, 1, 999.99), (3, 3, 4, 1, 699.99);
+
 /*!40000 ALTER TABLE `PurchaseOrderDetails` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -284,7 +286,7 @@ CREATE TABLE `PurchaseOrders` (
 
 LOCK TABLES `PurchaseOrders` WRITE;
 /*!40000 ALTER TABLE `PurchaseOrders` DISABLE KEYS */;
-INSERT INTO `PurchaseOrders` VALUES (1,1,1,'2024-08-12',2150.00,'Pending','2024-08-19'),(2,2,2,'2024-08-13',849.99,'Pending','2024-08-20');
+INSERT INTO `PurchaseOrders` VALUES (1,1,1,'2024-08-12',1199.99,'Pending','2024-08-19'),(2,2,2,'2024-08-13',999.99,'Pending','2024-08-20'), (3, 1, 1, '2024-08-15', 699.99, 'Pending', '2024-09-01');
 /*!40000 ALTER TABLE `PurchaseOrders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -299,4 +301,7 @@ UNLOCK TABLES;
 
 -- Dump completed on 2024-08-23 19:55:03
 
-select * from customers;
+select * from purchaseorders where CustomerID="1";
+select * from purchaseorderdetails;
+
+select * from products where ProductID = 1;

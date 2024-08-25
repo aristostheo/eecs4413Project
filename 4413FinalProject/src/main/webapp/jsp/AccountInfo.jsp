@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
@@ -18,7 +19,18 @@
 		<th>NAME</th>
 		<th>PRICE</th>
 		<th>DETAILS</th>
+		<th>ORDER DATE</th>
+		<th>DELIVERY DATE</th>
 	 	</tr>
-        <!-- Run thru an ArrayList pulled from DB-->
+        <c:forEach items="${purchaseHistory}" var="e">
+                <tr>
+                    <td>${e.getProductName()}</td>
+                    <td>${e.getPrice()}</td>
+                    <td>${e.getProductDesc()}</td>
+                    <td>${e.getOrderDate()}</td>
+                    <td>${e.getDeliveryDate()}</td>
+                </tr>
+            </c:forEach>
+        </table><br />
 
 </body>

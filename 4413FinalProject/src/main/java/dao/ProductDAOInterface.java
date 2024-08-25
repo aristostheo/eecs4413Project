@@ -15,7 +15,7 @@ public interface ProductDAOInterface {
 	public ArrayList<Product> sortProductsPrice();
 	public ArrayList<Product> sortProductsName();
 	public ArrayList<Product> findProductByKeyword(String query);
-	//public List<Book> findProductsByCategory(String category) // is this being used? 
+	public Product findProductByID(int id);
 	public void insert(Product product);
 	public void delete(int productid);
 	
