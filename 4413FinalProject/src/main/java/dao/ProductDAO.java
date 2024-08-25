@@ -11,6 +11,7 @@ import java.util.List;
 
 
 import model.Product;
+import model.Cart;
 import model.Category;
 import model.Customer;
 
@@ -408,6 +409,42 @@ public class ProductDAO implements ProductDAOInterface{
 	            e.printStackTrace();
 	        }				
 		}
+	}
+	
+	@Override
+	public Product getProduct(int productID) {
+		Product p = null;
+		String sql = "select * from Product where ProductID = ?";
+		
+		Connection con = null;
+		try {
+			con = connection();
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setInt(1, productID);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				p = new Product();
+				p.setId(rs.getInt("ProductID"));
+				p.setBrand(rs.getString("BrandName"));
+				p.setName(rs.getString("ProductName"));
+				p.setCatID(rs.getInt("CategoryID"));				
+				p.setPrice(rs.getFloat("Price"));
+				p.setStockQty(rs.getInt("StockQuantity"));
+				p.setDesc(rs.getString("Description"));
+			}
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+
+		} finally {
+			try {
+	            if (con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return p;
 	}
 	
 

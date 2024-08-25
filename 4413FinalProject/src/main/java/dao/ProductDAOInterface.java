@@ -18,6 +18,6 @@ public interface ProductDAOInterface {
 	public Product findProductByID(int id);
 	public void insert(Product product);
 	public void delete(int productid);
-	
+	public Product getProduct(int productID);
 	
 }

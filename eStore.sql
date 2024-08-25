@@ -291,6 +291,65 @@ INSERT INTO `PurchaseOrders` VALUES (1,1,1,'2024-08-12',1199.99,'Pending','2024-
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
+--
+-- Table structure for table `Cart`
+--
+
+DROP TABLE IF EXISTS `Cart`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Cart` (
+  `CartID` int NOT NULL AUTO_INCREMENT,
+  `CustomerID` int NOT NULL,
+  PRIMARY KEY (`CartID`),
+  KEY `CustomerID` (`CustomerID`),
+  CONSTRAINT `cart_fk_customer` FOREIGN KEY (`CustomerID`) REFERENCES `Customers` (`CustomerID`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Cart`
+--
+
+LOCK TABLES `Cart` WRITE;
+/*!40000 ALTER TABLE `Cart` DISABLE KEYS */;
+INSERT INTO `Cart` (`CustomerID`) VALUES (1), (2), (3), (4);
+/*!40000 ALTER TABLE `cart` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CartItems`
+--
+
+DROP TABLE IF EXISTS `CartItems`;
+/*!40101 SET @saved_cs_client = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `CartItems` (
+  `CartItemID` int NOT NULL AUTO_INCREMENT,
+  `CartID` int NOT NULL,
+  `ProductID` int NOT NULL,
+  `Quantity` int NOT NULL,
+  PRIMARY KEY (`CartItemID`),
+  KEY `CartID` (`CartID`),
+  KEY `ProductID` (`ProductID`),
+  CONSTRAINT `cartitems_fk_cart` FOREIGN KEY (`CartID`) REFERENCES `Cart` (`CartID`),
+  CONSTRAINT `cartitems_fk_product` FOREIGN KEY (`ProductID`) REFERENCES `Products` (`ProductID`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CartItems`
+--
+
+LOCK TABLES `CartItems` WRITE;
+/*!40000 ALTER TABLE `CartItems` DISABLE KEYS */;
+INSERT INTO `CartItems` (`CartID`, `ProductID`, `Quantity`) VALUES
+(1, 1, 2),
+(1, 2, 1),
+(2, 3, 5);
+/*!40000 ALTER TABLE `CartItems` ENABLE KEYS */;
+UNLOCK TABLES;
+
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
