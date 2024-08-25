@@ -58,16 +58,16 @@
 							<td>${e.brand}</td>	
 						</tr>
 						<tr>
-							<th></th>	
+							<td>&nbsp;</td>	
 						</tr>
 						<tr>
 							<td>$${e.price}</td>	
 						</tr>
 						<tr>
-							<td>	
+							<td class="lastRow">	
 								<input type="hidden" name="cb" value="${e.id}"/>
 								<input type="hidden" name="todo" value="add" /> 
-								<input type="text" name="qty${e.id}" value="1"/>
+								<input type="number" name="qty${e.id}" value="1" min="1"/>
 								<input type="submit" value="Add to Cart" />
 							</td>	
 						</tr>
