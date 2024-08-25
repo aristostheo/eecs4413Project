@@ -100,6 +100,14 @@ public class OrderDetails implements Serializable{
 		this.add2 = add;
 	}
 	
+	public String getAddress() {
+		if (this.add2 != null) {
+			return this.add1 + " " + this.add2 + ", " + this.city + ", " + this.state + ", " + this.zipCode + ", " + this.country;
+		} else {
+			return this.add1 + ", " + this.city + ", " + this.state + ", " + this.zipCode + ", " + this.country;
+		}
+	}
+	
 	public String getCity() {
 		return this.city;
 	}

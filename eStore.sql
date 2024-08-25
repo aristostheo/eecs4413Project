@@ -406,4 +406,4 @@ purchaseorders.CustomerID = customers.CustomerID AND
 purchaseorders.ShippingAddressID = addresses.AddressID AND
 purchaseorderdetails.ProductID = products.ProductID AND
 products.CategoryID = categories.CategoryID
-order by purchaseorders.CustomerID;
+order by purchaseorders.POID;

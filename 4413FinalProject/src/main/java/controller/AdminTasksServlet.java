@@ -1,11 +1,16 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dao.OrderDAO;
+import model.OrderDetails;
 
 /**
  * Servlet implementation class AdminTasksServlet
@@ -30,17 +35,23 @@ public class AdminTasksServlet extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		String action = request.getParameter("adminAction");
+		OrderDAO odao = new OrderDAO();
+		
 		
 		if(action.equals("VIEW ORDERS")) {
 			System.out.println("view orders");
 			// show all orders from a join of both tables, ordered by customer ID
+			ArrayList<OrderDetails> orderDetails = odao.getAllOrderInformation();
+			request.setAttribute("orderDetails", orderDetails);
+			String target = "/jsp/AdminOrderDetails.jsp";
+			request.getRequestDispatcher(target).forward(request, response);
 		} else if (action.equals("CUSTOMER INFORMATION")) {
 			System.out.println("display customer details");
-			// join table with address to get all info 
+			//
 		} else if (action.equals("UPDATE INVENTORY")) {
 			System.out.println("Update inventory");
 			// show all items, maybe button on each option and a field that will add or subtract
-			// with an update 
+			// with an update  
 		}
 	}
 
