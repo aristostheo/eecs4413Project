@@ -358,9 +358,36 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+--
+-- ADMIN TABLE --
+--
+
+DROP TABLE IF EXISTS `Admin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Admin` (
+  `AdminID` int NOT NULL AUTO_INCREMENT,
+  `FirstName` varchar(255) NOT NULL,
+  `LastName` varchar(255) NOT NULL,
+  `Email` varchar(255) NOT NULL,
+  `Password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`CustomerID`),
+  UNIQUE KEY `Email` (`Email`)
+  ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Admin`
+--
+
+LOCK TABLES `Admin` WRITE;
+/*!40000 ALTER TABLE `Admin` DISABLE KEYS */;
+INSERT INTO `Admin` VALUES 
+(1,'Benjamin','Pierce','p.benji@gmail.com','40bluebird77'),
+(2,'Becky','Gardens','Becky.Gardens@icloud.com', 'daisy222'),
+(3,'Chadwick','Greeley','baseplayer11@gmail.com', 'password999'),
+(4,'Simon','Bowmen','b.simon@google.com', 'ratOfSin');
+/*!40000 ALTER TABLE `Admin` ENABLE KEYS */;
+UNLOCK TABLES;
+
 -- Dump completed on 2024-08-23 19:55:03
-
-select * from purchaseorders where CustomerID="1";
-select * from purchaseorderdetails;
-
-select * from products where ProductID = 1;
