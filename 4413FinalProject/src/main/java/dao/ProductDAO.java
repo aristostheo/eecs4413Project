@@ -16,20 +16,12 @@ import model.Category;
 import model.Customer;
 
 public class ProductDAO implements ProductDAOInterface{
-	
-	static {
-		try {
-			Class.forName("org.sqlite.JDBC");
-		} catch (ClassNotFoundException ex) {
-		}
-	}
-
 
 	public static Connection connection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/4413project", "root", "xi3yyqokgCiPn_e");
-			System.out.println("Worked!");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore", "root", "4413");
+			System.out.println("Product connection worked!");
 			return con;
 		} catch (Exception e) {
 			System.out.println(e);
@@ -37,8 +29,6 @@ public class ProductDAO implements ProductDAOInterface{
 		}
 	}
 
-
-	//complete this method
 	public ArrayList<Product> findAllProducts() {
 		ArrayList<Product> result = new ArrayList<Product>();
 		
@@ -51,7 +41,6 @@ public class ProductDAO implements ProductDAOInterface{
 			while (rs.next()) {
 				
 				Product product = new Product();
-				
 
 				// populate product  with needed info
 				product.setId(rs.getInt("ProductID"));
@@ -61,6 +50,7 @@ public class ProductDAO implements ProductDAOInterface{
 				product.setPrice(rs.getFloat("Price"));
 				product.setStockQty(rs.getInt("StockQuantity"));
 				product.setDesc(rs.getString("Description"));
+				product.setImgURL(rs.getString("ImageURL"));
 
 				result.add(product);
 			}
@@ -71,7 +61,6 @@ public class ProductDAO implements ProductDAOInterface{
 			try {
 	            if (con != null) con.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -80,7 +69,6 @@ public class ProductDAO implements ProductDAOInterface{
 	public ArrayList<Category> findAllCategories() {
 		ArrayList<Category> result = new ArrayList<Category>();
 		
-        // join 3 tables to get needed info
 		String sql = "select * from categories;";
 				
 		Connection con = connection();
@@ -104,14 +92,13 @@ public class ProductDAO implements ProductDAOInterface{
 			try {
 	            if (con != null) con.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 		}
 		return result;
 	}
-	// complete this method
+
 	public List<Product> getProductsByBrand(String brand) {
 		List<Product> result = new ArrayList<Product>();
 		
@@ -124,7 +111,6 @@ public class ProductDAO implements ProductDAOInterface{
 			while (rs.next()) {
 				Product product = new Product();
 
-				// populate book and author with needed info, and then set author to book
 				product.setId(rs.getInt("ProductID"));
 				product.setBrand(rs.getString("BrandName"));
 				product.setName(rs.getString("ProductName"));
@@ -132,6 +118,7 @@ public class ProductDAO implements ProductDAOInterface{
 				product.setPrice(rs.getFloat("Price"));
 				product.setStockQty(rs.getInt("StockQuantity"));
 				product.setDesc(rs.getString("Description"));
+				product.setImgURL(rs.getString("ImageURL"));
 				
 				result.add(product);
 			}
@@ -148,21 +135,17 @@ public class ProductDAO implements ProductDAOInterface{
 
 		return result;
 	}	
-	
-	// complete this method
+
 	public List<String> findAllBrands() {
 		List<String> result = new ArrayList<>();
 		String sql = "select DISTINCT BrandName from Products";
 
 		Connection con = null;
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore","root","EECS4413");
+			con = connection();
 			PreparedStatement statement = con.prepareStatement(sql);
 			ResultSet resultSet =  statement.executeQuery();
 			while (resultSet.next()) {
-				
-				
 
 				result.add(resultSet.getString("BrandName"));
 			}
@@ -172,7 +155,6 @@ public class ProductDAO implements ProductDAOInterface{
 				try {
 		            if (con != null) con.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 		}
@@ -192,7 +174,7 @@ public class ProductDAO implements ProductDAOInterface{
 			while (rs.next()) {
 				Product product = new Product();
 				Category category1 = new Category();
-				// populate book and author beans with needed info, and then set author to book
+
 				product.setId(rs.getInt("ProductID"));
 				product.setBrand(rs.getString("BrandName"));
 				product.setName(rs.getString("ProductName"));
@@ -200,13 +182,13 @@ public class ProductDAO implements ProductDAOInterface{
 				product.setPrice(rs.getFloat("Price"));
 				product.setStockQty(rs.getInt("StockQuantity"));
 				product.setDesc(rs.getString("Description"));
+				product.setImgURL(rs.getString("ImageURL"));
 //	            for(Category cat : this.findAllCategories()) {
 //	            	if(category.equals(cat.getDescription())) {
 //	            		product.setCatID(cat.getId());
 //	            		break;
 //	            	}
 //	            }
-
 				
 				result.add(product);
 			}
@@ -216,7 +198,6 @@ public class ProductDAO implements ProductDAOInterface{
 			try {
 	            if (con != null) con.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -241,6 +222,7 @@ public class ProductDAO implements ProductDAOInterface{
 				product.setPrice(rs.getFloat("Price"));
 				product.setStockQty(rs.getInt("StockQuantity"));
 				product.setDesc(rs.getString("Description"));
+				product.setImgURL(rs.getString("ImageURL"));
 				result.add(product);
 			}
 		} catch (Exception ex) {
@@ -249,7 +231,6 @@ public class ProductDAO implements ProductDAOInterface{
 			try {
 	            if (con != null) con.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -275,6 +256,7 @@ public class ProductDAO implements ProductDAOInterface{
 				product.setPrice(rs.getFloat("Price"));
 				product.setStockQty(rs.getInt("StockQuantity"));
 				product.setDesc(rs.getString("Description"));
+				product.setImgURL(rs.getString("ImageURL"));
 				result.add(product);
 			}
 		} catch (Exception ex) {
@@ -283,7 +265,6 @@ public class ProductDAO implements ProductDAOInterface{
 			try {
 	            if (con != null) con.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -308,6 +289,7 @@ public class ProductDAO implements ProductDAOInterface{
 				prod.setPrice(rs.getFloat("Price"));
 				prod.setStockQty(rs.getInt("StockQuantity"));
 				prod.setDesc(rs.getString("Description"));
+				prod.setImgURL(rs.getString("ImageURL"));
 				
 			}
 		} catch (Exception ex) {
@@ -343,6 +325,7 @@ public class ProductDAO implements ProductDAOInterface{
 				product.setPrice(rs.getFloat("Price"));
 				product.setStockQty(rs.getInt("StockQuantity"));
 				product.setDesc(rs.getString("Description"));
+				product.setImgURL(rs.getString("ImageURL"));
 				result.add(product);
 			}
 		} catch (Exception ex) {
@@ -353,7 +336,6 @@ public class ProductDAO implements ProductDAOInterface{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
 		}
 		
 		return result;
@@ -365,8 +347,7 @@ public class ProductDAO implements ProductDAOInterface{
 	    PreparedStatement statement = null;
 	    ResultSet generatedKeys = null;
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore","root","EECS4413");
+			con = connection();
 			statement = con.prepareStatement(
 					"insert into Products (ProductName) values (?)",
 					Statement.RETURN_GENERATED_KEYS);
@@ -394,8 +375,7 @@ public class ProductDAO implements ProductDAOInterface{
 		Connection con = null;
 	    PreparedStatement statement = null;
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore","root","EECS4413");
+			con = connection();
 			statement = con.prepareStatement("delete from product where ProductID=?");
 			statement.setLong(1, productid);
 			statement.execute();
@@ -414,7 +394,7 @@ public class ProductDAO implements ProductDAOInterface{
 	@Override
 	public Product getProduct(int productID) {
 		Product p = null;
-		String sql = "select * from Product where ProductID = ?";
+		String sql = "select * from Products where ProductID = ?";
 		
 		Connection con = null;
 		try {
@@ -431,6 +411,7 @@ public class ProductDAO implements ProductDAOInterface{
 				p.setPrice(rs.getFloat("Price"));
 				p.setStockQty(rs.getInt("StockQuantity"));
 				p.setDesc(rs.getString("Description"));
+				p.setImgURL(rs.getString("ImageURL"));
 			}
 			
 		} catch (Exception ex) {

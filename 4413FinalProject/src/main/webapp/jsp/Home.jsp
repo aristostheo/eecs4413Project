@@ -1,0 +1,65 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/homePageStyle.css">
+</head>
+<title>Home Page</title>
+<body>
+    <!-- CSS here for aligning?-->
+    
+  <!--   <h1 class="titleText">Electronics Store</h1> -->
+<!--     <div class="buttonsRight">
+		<form action="CartServlet" method="get">
+			<input type="hidden" name ="todo" value="view"/>
+			<input class="adminButton" type="submit" value="View Cart"/>
+		</form>
+		<form action="LoginPage.html" method="get">
+			<input class="adminButton" type="submit" value="Login"/>
+		</form>
+	</div> -->
+	
+	<jsp:include page="header.jsp" flush="true" />
+	
+	<div class="filters">
+	<form action="QueryServlet" method="get">
+		<table border="1">
+		<tr>
+			<th>Filters</th>
+		</tr>
+		<tr>
+			<th>
+				
+				<p>Categories:</p>
+				<input type="checkbox" name="categories" value="smartphones"/> Smartphones<br/>
+				<input type="checkbox" name="categories" value="laptops"/> Laptops<br/>
+				<input type="checkbox" name="categories" value="tablets"/> Tablets<br/>
+				<input type="checkbox" name="categories" value="smartwatches"/> Smartwatches<br/>
+				<input type="checkbox" name="categories" value="accessories"/> Accessories<br/>
+			</th>
+		</tr>
+		<tr>
+			<th><p>Brands:</p>
+				<input type="checkbox" name="brand" value="anker"/> Anker<br/>
+				<input type="checkbox" name="brand" value="apple"/> Apple<br/>
+				<input type="checkbox" name="brand" value="dell"/> Dell<br/>
+				<input type="checkbox" name="brand" value="google"/> Google<br/>
+				<input type="checkbox" name="brand" value="logitech"/> Logitech<br/>
+				<input type="checkbox" name="brand" value="microsoft"/> Microsoft<br/>
+				<input type="checkbox" name="brand" value="samsung"/> Samsung<br/>
+				<input type="checkbox" name="brand" value="sony"/> Sony<br/>
+			</th>
+		</tr>
+		<tr>
+			<th><input type="submit" name="button" value="APPLY FILTER"/></th>
+		</tr>
+		</table>
+		<p>Search: <input type="text" name="searchQuery"/> <input type="submit" name="button" value="SUBMIT"/></p>
+		<input type="submit" name="button" value="SORT BY PRICE"/>
+		<input type="submit" name="button" value="SORT BY NAME"/>
+		<input type="submit" name="button" value="SHOW ALL PRODUCTS"/>
+	</form>
+	</div>
+</body>

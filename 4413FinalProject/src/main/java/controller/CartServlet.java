@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -46,28 +48,39 @@ public class CartServlet extends HttpServlet {
 			c = cartDAO.getCart(custID);
 			if (c == null) {
 				c = cartDAO.createCart(custID);
-				System.out.println("cart does not exists");
+				System.out.println("cart does not exist");
 			} else {
 				cartDAO.populateCartItems(c);
 				System.out.println("cart exists");
 			}
 		}
 		
+//		CartItem k = new CartItem();
+//		Product p = new Product();
+//		p.setName("Test Item");
+//		k.setProduct(p);
+//		List<CartItem> list = new ArrayList<CartItem>();
+//		list.add(k);
+//		list.add(k);
+//		c.setItems(list);
 		session.setAttribute("cart", c);
 		// Testing
-		//String todo = request.getParameter("todo");
-		String todo = "view";
+		String todo = request.getParameter("todo");
+		//String todo = "view";
 		
 		if (todo.equals("view")) {
 			cartDAO.populateCartItems(c);
+			
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/jsp/Cart.jsp");
 			rd.forward(request, response);
+			return;
 		}
 		
 		Integer productID = Integer.parseInt(request.getParameter("productID"));
-		int quantity = Integer.parseInt(request.getParameter("qty"));
 		
 		if (todo.equals("add")) {
+			int quantity = Integer.parseInt(request.getParameter("qty"));
+
 			Integer carItemID = cartDAO.checkItemInCartAlready(c.getCartID(), productID);
 			if (carItemID != null) {
 				// existing quantity plus user input quantity makes new quantity
@@ -79,6 +92,8 @@ public class CartServlet extends HttpServlet {
 			}
 			
 		} else if (todo.equals("update")) {
+			int quantity = Integer.parseInt(request.getParameter("qty"));
+
 			cartDAO.updateCartItem(c.getCartItemID(productID), quantity);
 			
 		} else if (todo.equals("remove")) {
@@ -88,7 +103,7 @@ public class CartServlet extends HttpServlet {
 		
 		cartDAO.populateCartItems(c);
 		System.out.println(c.getCartID() + " " + c.getCustID());
-		RequestDispatcher rq = getServletContext().getRequestDispatcher("../../webapp/Cart.jsp");
+		RequestDispatcher rq = getServletContext().getRequestDispatcher("/jsp/Cart.jsp");
 		rq.forward(request, response);
 		
 		

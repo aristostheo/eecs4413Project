@@ -22,7 +22,7 @@
     	
     	<c:forEach items="${cart.items}" var="i">
     		<tr> 
-        		<td>Image</td>
+        		<td><img src='${i.product.imgURL}' width ='300px'></td>
         		<td>${i.product.name}</td>
         		<td>${i.product.price}</td>
         		<td>${i.quantity}</td>
@@ -30,6 +30,7 @@
         		<td>
                 	<form action="CartServlet">
                     	<input type="hidden" name="todo" value="remove"/>
+                    	<input type="hidden" name="productID" value="${i.product.id}"/>
                   	 	<button type="submit"><i class="ri-close-large-line"></i></button>
                	 	</form>
                 	<br>

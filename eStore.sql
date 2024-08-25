@@ -221,7 +221,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'Apple','iPhone 14',1,999.99,50,'Latest iPhone model','http://example.com/iphone14.jpg'),(2,'Apple','MacBook Air M2',2,1199.99,30,'Apple MacBook Air with M2 chip, 13-inch','http://example.com/macbookairm2.jpg'),(3,'Samsung','Galaxy Tab S8',3,849.99,35,'Samsung Galaxy Tab S8 with 11-inch display, 128GB storage','http://example.com/galaxytabs8.jpg'),(4,'Google','Pixel 7',1,699.99,40,'Google Pixel 7 with advanced AI features','http://example.com/pixel7.jpg'),(5,'Dell','XPS 13',2,999.99,25,'Dell XPS 13 with Intel i7, 16GB RAM, 512GB SSD','http://example.com/dellxps13.jpg'),(6,'Apple','iPad Air',3,599.99,50,'Apple iPad Air with A14 chip, 10.9-inch','http://example.com/ipadair.jpg'),(7,'Sony','WH-1000XM4',5,349.99,100,'Sony WH-1000XM4 noise-canceling headphones','http://example.com/sonywh1000xm4.jpg'),(8,'Microsoft','Surface Pro 8',3,1099.99,30,'Microsoft Surface Pro 8 with 13-inch display and detachable keyboard','http://example.com/surfacepro8.jpg'),(9,'Samsung','Galaxy Watch 5',4,299.99,40,'Samsung Galaxy Watch 5 with GPS, 44mm case','http://example.com/galaxywatch5.jpg'),(10,'Anker','PowerCore 10000',5,29.99,200,'Anker PowerCore 10000mAh Portable Charger','http://example.com/ankerpowercore.jpg'),(11,'Logitech','MX Master 3',5,99.99,150,'Logitech MX Master 3 Wireless Mouse','http://example.com/logitechmxmaster3.jpg'),(12,'Apple','Watch Series 8',4,399.99,50,'Apple Watch Series 8 with GPS, 45mm case','http://example.com/applewatch8.jpg'),(13,'Samsung','Galaxy Buds Pro',5,199.99,80,'Samsung Galaxy Buds Pro with active noise cancellation','http://example.com/galaxybudspro.jpg');
+INSERT INTO `products` VALUES (1,'Apple','iPhone 14',1,999.99,50,'Latest iPhone model','https://t.ly/TZrcE'),(2,'Apple','MacBook Air M2',2,1199.99,30,'Apple MacBook Air with M2 chip, 13-inch','https://t.ly/zQQ9r'),(3,'Samsung','Galaxy Tab S8',3,849.99,35,'Samsung Galaxy Tab S8 with 11-inch display, 128GB storage','http://example.com/galaxytabs8.jpg'),(4,'Google','Pixel 7',1,699.99,40,'Google Pixel 7 with advanced AI features','http://example.com/pixel7.jpg'),(5,'Dell','XPS 13',2,999.99,25,'Dell XPS 13 with Intel i7, 16GB RAM, 512GB SSD','http://example.com/dellxps13.jpg'),(6,'Apple','iPad Air',3,599.99,50,'Apple iPad Air with A14 chip, 10.9-inch','http://example.com/ipadair.jpg'),(7,'Sony','WH-1000XM4',5,349.99,100,'Sony WH-1000XM4 noise-canceling headphones','http://example.com/sonywh1000xm4.jpg'),(8,'Microsoft','Surface Pro 8',3,1099.99,30,'Microsoft Surface Pro 8 with 13-inch display and detachable keyboard','http://example.com/surfacepro8.jpg'),(9,'Samsung','Galaxy Watch 5',4,299.99,40,'Samsung Galaxy Watch 5 with GPS, 44mm case','http://example.com/galaxywatch5.jpg'),(10,'Anker','PowerCore 10000',5,29.99,200,'Anker PowerCore 10000mAh Portable Charger','http://example.com/ankerpowercore.jpg'),(11,'Logitech','MX Master 3',5,99.99,150,'Logitech MX Master 3 Wireless Mouse','http://example.com/logitechmxmaster3.jpg'),(12,'Apple','Watch Series 8',4,399.99,50,'Apple Watch Series 8 with GPS, 45mm case','http://example.com/applewatch8.jpg'),(13,'Samsung','Galaxy Buds Pro',5,199.99,80,'Samsung Galaxy Buds Pro with active noise cancellation','http://example.com/galaxybudspro.jpg');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -318,13 +318,13 @@ INSERT INTO `Cart` (`CustomerID`) VALUES (1), (2), (3), (4);
 UNLOCK TABLES;
 
 --
--- Table structure for table `CartItems`
+-- Table structure for table `CartItem`
 --
 
-DROP TABLE IF EXISTS `CartItems`;
+DROP TABLE IF EXISTS `CartItem`;
 /*!40101 SET @saved_cs_client = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `CartItems` (
+CREATE TABLE `CartItem` (
   `CartItemID` int NOT NULL AUTO_INCREMENT,
   `CartID` int NOT NULL,
   `ProductID` int NOT NULL,
@@ -332,22 +332,22 @@ CREATE TABLE `CartItems` (
   PRIMARY KEY (`CartItemID`),
   KEY `CartID` (`CartID`),
   KEY `ProductID` (`ProductID`),
-  CONSTRAINT `cartitems_fk_cart` FOREIGN KEY (`CartID`) REFERENCES `Cart` (`CartID`),
-  CONSTRAINT `cartitems_fk_product` FOREIGN KEY (`ProductID`) REFERENCES `Products` (`ProductID`)
+  CONSTRAINT `cartitem_fk_cart` FOREIGN KEY (`CartID`) REFERENCES `Cart` (`CartID`),
+  CONSTRAINT `cartitem_fk_product` FOREIGN KEY (`ProductID`) REFERENCES `Products` (`ProductID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `CartItems`
+-- Dumping data for table `CartItem`
 --
 
-LOCK TABLES `CartItems` WRITE;
-/*!40000 ALTER TABLE `CartItems` DISABLE KEYS */;
-INSERT INTO `CartItems` (`CartID`, `ProductID`, `Quantity`) VALUES
+LOCK TABLES `CartItem` WRITE;
+/*!40000 ALTER TABLE `CartItem` DISABLE KEYS */;
+INSERT INTO `CartItem` (`CartID`, `ProductID`, `Quantity`) VALUES
 (1, 1, 2),
 (1, 2, 1),
 (2, 3, 5);
-/*!40000 ALTER TABLE `CartItems` ENABLE KEYS */;
+/*!40000 ALTER TABLE `CartItem` ENABLE KEYS */;
 UNLOCK TABLES;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

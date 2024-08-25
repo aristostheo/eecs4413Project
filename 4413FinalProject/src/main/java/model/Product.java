@@ -1,14 +1,14 @@
 package model;
 
 public class Product {
-	int id;
-	String brand;
-	String name;
-	int catID;
-	float price;
-	int stockQty;
-	String desc;
-	
+	private int id;
+	private String brand;
+	private String name;
+	private int catID;
+	private float price;
+	private int stockQty;
+	private String desc;
+	private String imgURL;
 //	public Product(int id, String brand, String name, int catID, int supplierID, float price, int stockQty, String desc) {
 //		super();
 //		this.id = id;
@@ -63,6 +63,13 @@ public class Product {
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
+	public String getImgURL() {
+		return imgURL;
+	}
+	public void setImgURL(String imgURL) {
+		this.imgURL = imgURL;
+	}
+	
 
 	
 
