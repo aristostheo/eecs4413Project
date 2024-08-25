@@ -21,7 +21,6 @@ public class ProductDAO implements ProductDAOInterface{
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore", "root", "4413");
-			System.out.println("Product connection worked!");
 			return con;
 		} catch (Exception e) {
 			System.out.println(e);
@@ -50,7 +49,7 @@ public class ProductDAO implements ProductDAOInterface{
 				product.setPrice(rs.getFloat("Price"));
 				product.setStockQty(rs.getInt("StockQuantity"));
 				product.setDesc(rs.getString("Description"));
-				product.setImgURL(rs.getString("ImageURL"));
+				product.setImg(rs.getString("ImageURL"));
 
 				result.add(product);
 			}
@@ -118,7 +117,7 @@ public class ProductDAO implements ProductDAOInterface{
 				product.setPrice(rs.getFloat("Price"));
 				product.setStockQty(rs.getInt("StockQuantity"));
 				product.setDesc(rs.getString("Description"));
-				product.setImgURL(rs.getString("ImageURL"));
+				product.setImg(rs.getString("ImageURL"));
 				
 				result.add(product);
 			}
@@ -182,7 +181,7 @@ public class ProductDAO implements ProductDAOInterface{
 				product.setPrice(rs.getFloat("Price"));
 				product.setStockQty(rs.getInt("StockQuantity"));
 				product.setDesc(rs.getString("Description"));
-				product.setImgURL(rs.getString("ImageURL"));
+				product.setImg(rs.getString("ImageURL"));
 //	            for(Category cat : this.findAllCategories()) {
 //	            	if(category.equals(cat.getDescription())) {
 //	            		product.setCatID(cat.getId());
@@ -222,7 +221,7 @@ public class ProductDAO implements ProductDAOInterface{
 				product.setPrice(rs.getFloat("Price"));
 				product.setStockQty(rs.getInt("StockQuantity"));
 				product.setDesc(rs.getString("Description"));
-				product.setImgURL(rs.getString("ImageURL"));
+				product.setImg(rs.getString("ImageURL"));
 				result.add(product);
 			}
 		} catch (Exception ex) {
@@ -256,7 +255,7 @@ public class ProductDAO implements ProductDAOInterface{
 				product.setPrice(rs.getFloat("Price"));
 				product.setStockQty(rs.getInt("StockQuantity"));
 				product.setDesc(rs.getString("Description"));
-				product.setImgURL(rs.getString("ImageURL"));
+				product.setImg(rs.getString("ImageURL"));
 				result.add(product);
 			}
 		} catch (Exception ex) {
@@ -289,7 +288,7 @@ public class ProductDAO implements ProductDAOInterface{
 				prod.setPrice(rs.getFloat("Price"));
 				prod.setStockQty(rs.getInt("StockQuantity"));
 				prod.setDesc(rs.getString("Description"));
-				prod.setImgURL(rs.getString("ImageURL"));
+				prod.setImg(rs.getString("ImageURL"));
 				
 			}
 		} catch (Exception ex) {
@@ -325,7 +324,7 @@ public class ProductDAO implements ProductDAOInterface{
 				product.setPrice(rs.getFloat("Price"));
 				product.setStockQty(rs.getInt("StockQuantity"));
 				product.setDesc(rs.getString("Description"));
-				product.setImgURL(rs.getString("ImageURL"));
+				product.setImg(rs.getString("ImageURL"));
 				result.add(product);
 			}
 		} catch (Exception ex) {
@@ -411,7 +410,7 @@ public class ProductDAO implements ProductDAOInterface{
 				p.setPrice(rs.getFloat("Price"));
 				p.setStockQty(rs.getInt("StockQuantity"));
 				p.setDesc(rs.getString("Description"));
-				p.setImgURL(rs.getString("ImageURL"));
+				p.setImg(rs.getString("ImageURL"));
 			}
 			
 		} catch (Exception ex) {

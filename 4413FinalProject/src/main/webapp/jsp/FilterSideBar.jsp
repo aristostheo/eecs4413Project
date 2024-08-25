@@ -8,6 +8,7 @@
 <div class="filters">
 	<form action="QueryServlet" method="get">
 		<table>
+		<tr><td></td></tr>
 		<tr>
 			<th>Filter by Category</th>
 		</tr>
@@ -25,6 +26,7 @@
 				<input type="checkbox" name="categories" value="accessories"/> Accessories<br/>
 			</td> -->
 		
+		<tr><td></td></tr>
 		<tr>
 			<th>Filter by Brand</th>
 		</tr>
@@ -53,6 +55,7 @@
 			<input type="submit" value="Apply Filters"/>
 			</td>
 		</tr>
+		<tr><td></td></tr>
 		</table>
 	</form>
 </div>
