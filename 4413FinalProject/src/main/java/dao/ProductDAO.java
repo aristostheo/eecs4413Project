@@ -98,15 +98,9 @@ public class ProductDAO implements ProductDAOInterface{
 		}
 		return result;
 	}
-<<<<<<< HEAD
-	// complete this method
-	public ArrayList<Product> getProductsByBrand(String brand) {
-		ArrayList<Product> result = new ArrayList<Product>();
-=======
 
 	public List<Product> getProductsByBrand(String brand) {
 		List<Product> result = new ArrayList<Product>();
->>>>>>> branch 'main' of https://github.com/aristostheo/eecs4413Project.git
 		
 		String sql = "select * from Products where BrandName like '%" + brand.trim() + "'";
 
@@ -142,7 +136,6 @@ public class ProductDAO implements ProductDAOInterface{
 		return result;
 	}	
 
-<<<<<<< HEAD
 	// complete this method
 	public ArrayList<Customer> findAllCustomers() {
 		ArrayList<Customer> result = new ArrayList<Customer>();
@@ -185,10 +178,6 @@ public class ProductDAO implements ProductDAOInterface{
 	// complete this method
 	public ArrayList<String> findAllBrands() {
 		ArrayList<String> result = new ArrayList<>();
-=======
-	public List<String> findAllBrands() {
-		List<String> result = new ArrayList<>();
->>>>>>> branch 'main' of https://github.com/aristostheo/eecs4413Project.git
 		String sql = "select DISTINCT BrandName from Products";
 
 		Connection con = null;
@@ -224,12 +213,6 @@ public class ProductDAO implements ProductDAOInterface{
 			ResultSet rs =  statement.executeQuery();
 			while (rs.next()) {
 				Product product = new Product();
-<<<<<<< HEAD
-				// populate book and author beans with needed info, and then set author to book
-=======
-				Category category1 = new Category();
-
->>>>>>> branch 'main' of https://github.com/aristostheo/eecs4413Project.git
 				product.setId(rs.getInt("ProductID"));
 				product.setBrand(rs.getString("BrandName"));
 				product.setName(rs.getString("ProductName"));
