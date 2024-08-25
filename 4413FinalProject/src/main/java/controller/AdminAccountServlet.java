@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,20 +33,24 @@ public class AdminAccountServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// TODO Auto-generated method stub 
 		
 		AdminDAO adao = new AdminDAO();
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		Admin admin = adao.findAdminByEmailPassword(email, password);
 		
-		request.setAttribute("admin", admin);			
-		String target = "/jsp/AdminAccountInfo.jsp";
-		request.getRequestDispatcher(target).forward(request, response);
-		
-		
-		
+		if (admin.getFirstName()!= null) {
+			request.setAttribute("admin", admin);			
+			String target = "/jsp/AdminAccountInfo.jsp";
+			request.getRequestDispatcher(target).forward(request, response);
+		} else if (admin.getFirstName() == null) {
+			response.setContentType("text/html");
+			PrintWriter pwriter = response.getWriter();
+			pwriter.print("<p><b>Your email or password was incorrect</b></p>");
+			RequestDispatcher back=request.getRequestDispatcher("AdminLogin.html");
+			back.include(request, response);
+		}	
 		
 	}
 

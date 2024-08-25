@@ -1,6 +1,8 @@
 package model;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable{
 	private int id;
 	private String brand;
 	private String name;
@@ -8,7 +10,8 @@ public class Product {
 	private float price;
 	private int stockQty;
 	private String desc;
-	private String imgURL;
+	private String img;
+	
 //	public Product(int id, String brand, String name, int catID, int supplierID, float price, int stockQty, String desc) {
 //		super();
 //		this.id = id;
@@ -20,6 +23,7 @@ public class Product {
 //		this.stockQty = stockQty;
 //		this.desc = desc;
 //	}
+	
 	public int getId() {
 		return id;
 	}
@@ -63,11 +67,12 @@ public class Product {
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
-	public String getImgURL() {
-		return imgURL;
+	public String getImg() {
+		System.out.println("img URL: " + img);
+		return img;
 	}
-	public void setImgURL(String imgURL) {
-		this.imgURL = imgURL;
+	public void setImg(String imgURL) {
+		this.img = imgURL;
 	}
 	
 

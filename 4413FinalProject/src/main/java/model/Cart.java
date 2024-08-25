@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Cart {
+public class Cart  implements Serializable{
 	private int cartID;
 	private int custID;
 	private List<CartItem> items;

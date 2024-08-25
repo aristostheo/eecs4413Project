@@ -1,13 +1,17 @@
 package model;
 
-public class Customer {
+import java.io.Serializable;
+
+public class Customer implements Serializable {
 	
 	private int CustomerID;
 	private String firstName; 
 	private String lastName;
 	private String email; 
-	private int phoneNumber;
-	private String address;
+	private long phoneNumber;
+	private String addLine1;
+	private String addLine2;
+	private String addressID;
 	private String city;
 	private String state;
 	private String zipCode;
@@ -46,20 +50,36 @@ public class Customer {
 		this.email = email;
 	}
 	
-	public int getPhoneNumber() {
+	public long getPhoneNumber() {
 		return this.phoneNumber; 
 	}
 	
-	public void setPhoneNumber(int number) {
+	public void setPhoneNumber(long number) {
 		this.phoneNumber = number;
 	}
 	
+	public String getAddressLine1() {
+		return this.addLine1;
+	}
+	
+	public void setAddressLine1(String add) {
+		this.addLine1 = add;
+	}
+	
+	public String getAddressLine2() {
+		return this.addLine2;
+	}
+	
+	public void setAddressLine2(String add) {
+		this.addLine2 = add;
+	}
+	
 	public String getAddress() {
-		return this.address;
+		return this.addressID;
 	}
 	
 	public void setAddress(String address) {
-		this.address = address;
+		this.addressID = address;
 	}
 	
 	public String getCity() {
@@ -104,7 +124,12 @@ public class Customer {
 	
 	// puts all the address info together in order, separated by commas
 	public String getFullAddress() {
-		String address = this.address + ", " + this.city + ", " + this.state + ", " + this.zipCode;
+		String address = "";
+		if (this.addLine2 != null) {
+			address = this.addLine1 + " " + this.addLine2 + ", " + this.city + ", " + this.state + ", " + this.zipCode + ", " + this.country;
+		} else {
+			address = this.addLine1 + ", " + this.city + ", " + this.state + ", " + this.zipCode + ", " + this.country;
+		}
 		return address;
 	}
 	

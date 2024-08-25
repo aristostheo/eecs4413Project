@@ -1,2 +1,7 @@
 /controller/
 /dao/
+<<<<<<< HEAD
+=======
+/model/
+/OrderDAOInterface.class
+>>>>>>> refs/remotes/origin/main

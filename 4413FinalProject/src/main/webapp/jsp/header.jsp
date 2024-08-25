@@ -10,14 +10,14 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Prata&display=swap"
         rel="stylesheet">
 
-    <link href="../css/header.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
 </head>
 
 <div class="topnav">
-        <a class="left" href="Home.jsp" id="logo"><b>Electro</b><span>Sphere</span></a>
+        <a class="left" href="HomeServlet" id="logo">CompanyName</a>
         <a class="right" href="../LoginPage.html">Login</a>
         <a class="right" href="accountPage"><i class="ri-user-3-line ri-lg"></i></a>
-        <a class="right" href="../CartServlet?todo=view"><i class="ri-shopping-cart-line ri-lg"></i></a>
+        <a class="right" href="CartServlet?todo=view"><i class="ri-shopping-cart-line ri-lg"></i></a>
         <i class="fi fi-rs-user"></i>
 </div>
 

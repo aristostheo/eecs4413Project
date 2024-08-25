@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="../css/homePageStyle.css">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/homePageStyle.css">
 </head>
 <title>Home Page</title>
 <body>
-    <!-- CSS here for aligning?-->
-    
-  <!--   <h1 class="titleText">Electronics Store</h1> -->
-<!--     <div class="buttonsRight">
+	<!-- CSS here for aligning?-->
+
+	<!--   <h1 class="titleText">Electronics Store</h1> -->
+	<!--     <div class="buttonsRight">
 		<form action="CartServlet" method="get">
 			<input type="hidden" name ="todo" value="view"/>
 			<input class="adminButton" type="submit" value="View Cart"/>
@@ -20,46 +20,47 @@
 			<input class="adminButton" type="submit" value="Login"/>
 		</form>
 	</div> -->
-	
+
 	<jsp:include page="header.jsp" flush="true" />
-	
-	<div class="filters">
-	<form action="QueryServlet" method="get">
-		<table border="1">
-		<tr>
-			<th>Filters</th>
-		</tr>
-		<tr>
-			<th>
-				
-				<p>Categories:</p>
-				<input type="checkbox" name="categories" value="smartphones"/> Smartphones<br/>
-				<input type="checkbox" name="categories" value="laptops"/> Laptops<br/>
-				<input type="checkbox" name="categories" value="tablets"/> Tablets<br/>
-				<input type="checkbox" name="categories" value="smartwatches"/> Smartwatches<br/>
-				<input type="checkbox" name="categories" value="accessories"/> Accessories<br/>
-			</th>
-		</tr>
-		<tr>
-			<th><p>Brands:</p>
-				<input type="checkbox" name="brand" value="anker"/> Anker<br/>
-				<input type="checkbox" name="brand" value="apple"/> Apple<br/>
-				<input type="checkbox" name="brand" value="dell"/> Dell<br/>
-				<input type="checkbox" name="brand" value="google"/> Google<br/>
-				<input type="checkbox" name="brand" value="logitech"/> Logitech<br/>
-				<input type="checkbox" name="brand" value="microsoft"/> Microsoft<br/>
-				<input type="checkbox" name="brand" value="samsung"/> Samsung<br/>
-				<input type="checkbox" name="brand" value="sony"/> Sony<br/>
-			</th>
-		</tr>
-		<tr>
-			<th><input type="submit" name="button" value="APPLY FILTER"/></th>
-		</tr>
-		</table>
-		<p>Search: <input type="text" name="searchQuery"/> <input type="submit" name="button" value="SUBMIT"/></p>
-		<input type="submit" name="button" value="SORT BY PRICE"/>
-		<input type="submit" name="button" value="SORT BY NAME"/>
-		<input type="submit" name="button" value="SHOW ALL PRODUCTS"/>
-	</form>
+
+	<jsp:include page="FilterSideBar.jsp" flush="true" />
+
+	<div id="selectionBar">
+
+		<div class="selections" id="search">
+			<form action="QueryServlet" method="get">
+				<p>
+					<input type="text" name="searchQuery" placeholder="What are you looking for?" /> 
+					<input type="hidden" name="action" value="SUBMIT" />
+					<button type="submit"><i class="ri-search-line"></i></button>
+				</p>
+			</form>
+		</div>
+
+		<div class="selections" id="sort">
+			<form action="QueryServlet" method="get">
+				<p>
+					<select name="sortMethod">
+						<option value="SORT BY PRICE">Price</option>
+						<option value="SORT BY NAME">Name</option>
+					</select> <input type="submit" name="action" value="Sort" />
+				</p>
+			</form>
+		</div>
+
+		<div class="selections" id="all">
+			<form action="QueryServlet" method="get">
+				<p>
+					<button type="submit" name="action" value="SHOW ALL PRODUCTS">View
+						All Products</button>
+				</p>
+			</form>
+		</div>
 	</div>
+
+	<jsp:include page="productView.jsp" flush="true" />
+
+
+
+
 </body>

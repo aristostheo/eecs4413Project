@@ -16,7 +16,7 @@
     <form action="ChangePassword.html" method="post">
     	<input type="submit" name="changeButton" value="CHANGE PASSWORD">
     </form>
-    <form action="Home.html">
+    <form action="jsp/Home.jsp">
     	<input type="submit" value="LOG OUT"> 
     </form>
     <hr/>

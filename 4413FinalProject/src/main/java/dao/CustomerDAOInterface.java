@@ -19,5 +19,7 @@ public interface CustomerDAOInterface {
 	public int changeCustEmail(String ogEmail, String newEmail);
 	public int changeCustPassword(String ogPassword, String newPassword);
 	
+	public ArrayList<Customer> getAllCustAndAddress();
+	
 
 }

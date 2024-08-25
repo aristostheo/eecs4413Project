@@ -22,7 +22,7 @@
     	
     	<c:forEach items="${cart.items}" var="i">
     		<tr> 
-        		<td><img src='${i.product.imgURL}' width ='300px'></td>
+        		<td><img src='${i.product.img}' width ='300px'></td>
         		<td>${i.product.name}</td>
         		<td>${i.product.price}</td>
         		<td>${i.quantity}</td>
