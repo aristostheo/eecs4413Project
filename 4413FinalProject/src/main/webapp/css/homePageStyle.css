@@ -19,6 +19,8 @@
 	background: white;
 	border: 1pt solid lavender;
 	border-radius: 7px;
+	height: calc(100vh - 120px);
+	overflow: auto;
 }
 
 .filters th {
@@ -58,6 +60,15 @@
 	/* float:right; */
 }
 
+#selectionBar {
+	display: flex;
+	margin-left: 200px;
+	padding: 0 20px;
+	background: white;
+	border: 1pt solid lavender;
+	border-radius: 7px;
+}
+
 input[type="submit"], button, select {
 	font-family: "Prata", serif;
 	padding: 10px 15px;
@@ -75,21 +86,17 @@ input[type="submit"]:hover, button:hover {
 }
 
 input[type="text"] {
-	width: 300px;
+	/* width: 300px; */
+	flex-grow: 1; 
+	width:70%; 
 	border: 1pt solid gray;
 	border-radius: 7px;
 	margin-left: 5px;
 	padding: 10px;
+	 
 }
 
-#selectionBar {
-	display: flex;
-	margin-left: 200px;
-	padding: 0 20px;
-	background: white;
-	border: 1pt solid lavender;
-	border-radius: 7px;
-}
+
 
 
 

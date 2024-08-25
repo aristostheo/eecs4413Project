@@ -12,7 +12,7 @@
 	<div id="contents">
 
 		<p>
-		<h3>Results</h3>
+		<h3 id="resultHeader">Results</h3>
 		</p>
 		<%-- <form method="get" action="CartServlet">
 		<table>
