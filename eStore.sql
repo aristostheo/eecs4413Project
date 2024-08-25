@@ -101,7 +101,7 @@ CREATE TABLE `Customers` (
 
 LOCK TABLES `Customers` WRITE;
 /*!40000 ALTER TABLE `Customers` DISABLE KEYS */;
-INSERT INTO `Customers` VALUES (1,'John','Doe','john.doe@example.com',NULL,'1234567890',1),(2,'Jane','Smith','jane.smith@example.com',NULL,'0987654321',2),(3,'Aristos','Theo','aristos@my.yorku.ca','ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f','6789012345',2),(4,'Tom','Testing','tom@gmail.com','27cc6994fc1c01ce6659c6bddca9b69c4c6a9418065e612c69d110b3f7b11f8a','4167678888',3);
+INSERT INTO `Customers` VALUES (1,'John','Doe','john.doe@example.com','password123','1234567890',1),(2,'Jane','Smith','jane.smith@example.com',NULL,'0987654321',2),(3,'Aristos','Theo','aristos@my.yorku.ca','ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f','6789012345',2),(4,'Tom','Testing','tom@gmail.com','27cc6994fc1c01ce6659c6bddca9b69c4c6a9418065e612c69d110b3f7b11f8a','4167678888',3);
 /*!40000 ALTER TABLE `Customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -215,7 +215,6 @@ CREATE TABLE `products` (
   CONSTRAINT `products_ibfk_1` FOREIGN KEY (`CategoryID`) REFERENCES `Categories` (`CategoryID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
 --
 -- Dumping data for table `products`
 --
@@ -253,6 +252,8 @@ CREATE TABLE `PurchaseOrderDetails` (
 
 LOCK TABLES `PurchaseOrderDetails` WRITE;
 /*!40000 ALTER TABLE `PurchaseOrderDetails` DISABLE KEYS */;
+INSERT INTO `PurchaseOrderDetails` VALUES (1, 1, 2, 1, 1199.99), (2, 2, 5, 1, 999.99), (3, 3, 4, 1, 699.99);
+
 /*!40000 ALTER TABLE `PurchaseOrderDetails` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -285,7 +286,7 @@ CREATE TABLE `PurchaseOrders` (
 
 LOCK TABLES `PurchaseOrders` WRITE;
 /*!40000 ALTER TABLE `PurchaseOrders` DISABLE KEYS */;
-INSERT INTO `PurchaseOrders` VALUES (1,1,1,'2024-08-12',2150.00,'Pending','2024-08-19'),(2,2,2,'2024-08-13',849.99,'Pending','2024-08-20');
+INSERT INTO `PurchaseOrders` VALUES (1,1,1,'2024-08-12',1199.99,'Pending','2024-08-19'),(2,2,2,'2024-08-13',999.99,'Pending','2024-08-20'), (3, 1, 1, '2024-08-15', 699.99, 'Pending', '2024-09-01');
 /*!40000 ALTER TABLE `PurchaseOrders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -299,3 +300,8 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2024-08-23 19:55:03
+
+select * from purchaseorders where CustomerID="1";
+select * from purchaseorderdetails;
+
+select * from products where ProductID = 1;

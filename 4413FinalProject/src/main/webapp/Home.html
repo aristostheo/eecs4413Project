@@ -6,7 +6,7 @@
 <title>Home Page</title>
 <body>
     <!-- CSS here for aligning?-->
-    <h1 class="titleText">Store Name</h1>
+    <h1 class="titleText">Electronics Store</h1>
     <div class="buttonsRight">
 		<form action="Cart.html" method="get">
 			<input class="adminButton" type="submit" value="View Cart"/>
@@ -25,33 +25,33 @@
 			<th>
 				
 				<p>Categories:</p>
-				<input type="checkbox" value="smartphones"/> Smartphones<br/>
-				<input type="checkbox" value="laptops"/> Laptops<br/>
-				<input type="checkbox" value="tablets"/> Tablets<br/>
-				<input type="checkbox" value="smartwatches"/> Smartwatches<br/>
-				<input type="checkbox" value="accessories"/> Accessories<br/>
+				<input type="checkbox" name="categories" value="smartphones"/> Smartphones<br/>
+				<input type="checkbox" name="categories" value="laptops"/> Laptops<br/>
+				<input type="checkbox" name="categories" value="tablets"/> Tablets<br/>
+				<input type="checkbox" name="categories" value="smartwatches"/> Smartwatches<br/>
+				<input type="checkbox" name="categories" value="accessories"/> Accessories<br/>
 			</th>
 		</tr>
 		<tr>
 			<th><p>Brands:</p>
-				<input type="checkbox" value="anker"/> Anker<br/>
-				<input type="checkbox" value="apple"/> Apple<br/>
-				<input type="checkbox" value="dell"/> Dell<br/>
-				<input type="checkbox" value="google"/> Google<br/>
-				<input type="checkbox" value="logitech"/> Logitech<br/>
-				<input type="checkbox" value="microsoft"/> Microsoft<br/>
-				<input type="checkbox" value="samsung"/> Samsung<br/>
-				<input type="checkbox" value="sony"/> Sony<br/>
+				<input type="checkbox" name="brand" value="anker"/> Anker<br/>
+				<input type="checkbox" name="brand" value="apple"/> Apple<br/>
+				<input type="checkbox" name="brand" value="dell"/> Dell<br/>
+				<input type="checkbox" name="brand" value="google"/> Google<br/>
+				<input type="checkbox" name="brand" value="logitech"/> Logitech<br/>
+				<input type="checkbox" name="brand" value="microsoft"/> Microsoft<br/>
+				<input type="checkbox" name="brand" value="samsung"/> Samsung<br/>
+				<input type="checkbox" name="brand" value="sony"/> Sony<br/>
 			</th>
 		</tr>
 		<tr>
-			<th><input type="submit" value="APPLY FILTER"/></th>
+			<th><input type="submit" name="button" value="APPLY FILTER"/></th>
 		</tr>
 		</table>
-		<p>Search: <input type="text"/> <input type="submit" value="SUBMIT"/></p>
-	  	<input type="submit" value="SORT BY PRICE"/>
-		<input type="submit" value="SORT BY NAME"/>
-	  	<input type="submit" value="SHOW ALL PRODUCTS"/>
+		<p>Search: <input type="text" name="searchQuery"/> <input type="submit" name="button" value="SUBMIT"/></p>
+		<input type="submit" name="button" value="SORT BY PRICE"/>
+		<input type="submit" name="button" value="SORT BY NAME"/>
+		<input type="submit" name="button" value="SHOW ALL PRODUCTS"/>
 	</form>
 	</div>
 </body>

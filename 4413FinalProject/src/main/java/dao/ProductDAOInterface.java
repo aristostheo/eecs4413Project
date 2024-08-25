@@ -3,17 +3,19 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Customer;
 import model.Product;
 
 public interface ProductDAOInterface {
 
 	public ArrayList<Product> findAllProducts();
 	public List<Product> getProductsByBrand(String brand);
-	public List<Customer> findAllCustomers();
 	public List<String> findAllBrands();
-	public List<Product> findProductsByCategory(String category); // is this being used? 
-	public List<Product> findProductsByPrice(int price); // is this being used? 
+	public List<Product> findProductsByPrice(int price); // is this being used? =======
+	public ArrayList<Product> findProductsByCategory(String category);
+	public ArrayList<Product> sortProductsPrice();
+	public ArrayList<Product> sortProductsName();
+	public ArrayList<Product> findProductByKeyword(String query);
+	public Product findProductByID(int id);
 	public void insert(Product product);
 	public void delete(int productid);
 	
