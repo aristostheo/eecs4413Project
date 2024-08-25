@@ -1,6 +1,8 @@
 package model;
 
-public class PaymentResponse {
+import java.io.Serializable;
+
+public class PaymentResponse implements Serializable{
     private String message;
     private double amount;
 

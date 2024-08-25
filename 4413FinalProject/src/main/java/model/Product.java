@@ -1,6 +1,8 @@
 package model;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable{
 	private int id;
 	private String brand;
 	private String name;
@@ -9,6 +11,7 @@ public class Product {
 	private int stockQty;
 	private String desc;
 	private String img;
+	
 //	public Product(int id, String brand, String name, int catID, int supplierID, float price, int stockQty, String desc) {
 //		super();
 //		this.id = id;
@@ -20,6 +23,7 @@ public class Product {
 //		this.stockQty = stockQty;
 //		this.desc = desc;
 //	}
+	
 	public int getId() {
 		return id;
 	}
