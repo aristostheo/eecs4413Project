@@ -34,7 +34,7 @@ public class QueryServlet extends HttpServlet {
 		
 			response.setContentType("text/html;charset=UTF-8");
 			
-			String action = request.getParameter("button");
+			String action = request.getParameter("action");
 			ProductDAO dao = new ProductDAO();
 			ArrayList<Product> productList = new ArrayList<>();
 			if (action.equals("APPLY FILTER")) { // filter results

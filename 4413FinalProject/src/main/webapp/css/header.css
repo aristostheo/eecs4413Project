@@ -40,28 +40,12 @@ body {
 }
 
 #logo {
+	color: darkslateblue;
 	font-weight: bolder;
-	font-style: italic;
-	
-	/* text-decoration: mediumpurple line-through solid 10pt; */
-	border-radius: 100px;
-	
-	
+	/* font-style: italic; */
 	letter-spacing: 1px;
-	text-shadow: 1px -2px slategray;
-	/* text-shadow: 2px -3px gray; */
- }
-
-#logo span {
-	text-transform: uppercase;
-	/* color: mediumpurple ; */
-	letter-spacing: 3px;
-	color: black;
-	
-	text-shadow: -1px 2px slategray;
-	/* text-shadow: -2px 3px gray; */
-	
-}
+	text-shadow: 7px -5px lavender;
+ } 
 
 input, button {
 	font-family: "Prata", serif;

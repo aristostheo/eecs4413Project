@@ -1,30 +1,46 @@
 @charset "UTF-8";
 
-.adminButton{
+/* .adminButton{
 	padding: 15px 32px;
 }
 .titleText{
 	float: left;
-}
+} 
 
 .buttonsRight{
 	float: right;
 	padding-top: 20px;
-}
-
+} 
+*/
 .filters{
 	float: left;
 	clear: left;
 	padding: 15px;
 	
+} 
+
+.filters th {
+	padding: 10px 0;
+	border-bottom: solid black 1px;
 }
 
-.products{
+.filters tr {
+	padding: 15px;
+}
+
+/* .products{
 	float: right;
 	padding-right: 500px;
 	padding-top: 15px;
 }
 
 .productListing{
-	width: 500px; /* maybe remove once are propegating table */
+	width: 500px;
+} 
+ */
+
+.selections {
+	display: inline-block;
 }
+
+

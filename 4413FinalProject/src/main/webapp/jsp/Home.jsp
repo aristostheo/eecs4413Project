@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../css/homePageStyle.css">
+    <link rel="stylesheet" href="css/homePageStyle.css">
 </head>
 <title>Home Page</title>
 <body>
@@ -23,43 +23,38 @@
 	
 	<jsp:include page="header.jsp" flush="true" />
 	
-	<div class="filters">
-	<form action="QueryServlet" method="get">
-		<table border="1">
-		<tr>
-			<th>Filters</th>
-		</tr>
-		<tr>
-			<th>
-				
-				<p>Categories:</p>
-				<input type="checkbox" name="categories" value="smartphones"/> Smartphones<br/>
-				<input type="checkbox" name="categories" value="laptops"/> Laptops<br/>
-				<input type="checkbox" name="categories" value="tablets"/> Tablets<br/>
-				<input type="checkbox" name="categories" value="smartwatches"/> Smartwatches<br/>
-				<input type="checkbox" name="categories" value="accessories"/> Accessories<br/>
-			</th>
-		</tr>
-		<tr>
-			<th><p>Brands:</p>
-				<input type="checkbox" name="brand" value="anker"/> Anker<br/>
-				<input type="checkbox" name="brand" value="apple"/> Apple<br/>
-				<input type="checkbox" name="brand" value="dell"/> Dell<br/>
-				<input type="checkbox" name="brand" value="google"/> Google<br/>
-				<input type="checkbox" name="brand" value="logitech"/> Logitech<br/>
-				<input type="checkbox" name="brand" value="microsoft"/> Microsoft<br/>
-				<input type="checkbox" name="brand" value="samsung"/> Samsung<br/>
-				<input type="checkbox" name="brand" value="sony"/> Sony<br/>
-			</th>
-		</tr>
-		<tr>
-			<th><input type="submit" name="button" value="APPLY FILTER"/></th>
-		</tr>
-		</table>
-		<p>Search: <input type="text" name="searchQuery"/> <input type="submit" name="button" value="SUBMIT"/></p>
-		<input type="submit" name="button" value="SORT BY PRICE"/>
-		<input type="submit" name="button" value="SORT BY NAME"/>
-		<input type="submit" name="button" value="SHOW ALL PRODUCTS"/>
-	</form>
+	<jsp:include page="FilterSideBar.jsp" flush="true" />
+	
+	<div class="selections">
+		<form action="../QueryServlet" method="get">
+			<p>Search: 
+			<input type="text" name="searchQuery"/> 
+			<input type="hidden" name="action" value="SUBMIT"/>
+			<input type="submit" value="Submit"/>
+			</p>
+		</form>
 	</div>
+	
+	<div class="selections">
+		<form action="../QueryServlet" method="get">
+			<p>Sort By:
+			<select name="sortMethod">
+				<option value="SORT BY PRICE">Price</option>
+				<option value="SORT BY NAME">Name</option>
+			</select>
+			<input type="submit" name="action" value="Sort"/>
+			</p>
+		</form>
+	</div>
+		
+	<div class="selections">	
+		<form action="../QueryServlet" method="get">
+			<button type="submit" name="action" value="SHOW ALL PRODUCTS">All Products</button>
+		</form>
+	</div>
+	
+	
+		
+		
+	
 </body>
