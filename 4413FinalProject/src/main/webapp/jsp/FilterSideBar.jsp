@@ -6,7 +6,7 @@
 </head>
 
 <div class="filters">
-	<form action="../QueryServlet" method="get">
+	<form action="QueryServlet" method="get">
 		<table>
 		<tr>
 			<th>Filter by Category</th>

@@ -12,20 +12,22 @@
 	padding-top: 20px;
 } 
 */
-.filters{
+.filters {
 	float: left;
 	clear: left;
-	padding: 15px;
-	
-} 
+	padding: 5px 15px;
+	background: white;
+	border: 1pt solid lavender;
+	border-radius: 7px;
+}
 
 .filters th {
 	padding: 10px 0;
-	border-bottom: solid black 1px;
+	border-bottom: solid lavender 1px;
 }
 
-.filters tr {
-	padding: 15px;
+.filters tr>td {
+	padding: 10px;
 }
 
 /* .products{
@@ -38,9 +40,53 @@
 	width: 500px;
 } 
  */
-
 .selections {
 	display: inline-block;
 }
 
+#search {
+	/* float:left; */
+	flex: 1;
+}
 
+#sort {
+	padding-right: 25px;
+}
+
+#all, #sort {
+	 margin-left: 10px;
+	/* float:right; */
+}
+
+input[type="submit"], button, select {
+	font-family: "Prata", serif;
+	padding: 10px 15px;
+	color: black;
+	border-radius: 4px;
+	border: 1pt solid gray;
+	background-color: lavender;
+	margin: 5px;
+}
+
+input[type="submit"]:hover, button:hover {
+	background-color: rgb(189, 189, 211);
+	color: white;
+	border: 1pt dashed gray;
+}
+
+input[type="text"] {
+	width: 300px;
+	border: 1pt solid gray;
+	border-radius: 7px;
+	margin-left: 5px;
+	padding: 10px;
+}
+
+#selectionBar {
+	display: flex;
+	margin-left: 200px;
+	padding: 0 20px;
+	background: white;
+	border: 1pt solid lavender;
+	border-radius: 7px;
+}

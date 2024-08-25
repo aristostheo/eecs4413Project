@@ -90,7 +90,7 @@ public class QueryServlet extends HttpServlet {
 			}
 			
 			request.setAttribute("productList", productList);
-			String target = "/jsp/productView.jsp";
+			String target = "jsp/Home.jsp";
 			request.getRequestDispatcher(target).forward(request, response);
 		
 	}

@@ -25,8 +25,10 @@
 	
 	<jsp:include page="FilterSideBar.jsp" flush="true" />
 	
-	<div class="selections">
-		<form action="../QueryServlet" method="get">
+	<div id="selectionBar">
+	
+	<div class="selections" id="search">
+		<form action="QueryServlet" method="get">
 			<p>Search: 
 			<input type="text" name="searchQuery"/> 
 			<input type="hidden" name="action" value="SUBMIT"/>
@@ -35,8 +37,8 @@
 		</form>
 	</div>
 	
-	<div class="selections">
-		<form action="../QueryServlet" method="get">
+	<div class="selections" id="sort">
+		<form action="QueryServlet" method="get">
 			<p>Sort By:
 			<select name="sortMethod">
 				<option value="SORT BY PRICE">Price</option>
@@ -47,12 +49,14 @@
 		</form>
 	</div>
 		
-	<div class="selections">	
-		<form action="../QueryServlet" method="get">
-			<button type="submit" name="action" value="SHOW ALL PRODUCTS">All Products</button>
+	<div class="selections" id="all">	
+		<form action="QueryServlet" method="get">
+			<p><button type="submit" name="action" value="SHOW ALL PRODUCTS">View All Products</button></p>
 		</form>
 	</div>
+	</div>
 	
+	<jsp:include page="productView.jsp" flush="true" />
 	
 		
 		

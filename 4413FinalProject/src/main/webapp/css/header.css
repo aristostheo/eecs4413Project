@@ -16,7 +16,6 @@ body {
 .topnav {
 	padding: 10px;
 	border: 1pt solid lavender;
-	background-color: lavender;
 	border-radius: 7px;
 	overflow: hidden;
 	background-color: white;
@@ -39,13 +38,14 @@ body {
 	float: right;
 }
 
-#logo {
-	color: darkslateblue;
+ #logo {
+ 	font-weight: bolder;
+	/* color: darkslateblue;
 	font-weight: bolder;
-	/* font-style: italic; */
+	font-style: italic;
 	letter-spacing: 1px;
-	text-shadow: 7px -5px lavender;
- } 
+	text-shadow: 7px -5px lavender; */
+ }  
 
 input, button {
 	font-family: "Prata", serif;
