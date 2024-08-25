@@ -100,5 +100,52 @@ public class CustomerDAO implements CustomerDAOInterface {
 		}
 		return cust;
 	}
+	
+	public int changeCustEmail(String ogEmail, String newEmail) {
+		
+		String sql = "update customers set customers.Email = '" + newEmail + "' where customers.Email='" + ogEmail + "';";
+		Connection con = connection();
+		int resultSet = 0;
+		try {
+			PreparedStatement statement = con.prepareStatement(sql);
+			resultSet =  statement.executeUpdate();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+	            if (con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+			
+		}
+		
+		return resultSet;
+	}
+	
+	public int changeCustPassword(String ogPassword, String newPassword) {
+		
+		String sql = "update customers set customers.Password = '" + newPassword + "' where customers.Password='" + ogPassword + "';";
+		Connection con = connection();
+		int resultSet = 0;
+		try {
+			PreparedStatement statement = con.prepareStatement(sql);
+			resultSet =  statement.executeUpdate();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+	            if (con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+			
+		}
+		
+		return resultSet;
+		
+	}
 
 }

@@ -15,5 +15,9 @@ public interface CustomerDAOInterface {
 	
 	public List<Customer> findAllCustomers();
 	public Customer findCustomerByEmailPassword(String email, String password);
+	
+	public int changeCustEmail(String ogEmail, String newEmail);
+	public int changeCustPassword(String ogPassword, String newPassword);
+	
 
 }

@@ -16,6 +16,9 @@
     <form action="ChangePassword.html" method="post">
     	<input type="submit" name="changeButton" value="CHANGE PASSWORD">
     </form>
+    <form action="Home.html">
+    	<input type="submit" value="LOG OUT"> 
+    </form>
     <hr/>
     <h1>Purchase History:</h1>
     <!-- Table needs to be populated with JSP-->
