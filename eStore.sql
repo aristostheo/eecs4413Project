@@ -392,10 +392,5 @@ UNLOCK TABLES;
 
 -- Dump completed on 2024-08-23 19:55:03
 
-select customers.CustomerID, customers.FirstName, customers.LastName, 
-customers.Email, customers.Password, customers.phone, 
-addresses.AddressLine1, addresses.AddressLine2, addresses.City, 
-addresses.State, addresses.ZipCode, addresses.Country
-from customers, addresses
-where customers.AddressID = addresses.AddressID
-order by customers.CustomerID;
+update customers set customers.FirstName = 'Jon' 
+where customers.CustomerID=1;
