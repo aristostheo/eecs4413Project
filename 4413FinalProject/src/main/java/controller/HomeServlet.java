@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.ProductDAO;
-import model.Category;
+import dao.*;
+import model.*;
 
 /**
  * Servlet implementation class HomeServlet
@@ -38,12 +38,20 @@ public class HomeServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		ProductDAO dao = new ProductDAO();
-		List<Category> allCategories = dao.findAllCategories();
-		List<String> allBrands = dao.findAllBrands();
-		
-		session.setAttribute("categories", allCategories);
-		session.setAttribute("brands", allBrands);
+		if (session.getAttribute("session") == null) {
+			ProductDAOInterface dao = new ProductDAO();
+			List<Category> allCategories = dao.findAllCategories();
+			List<String> allBrands = dao.findAllBrands();
+			
+			session.setAttribute("session", true);
+			session.setAttribute("categories", allCategories);
+			session.setAttribute("brands", allBrands);
+			session.setAttribute("isLoggedIn", false);
+			
+			CustomerDAOInterface custDAO = new CustomerDAO();
+			Customer anon = custDAO.createAnonCustomer();
+			session.setAttribute("customer", anon);
+		}
 		
 		RequestDispatcher rd = getServletContext().getRequestDispatcher("/jsp/Home.jsp");
 		rd.forward(request, response);

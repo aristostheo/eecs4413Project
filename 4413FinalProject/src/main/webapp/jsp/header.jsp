@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
 	<meta charset="utf-8">
 	<link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
@@ -15,8 +15,37 @@
 
 <div class="topnav">
         <a class="left" href="HomeServlet" id="logo">CurrentTech</a>
-        <a class="right" href="LoginServlet">Login</a>
-        <a class="right" href="accountPage"><i class="ri-user-3-line ri-lg"></i></a>
+        
+        <c:if test="${isLoggedIn}"> 
+        	<a class="right" href="LoginServlet"> Logout : ${isLoggedIn}</a>
+        </c:if>
+        
+        <c:if test="${not isLoggedIn}"> 
+        	<a class="right" href="LoginServlet"> Login : ${isLoggedIn}</a>
+        </c:if>
+        
+        <%-- <c:choose>
+			<c:when test="${isLoggedIn}">
+				Logout
+			</c:when>
+			<c:otherwise>
+				Login
+			</c:otherwise>
+		</c:choose> --%> 
+		
+		
+		<a class="right" href="AccountInfoServlet"><i class="ri-user-3-line ri-lg"></i></a>
+		
+        <%-- <c:if test="${isLoggedIn}"> 
+        	<a class="right" href="/jsp/AccountInfo.jsp"><i class="ri-user-3-line ri-lg"></i></a>
+        </c:if>
+        
+        <c:if test="${not isLoggedIn}"> 
+        	<a class="right" href="/jsp/AccountInfo.jsp"><i class="ri-user-3-line ri-lg"></i></a>
+        </c:if> --%>
+        
+        
+        
         <a class="right" href="CartServlet?todo=view"><i class="ri-shopping-cart-line ri-lg"></i></a>
 </div>
 

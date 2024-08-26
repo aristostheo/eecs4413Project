@@ -3,6 +3,7 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Category;
 import model.Customer;
 import model.Product;
 
@@ -19,5 +20,6 @@ public interface ProductDAOInterface {
 	public void insert(Product product);
 	public void delete(int productid);
 	public Product getProduct(int productID);
+	public ArrayList<Category> findAllCategories();
 	
 }

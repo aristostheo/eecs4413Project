@@ -65,6 +65,8 @@ public class ProductDAO implements ProductDAOInterface{
 		}
 		return result;
 	}
+	
+	@Override
 	public ArrayList<Category> findAllCategories() {
 		ArrayList<Category> result = new ArrayList<Category>();
 		

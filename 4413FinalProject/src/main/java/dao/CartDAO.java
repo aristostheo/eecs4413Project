@@ -114,13 +114,11 @@ public class CartDAO implements CartDAOInterface {
 			ProductDAOInterface productDAO = new ProductDAO();
 			
 			while (rs.next()) {
-				System.out.println("not empty");
 				CartItem item = new CartItem();
 				
 				item.setCartItemID(rs.getInt(1));
 				item.setCartID(rs.getInt(2));
 				item.setProduct(productDAO.getProduct(rs.getInt(3)));
-				System.out.println(productDAO.getProduct(rs.getInt(3)).getName());
 				item.setQuantity(rs.getInt(4));
 				
 				cartItems.add(item);

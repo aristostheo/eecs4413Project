@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.CustomerDAO;
+import dao.CustomerDAOInterface;
 import model.Customer;
 
 /**
@@ -30,22 +32,33 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		HttpSession session = request.getSession();
 		Customer cust = (Customer) session.getAttribute("customer");
 		
-		System.out.println(cust);
-		
-		if(cust == null) {
+		if(cust.getFirstName() == null) {
 			System.out.println("customer hasn't logged in yet");
-			String target = "jsp/LoginPage.jsp";
+			String target = "/jsp/LoginPage.jsp";
 			request.getRequestDispatcher(target).forward(request, response);
-		} else if (cust != null) {
-			System.out.println("customer is already logged in");
+		} else {
+			
+			System.out.println("customer is logging out");
+			
+			session.removeAttribute("session");
+			request.getRequestDispatcher("HomeServlet").forward(request, response);
+			
+//			session.removeAttribute("customer");
+//			session.setAttribute("isLoggedIn", false);
+//			request.getRequestDispatcher("HomeServlet").forward(request, response);
 		}
 	}
 
+	
+	
+	
+	
+	
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
