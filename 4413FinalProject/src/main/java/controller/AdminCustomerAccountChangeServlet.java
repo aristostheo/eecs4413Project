@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.AddressesDAO;
+import dao.CustomerDAO;
+
 /**
  * Servlet implementation class AdminCustomerAccountChangeServlet
  */
@@ -29,15 +32,28 @@ public class AdminCustomerAccountChangeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
+		CustomerDAO cdao = new CustomerDAO();
+		AddressesDAO adao = new AddressesDAO();
 		// get all the elements
 		
-		
-		
-		
+		String fname = request.getParameter("firstName");
+		String lname = request.getParameter("lastName");
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		String phoneNumber = request.getParameter("phoneNumber");
+		String addLine1 = request.getParameter("address1");
+		String addLine2 = request.getParameter("address2");
+		String city = request.getParameter("city");
+		String state = request.getParameter("state");
+		String zipCode = request.getParameter("zipcode");
+		String country = request.getParameter("country");
 		
 		// figure out which ones aren't null
-		
-		
+		if (!fname.equals("")) {
+			
+		} else {
+			System.out.println("BOO");
+		}
 		
 		// run a bunch of customerDAOs to update everything
 		

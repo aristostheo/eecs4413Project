@@ -196,4 +196,120 @@ public class CustomerDAO implements CustomerDAOInterface {
 		
 	}
 
+	@Override
+	public int changeCutomerFirstName(int id, String name) {
+
+		String sql = "update customers set customers.FirstName = '" + name + "' where customers.CustomerID='" + id + "';";
+		Connection con = connection();
+		int resultSet = 0;
+		try {
+			PreparedStatement statement = con.prepareStatement(sql);
+			resultSet =  statement.executeUpdate();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+	            if (con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+			
+		}
+		
+		return resultSet;
+	}
+
+	@Override
+	public int changeCutomerLastName(int id, String name) {
+		String sql = "update customers set customers.LastName = '" + name + "' where customers.CustomerID='" + id + "';";
+		Connection con = connection();
+		int resultSet = 0;
+		try {
+			PreparedStatement statement = con.prepareStatement(sql);
+			resultSet =  statement.executeUpdate();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+	            if (con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+			
+		}
+		
+		return resultSet;
+	}
+
+	@Override
+	public int changeCustEmailWithID(int id, String email) {
+		String sql = "update customers set customers.Email = '" + email + "' where customers.CustomerID='" + id + "';";
+		Connection con = connection();
+		int resultSet = 0;
+		try {
+			PreparedStatement statement = con.prepareStatement(sql);
+			resultSet =  statement.executeUpdate();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+	            if (con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+			
+		}
+		
+		return resultSet;
+	}
+
+	@Override
+	public int changeCustPasswordWIthID(int id, String password) {
+		String sql = "update customers set customers.Password = '" + password + "' where customers.CustomerID='" + id + "';";
+		Connection con = connection();
+		int resultSet = 0;
+		try {
+			PreparedStatement statement = con.prepareStatement(sql);
+			resultSet =  statement.executeUpdate();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+	            if (con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+			
+		}
+		
+		return resultSet;
+	}
+
+	@Override
+	public int changeCustPhoneNumWithID(int id, long number) {
+		String sql = "update customers set customers.Phone = '" + number + "' where customers.CustomerID='" + id + "';";
+		Connection con = connection();
+		int resultSet = 0;
+		try {
+			PreparedStatement statement = con.prepareStatement(sql);
+			resultSet =  statement.executeUpdate();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+	            if (con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+			
+		}
+		
+		return resultSet;
+	}
+
 }

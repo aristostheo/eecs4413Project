@@ -15,7 +15,7 @@
 
 <div class="topnav">
         <a class="left" href="HomeServlet" id="logo">CompanyName</a>
-        <a class="right" href="LogInServlet">Login</a>
+        <a class="right" href="LoginPage.html">Login</a>
         <a class="right" href="accountPage"><i class="ri-user-3-line ri-lg"></i></a>
         <a class="right" href="CartServlet?todo=view"><i class="ri-shopping-cart-line ri-lg"></i></a>
 </div>

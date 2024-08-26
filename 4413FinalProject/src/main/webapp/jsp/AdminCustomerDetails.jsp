@@ -10,7 +10,7 @@
 <body>
 	<h1>Customer Information:</h1>
     <!-- Table needs to be populated with JSP-->
-    <form action="AdminChangeCustInfo.html">
+    <form action="jsp/AdminChangeCustInfo">
     <table border='1' cellpadding='6'>
 		<tr>
 		<th>CUSTOMER ID</th>
@@ -29,7 +29,7 @@
                     <td>${e.getPassword()}</td>
                     <td>${e.getPhoneNumber()}</td>
                     <td>${e.getFullAddress()}</td>
-                    <td><input type="submit" name="change${e.getCustomerId()}" value="Change"></td>
+                    <td><input type="submit" name="custID" value="Change Cust ${e.getCustomerId()}"></td>
                 </tr>
             </c:forEach>
         </table><br />
