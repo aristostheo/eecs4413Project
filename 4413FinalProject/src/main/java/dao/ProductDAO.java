@@ -456,4 +456,26 @@ public class ProductDAO implements ProductDAOInterface{
 		}
 		return cat;
 	}
+	
+	public int changeQty(int productID, int newQty) {
+		String sql = "update products set products.StockQuantity ='" + newQty + "' where products.ProductID ='" + productID + "';";
+		Connection con = connection();
+		int resultSet = 0;
+		try {
+			PreparedStatement statement = con.prepareStatement(sql);
+			resultSet =  statement.executeUpdate();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+	            if (con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+			
+		}
+		
+		return resultSet;
+	}
 }

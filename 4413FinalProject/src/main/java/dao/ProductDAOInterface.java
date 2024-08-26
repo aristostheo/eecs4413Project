@@ -21,5 +21,5 @@ public interface ProductDAOInterface {
 	public void delete(int productid);
 	public Product getProduct(int productID);
 	public ArrayList<Category> findAllCategories();
-	
+	public int changeQty(int productID, int newQty);
 }

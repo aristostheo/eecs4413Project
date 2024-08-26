@@ -128,16 +128,18 @@ public class Customer implements Serializable {
 		this.password = password;
 	}
 	
+	/*
 	// puts all the address info together in order, separated by commas
-//	public String getFullAddress() {
-//		String address = "";
-//		if (this.addLine2 != null) {
-//			address = this.addLine1 + " " + this.addLine2 + ", " + this.city + ", " + this.state + ", " + this.zipCode + ", " + this.country;
-//		} else {
-//			address = this.addLine1 + ", " + this.city + ", " + this.state + ", " + this.zipCode + ", " + this.country;
-//		}
-//		return address;
-//	}
+	public String getFullAddress() {
+		String address = "";
+		if (this.addLine2 != null) {
+			address = this.addLine1 + " " + this.addLine2 + ", " + this.city + ", " + this.state + ", " + this.zipCode + ", " + this.country;
+		} else {
+			address = this.addLine1 + ", " + this.city + ", " + this.state + ", " + this.zipCode + ", " + this.country;
+		}
+		return address;
+	}
+	*/
 	
 	// returns fname + lname
 	public String getFullName() {
@@ -150,5 +152,4 @@ public class Customer implements Serializable {
 	public void setAddress(Addresses address) {
 		this.address = address;
 	}
-
 }

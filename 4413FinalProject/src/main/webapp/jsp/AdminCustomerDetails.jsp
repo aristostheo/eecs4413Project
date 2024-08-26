@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Admin view of all customers</title>
 </head>
 <body>
 	<h1>Customer Information:</h1>
@@ -28,7 +28,7 @@
                     <td>${e.getEmail()}</td>
                     <td>${e.getPassword()}</td>
                     <td>${e.getPhoneNumber()}</td>
-                    <td>${e.getFullAddress()}</td>
+                    <td>${e.getAddress().getFullAddress()}</td>
                     <td><input type="submit" name="custID" value="Change Cust ${e.getCustomerId()}"></td>
                 </tr>
             </c:forEach>

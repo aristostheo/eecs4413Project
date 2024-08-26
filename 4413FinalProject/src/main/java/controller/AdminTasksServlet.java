@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.CustomerDAO;
 import dao.OrderDAO;
+import dao.ProductDAO;
 import model.Customer;
 import model.OrderDetails;
+import model.Product;
 
 /**
  * Servlet implementation class AdminTasksServlet
@@ -39,6 +41,7 @@ public class AdminTasksServlet extends HttpServlet {
 		String action = request.getParameter("adminAction");
 		OrderDAO odao = new OrderDAO();
 		CustomerDAO cdao = new CustomerDAO();
+		ProductDAO pdao = new ProductDAO();
 		
 		if(action.equals("VIEW ORDERS")) {
 			System.out.println("view orders");
@@ -50,14 +53,16 @@ public class AdminTasksServlet extends HttpServlet {
 		} else if (action.equals("CUSTOMER INFORMATION")) {
 			System.out.println("display customer details");
 			ArrayList<Customer> customerDetails = cdao.getAllCustAndAddress();
-			System.out.println("CUSTOMER NUM: " + customerDetails.size());
+			//System.out.println("CUSTOMER NUM: " + customerDetails.size());
 			request.setAttribute("customerDetails", customerDetails);
 			String target = "/jsp/AdminCustomerDetails.jsp"; 
 			request.getRequestDispatcher(target).forward(request, response);
 		} else if (action.equals("UPDATE INVENTORY")) {
 			System.out.println("Update inventory");
-			// show all items, maybe button on each option and a field that will add or subtract
-			// with an update  
+			ArrayList<Product> productList = pdao.findAllProducts();
+			request.setAttribute("productList", productList);
+			String target = "/jsp/AdminChangeProductQty.jsp"; 
+			request.getRequestDispatcher(target).forward(request, response);
 		} 
 	}
 
