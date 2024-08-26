@@ -99,7 +99,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 			
 		}
 		return cust;
-	}
+	}	
 	
 	public int changeCustEmail(String ogEmail, String newEmail) {
 		
