@@ -40,10 +40,11 @@ public class CartServlet extends HttpServlet {
 		CartDAOInterface cartDAO = new CartDAO();
 		
 		// testing
-		session.setAttribute("customerID", 1);
+		int custID = 1;
 		
 		Cart c;
-		int custID = (Integer) session.getAttribute("customerID");
+//		Customer customer = (Customer) session.getAttribute("customer");
+//		int custID = customer.getCustomerId();
 		synchronized (session) {
 			c = cartDAO.getCart(custID);
 			if (c == null) {
@@ -90,6 +91,15 @@ public class CartServlet extends HttpServlet {
 			} else {
 				cartDAO.addCartItem(c.getCartID(), productID, quantity);
 			}
+			
+			ProductDAOInterface productDAO = new ProductDAO();
+			Product p = productDAO.getProduct(productID);
+			String prodName = p.getName();
+			
+			request.setAttribute("successMessage", "Success! " + prodName + " has been added to your cart.");
+			
+			RequestDispatcher rq = getServletContext().getRequestDispatcher("/QueryServlet?action=SHOW+ALL+PRODUCTS");
+			rq.forward(request, response);
 			
 		} else if (todo.equals("update")) {
 			int quantity = Integer.parseInt(request.getParameter("qty"));
