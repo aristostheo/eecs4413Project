@@ -5,7 +5,7 @@ FROM tomcat:9.0-jdk11
 LABEL maintainer="aristos@my.yorku.ca"
 
 # Copy the WAR file to the webapps directory of Tomcat
-COPY target/eStore.war /usr/local/tomcat/webapps/
+COPY target/4413FinalProject.war /usr/local/tomcat/webapps/
 
 # Expose the Tomcat port
 EXPOSE 8080
