@@ -11,16 +11,16 @@ import javax.servlet.http.HttpSession;
 import model.Customer;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class LogInServlet
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/LogInServlet")
+public class LogInServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public LogInServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +32,18 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		
 		HttpSession session = request.getSession();
 		Customer cust = (Customer) session.getAttribute("customer");
-		System.out.println(cust); 
 		
-		String target = "test.html";
-		request.getRequestDispatcher(target).forward(request, response);
+		System.out.println(cust);
 		
+		if(cust == null) {
+			System.out.println("customer hasn't logged in yet");
+			String target = "LoginPage.html";
+			request.getRequestDispatcher(target).forward(request, response);
+		} else if (cust != null) {
+			System.out.println("customer is already logged in");
+		}
 	}
 
 	/**
