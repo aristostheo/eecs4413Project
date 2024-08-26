@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,7 +32,7 @@ public class AdminChangeProdQtyServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		int newQty = Integer.valueOf(request.getParameter("qty"));
 		int id = Integer.valueOf(request.getParameter("productID").substring(15));
@@ -37,7 +40,11 @@ public class AdminChangeProdQtyServlet extends HttpServlet {
 		ProductDAO pdao = new ProductDAO();
 		int success = pdao.changeQty(id, newQty);
 		System.out.println(success);
-		
+		response.setContentType("text/html");
+		PrintWriter pwriter = response.getWriter();
+		pwriter.print("<p><b>Successful qty change</b></p>");
+		RequestDispatcher back=request.getRequestDispatcher("ChangeInfoConfirmPage.html");
+		back.include(request, response);
 	}
 
 	/**
