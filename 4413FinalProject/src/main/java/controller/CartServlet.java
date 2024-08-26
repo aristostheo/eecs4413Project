@@ -40,11 +40,11 @@ public class CartServlet extends HttpServlet {
 		CartDAOInterface cartDAO = new CartDAO();
 		
 		// testing
-		int custID = 1;
+		//int custID = 1;
 		
 		Cart c;
-//		Customer customer = (Customer) session.getAttribute("customer");
-//		int custID = customer.getCustomerId();
+		Customer customer = (Customer) session.getAttribute("customer");
+		int custID = customer.getCustomerId();
 		synchronized (session) {
 			c = cartDAO.getCart(custID);
 			if (c == null) {

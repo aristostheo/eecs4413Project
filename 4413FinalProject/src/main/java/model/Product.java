@@ -75,7 +75,6 @@ public class Product implements Serializable{
 	public void setImg(String imgURL) {
 		this.img = imgURL;
 	}
-	
 
 	
 

@@ -82,9 +82,9 @@ DROP TABLE IF EXISTS `Customers`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Customers` (
   `CustomerID` int NOT NULL AUTO_INCREMENT,
-  `FirstName` varchar(255) NOT NULL,
-  `LastName` varchar(255) NOT NULL,
-  `Email` varchar(255) NOT NULL,
+  `FirstName` varchar(255) DEFAULT NULL,
+  `LastName` varchar(255) DEFAULT NULL,
+  `Email` varchar(255) DEFAULT NULL,
   `Password` varchar(255) DEFAULT NULL,
   `Phone` varchar(20) DEFAULT NULL,
   `AddressID` int DEFAULT NULL,
@@ -392,10 +392,5 @@ UNLOCK TABLES;
 
 -- Dump completed on 2024-08-23 19:55:03
 
-select customers.CustomerID, customers.FirstName, customers.LastName, 
-customers.Email, customers.Password, customers.phone, 
-addresses.AddressLine1, addresses.AddressLine2, addresses.City, 
-addresses.State, addresses.ZipCode, addresses.Country
-from customers, addresses
-where customers.AddressID = addresses.AddressID
-order by customers.CustomerID;
+update customers set customers.FirstName = 'Jon' 
+where customers.CustomerID=1;

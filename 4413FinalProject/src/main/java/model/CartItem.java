@@ -8,6 +8,7 @@ public class CartItem  implements Serializable{
 	private int cartID;
 	private Product product;
 	private int quantity;
+	private double total;
 	public int getCartItemID() {
 		return cartItemID;
 	}
@@ -32,5 +33,16 @@ public class CartItem  implements Serializable{
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	public double getTotal() {
+		this.calculateTotal();
+		return total;
+	}
+	public void setTotal(double total) {
+		this.total = total;
+	}
+	public void calculateTotal() {
+		this.total = this.product.getPrice() * this.quantity;
+	}
+	
 	
 }

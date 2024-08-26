@@ -1,28 +1,28 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import dao.CustomerDAO;
-import dao.CustomerDAOInterface;
-import model.Customer;
+import dao.ProductDAO;
 
 /**
- * Servlet implementation class LogInServlet
+ * Servlet implementation class AdminChangeProdQty
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/AdminChangeProdQty")
+public class AdminChangeProdQtyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
-     */
-    public LoginServlet() {
+     */ 
+    public AdminChangeProdQtyServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,33 +32,21 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		HttpSession session = request.getSession();
-		Customer cust = (Customer) session.getAttribute("customer");
+		int newQty = Integer.valueOf(request.getParameter("qty"));
+		int id = Integer.valueOf(request.getParameter("productID").substring(15));
 		
-		if(cust.getFirstName() == null) {
-			System.out.println("customer hasn't logged in yet");
-			String target = "/jsp/LoginPage.jsp";
-			request.getRequestDispatcher(target).forward(request, response);
-		} else {
-			
-			System.out.println("customer is logging out");
-			
-			session.removeAttribute("session");
-			request.getRequestDispatcher("HomeServlet").forward(request, response);
-			
-//			session.removeAttribute("customer");
-//			session.setAttribute("isLoggedIn", false);
-//			request.getRequestDispatcher("HomeServlet").forward(request, response);
-		}
+		ProductDAO pdao = new ProductDAO();
+		int success = pdao.changeQty(id, newQty);
+		System.out.println(success);
+		response.setContentType("text/html");
+		PrintWriter pwriter = response.getWriter();
+		pwriter.print("<p><b>Successful qty change</b></p>");
+		RequestDispatcher back=request.getRequestDispatcher("ChangeInfoConfirmPage.html");
+		back.include(request, response);
 	}
 
-	
-	
-	
-	
-	
-	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

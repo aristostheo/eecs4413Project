@@ -13,9 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.CustomerDAO;
-import dao.ProductDAO;
-import dao.PurchaseDAO;
+import dao.*;
 import model.Customer;
 import model.Product;
 import model.PurchaseOrder;
@@ -44,15 +42,17 @@ public class AccountInfoServlet extends HttpServlet {
 		ArrayList<PurchaseOrder> purchaseHist = new ArrayList<>();
 		ArrayList<PurchaseOrder> purchaseHistoryFinal = new ArrayList<>();
 		ArrayList<Product> products = new ArrayList<>();
-		CustomerDAO custdao = new CustomerDAO();
-		PurchaseDAO purdao = new PurchaseDAO();
-		ProductDAO proddao = new ProductDAO();
+		CustomerDAOInterface custdao = new CustomerDAO();
+		PurchaseDAOInterface purdao = new PurchaseDAO();
+		ProductDAOInterface proddao = new ProductDAO();
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		Customer customer = custdao.findCustomerByEmailPassword(email, password);
 		System.out.println(customer.getFullName());
+		
 		if (customer.getFirstName() != null) {
 			session.setAttribute("customer", customer);
+			session.setAttribute("isLoggedIn", true);
 			purchaseHist = purdao.getPurchaseOrderbyCustID(customer.getCustomerId());
 			
 			for (int i = 0; i < purchaseHist.size(); i++) { // get product ID and the product's themselves
@@ -72,7 +72,7 @@ public class AccountInfoServlet extends HttpServlet {
 			response.setContentType("text/html");
 			PrintWriter pwriter = response.getWriter();
 			pwriter.print("<p><b>Your email or password was incorrect</b></p>");
-			RequestDispatcher back=request.getRequestDispatcher("LoginPage.html");
+			RequestDispatcher back=request.getRequestDispatcher("/jsp/LoginPage.jsp");
 			back.include(request, response);
 		}
 		

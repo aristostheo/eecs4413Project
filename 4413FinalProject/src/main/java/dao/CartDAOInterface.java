@@ -21,6 +21,7 @@ public interface CartDAOInterface {
 	public Integer checkItemInCartAlready(int cartID, int productID);
 	public void updateCartItem(int cartItemID, int quantity);
 	public void removeCartItem(int cartItemID);
+
 //	public double getShipping();
 	
 }	

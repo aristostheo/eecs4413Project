@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!-- <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
@@ -82,10 +84,13 @@
             background-color: #0056b3;
         }
     </style> -->
+    
 </head>
 <body>
 
-<div class="container">
+<jsp:include page="header.jsp" flush="true" />
+
+<div class="container" style="margin-left: 50px;">
     <h2>Create New Account</h2>
     <form action="AccountCreationServlet" method="post">
         <div class="form-group">

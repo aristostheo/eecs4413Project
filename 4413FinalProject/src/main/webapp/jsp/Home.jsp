@@ -49,10 +49,10 @@
 		<div class="selections" id="sort">
 			<form action="QueryServlet" method="get">
 				<p>
-					<select name="sortMethod">
-						<option value="SORT BY PRICE">Price</option>
-						<option value="SORT BY NAME">Name</option>
-					</select> <input type="submit" name="action" value="Sort" />
+					<select name="action">
+						<option value="SORT BY PRICE" >Price</option>
+						<option value="SORT BY NAME" >Name</option>
+					</select> <input type="submit" value="Sort" />
 				</p>
 			</form>
 		</div>

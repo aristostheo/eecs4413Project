@@ -26,7 +26,7 @@ public class CartDAO implements CartDAOInterface {
 	public static Connection connection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/4413project", "root", "xi3yyqokgCiPn_e");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore", "root", "EECS4413");
 //			System.out.println("Worked!");
 			return con;
 		} catch (Exception e) {
@@ -115,13 +115,11 @@ public class CartDAO implements CartDAOInterface {
 			ProductDAOInterface productDAO = new ProductDAO();
 			
 			while (rs.next()) {
-				System.out.println("not empty");
 				CartItem item = new CartItem();
 				
 				item.setCartItemID(rs.getInt(1));
 				item.setCartID(rs.getInt(2));
 				item.setProduct(productDAO.getProduct(rs.getInt(3)));
-				System.out.println(productDAO.getProduct(rs.getInt(3)).getName());
 				item.setQuantity(rs.getInt(4));
 				
 				cartItems.add(item);
@@ -256,5 +254,21 @@ public class CartDAO implements CartDAOInterface {
 			}
 		}
 	}
+	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

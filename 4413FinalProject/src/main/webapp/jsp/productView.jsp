@@ -52,7 +52,7 @@
 							<td><div class="prodImg"><img src='${e.img}'></div></td>
 						</tr>
 						<tr>
-							<th>${e.name}</th>	
+							<th><a href="itemDetails?productID=${e.id}">${e.name}</a></th>	
 						</tr>
 						<tr>
 							<td>${e.brand}</td>	
@@ -60,6 +60,7 @@
 						<tr>
 							<td>&nbsp;</td>	
 						</tr>
+						
 						<tr>
 							<td>$${e.price}</td>	
 						</tr>

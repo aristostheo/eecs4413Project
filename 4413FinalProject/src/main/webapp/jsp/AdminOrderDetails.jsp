@@ -43,6 +43,6 @@
             </c:forEach>
         </table><br />
         
-        <p><a href="jsp/Home.jsp">Return to home page</a></p>
+        <p><a href="HomeServlet">Return to home page</a></p>
 </body>
 </html>

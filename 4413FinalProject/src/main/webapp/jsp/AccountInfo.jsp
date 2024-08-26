@@ -7,6 +7,8 @@
 </head>
 <title>Account Info</title>
 <body>
+	<jsp:include page="header.jsp" flush="true" />
+	
     <h1>Welcome, ${customer.getFullName()}!</h1>
     <hr/>
     <p>Email: ${customer.getEmail()}</p>
@@ -40,5 +42,5 @@
                 </tr>
             </c:forEach>
         </table><br />
-	<p><a href="/4413FinalProject/HomeServlet">Return to home screen</a></p>
+	<p><a href="HomeServlet">Return to home screen</a></p>
 </body>

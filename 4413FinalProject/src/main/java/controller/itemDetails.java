@@ -11,20 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.*;
-import model.*;
+import dao.ProductDAO;
+import model.Category;
+import model.Product;
 
 /**
- * Servlet implementation class HomeServlet
+ * Servlet implementation class itemDetails
  */
-@WebServlet("/HomeServlet")
-public class HomeServlet extends HttpServlet {
+@WebServlet("/itemDetails")
+public class itemDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeServlet() {
+    public itemDetails() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,29 +34,16 @@ public class HomeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		response.setContentType("text/html;charset=UTF-8");
 		
-		HttpSession session = request.getSession();
+		ProductDAO dao = new ProductDAO();
+		Product p = dao.getProduct(Integer.parseInt(request.getParameter("productID")));
+		String cat = dao.getCategory(p.getCatID());
+		request.setAttribute("product", p);
+		request.setAttribute("cat", cat);
 		
-		if ((Boolean)session.getAttribute("session") == null) {
-			ProductDAOInterface dao = new ProductDAO();
-			List<Category> allCategories = dao.findAllCategories();
-			List<String> allBrands = dao.findAllBrands();
-			
-			session.setAttribute("session", true);
-			session.setAttribute("categories", allCategories);
-			session.setAttribute("brands", allBrands);
-			session.setAttribute("isLoggedIn", false);
-			
-			CustomerDAOInterface custDAO = new CustomerDAO();
-			Customer anon = custDAO.createAnonCustomer();
-			session.setAttribute("customer", anon);
-		}
-		
-		RequestDispatcher rd = getServletContext().getRequestDispatcher("/jsp/Home.jsp");
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/jsp/itemDetails.jsp");
 		rd.forward(request, response);
-		
 	}
 
 	/**

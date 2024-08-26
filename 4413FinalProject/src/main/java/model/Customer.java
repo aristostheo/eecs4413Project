@@ -10,15 +10,21 @@ public class Customer implements Serializable {
 	private String lastName;
 	private String email; 
 	private long phoneNumber;
-	private String addLine1;
-	private String addLine2;
-	private String addressID;
-	private String city;
-	private String state;
-	private String zipCode;
-	private String country;
+	private Addresses address;
+
+
+	//	private String addLine1;
+//	private String addLine2;
+//	private String address;
+//	private String city;
+//	private String state;
+//	private String zipCode;
+//	private String country;
 	private String password;
 	
+	public Customer() {
+		
+	}
 	public int getCustomerId() {
 		return this.CustomerID;
 	}
@@ -59,61 +65,61 @@ public class Customer implements Serializable {
 		this.phoneNumber = number;
 	}
 	
-	public String getAddressLine1() {
-		return this.addLine1;
-	}
-	
-	public void setAddressLine1(String add) {
-		this.addLine1 = add;
-	}
-	
-	public String getAddressLine2() {
-		return this.addLine2;
-	}
-	
-	public void setAddressLine2(String add) {
-		this.addLine2 = add;
-	}
-	
-	public String getAddress() {
-		return this.addressID;
-	}
-	
-	public void setAddress(String address) {
-		this.addressID = address;
-	}
-	
-	public String getCity() {
-		return this.city;
-	}
-	
-	public void setCity(String city) {
-		this.city = city;
-	}
-	
-	public String getState() {
-		return this.state;
-	}
-	
-	public void setState(String state) {
-		this.state = state;
-	}
-	
-	public String getZipCode() {
-		return this.zipCode;
-	}
-	
-	public void setZipCode(String zip) {
-		this.zipCode = zip;
-	}
-	
-	public String getCountry() {
-		return this.country;
-	}
-	
-	public void setCountry(String country) {
-		this.country = country;
-	}
+//	public String getAddressLine1() {
+//		return this.addLine1;
+//	}
+//	
+//	public void setAddressLine1(String add) {
+//		this.addLine1 = add;
+//	}
+//	
+//	public String getAddressLine2() {
+//		return this.addLine2;
+//	}
+//	
+//	public void setAddressLine2(String add) {
+//		this.addLine2 = add;
+//	}
+//	
+//	public String getAddress() {
+//		return this.address;
+//	}
+//	
+//	public void setAddress(String address) {
+//		this.address = address;
+//	}
+//	
+//	public String getCity() {
+//		return this.city;
+//	}
+//	
+//	public void setCity(String city) {
+//		this.city = city;
+//	}
+//	
+//	public String getState() {
+//		return this.state;
+//	}
+//	
+//	public void setState(String state) {
+//		this.state = state;
+//	}
+//	
+//	public String getZipCode() {
+//		return this.zipCode;
+//	}
+//	
+//	public void setZipCode(String zip) {
+//		this.zipCode = zip;
+//	}
+//	
+//	public String getCountry() {
+//		return this.country;
+//	}
+//	
+//	public void setCountry(String country) {
+//		this.country = country;
+//	}
 	
 	public String getPassword() {
 		return this.password;
@@ -123,6 +129,7 @@ public class Customer implements Serializable {
 		this.password = password;
 	}
 	
+	/*
 	// puts all the address info together in order, separated by commas
 	public String getFullAddress() {
 		String address = "";
@@ -133,10 +140,17 @@ public class Customer implements Serializable {
 		}
 		return address;
 	}
+	*/
 	
 	// returns fname + lname
 	public String getFullName() {
 		return this.firstName + " " + this.lastName;
 	}
-
+	
+	public Addresses getAddress() {
+		return address;
+	}
+	public void setAddress(Addresses address) {
+		this.address = address;
+	}
 }

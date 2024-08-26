@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +28,9 @@ public class AccountCreationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        response.getWriter().append("Served at: ").append(request.getContextPath());
+    	
+    	RequestDispatcher rd = getServletContext().getRequestDispatcher("/jsp/AccountCreation.jsp");
+		rd.forward(request, response);
     }
 
     @Override
