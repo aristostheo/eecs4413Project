@@ -1,0 +1,146 @@
+@charset "UTF-8";
+
+form {
+	padding: 10px;
+}
+
+input[type="submit"] {
+	font-family: "Prata", serif;
+	padding: 15px;
+	color: black;
+	border-radius: 4px;
+	border: 1pt solid black;
+	background-color: var(--accent);
+	margin: 5px;
+}
+
+input[type="submit"]:hover{
+	background-color: rgb(189, 189, 211);
+	color: white;
+}
+
+.button {
+	text-decoration: none;
+	padding: 10px 15px;
+	color: black;
+	border: 1pt solid gray;
+	border-radius: 4px;
+	background-color: lavender;
+	margin: 5px;
+}
+
+.button:hover {
+	background-color: rgb(189, 189, 211);
+	color: white;
+	border: 1pt dashed gray;
+}
+
+
+
+input[type="number"] {
+	font-family: "Prata", serif;
+	padding: 10px 0;
+	text-align: center;
+	width: 60px;
+	border: 1pt solid grey;
+	border-radius: 4px;
+	/* background-color: var(--accent); */
+}
+
+
+button {
+	font-family: "Prata", serif;
+	border: none;
+	background: none;
+	cursor: pointer;
+}
+
+.crossCol {
+	padding:0;
+}
+
+img {
+	width: 100px;
+}
+
+#cart {
+	padding: 0 40px;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-radius: 7px;
+	border-style: hidden; /* hide standard table (collapsed) border */
+    /* box-shadow: 0 0 0 1px white; */
+    box-shadow: 2px 2px 10px silver;
+	background-color: aliceblue;
+	border-left: none;
+	width: 70%;
+}
+
+#cartTotals table {
+	background-color: white;
+}
+
+#cartTotals table tr {
+	border: none;
+
+}
+
+#cartTotals table > td, th {
+	padding: 10px 20px;
+
+}
+	
+td, th {
+	padding: 10px 20px;
+	text-align: left;
+}
+
+.prodImg {
+	padding-right: 0;
+	text-align: center;
+}
+
+.prodName {
+	padding-left: 0;
+}
+
+#qtyHeader {
+	text-align:center;
+} 
+
+td {
+	background-color: white;
+	position: relative;
+}
+
+tr {
+	border-bottom: solid lavender 1px;
+	border-radius: 7px;
+} 
+
+/* .items:hover td {
+	background-color: snow;
+} */
+
+#qtyCol {
+	text-align: center;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+#total-label {
+	text-align: right;
+}
+
+/* .flex-container {
+	display: flex;
+} */
+
+#cartTotals {
+	float: right;
+	margin-top: -512px;
+	margin-right: 55px;
+}

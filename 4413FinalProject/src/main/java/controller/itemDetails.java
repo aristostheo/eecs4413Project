@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,19 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Customer;
+import dao.ProductDAO;
+import model.Category;
+import model.Product;
 
 /**
- * Servlet implementation class LogInServlet
+ * Servlet implementation class itemDetails
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/itemDetails")
+public class itemDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public itemDetails() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,21 +34,16 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.setContentType("text/html;charset=UTF-8");
 		
-		HttpSession session = request.getSession();
-		Customer cust = (Customer) session.getAttribute("customer");
+		ProductDAO dao = new ProductDAO();
+		Product p = dao.getProduct(Integer.parseInt(request.getParameter("productID")));
+		String cat = dao.getCategory(p.getCatID());
+		request.setAttribute("product", p);
+		request.setAttribute("cat", cat);
 		
-		System.out.println(cust);
-		
-		if(cust == null) {
-			System.out.println("customer hasn't logged in yet");
-			String target = "jsp/LoginPage.jsp";
-			request.getRequestDispatcher(target).forward(request, response);
-		} else if (cust != null) {
-			System.out.println("customer is already logged in");
-		}
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/jsp/itemDetails.jsp");
+		rd.forward(request, response);
 	}
 
 	/**

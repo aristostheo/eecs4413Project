@@ -20,7 +20,7 @@ public class ProductDAO implements ProductDAOInterface{
 	public static Connection connection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/4413project", "root", "xi3yyqokgCiPn_e");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore", "root", "EECS4413");
 			return con;
 		} catch (Exception e) {
 			System.out.println(e);
@@ -427,5 +427,31 @@ public class ProductDAO implements ProductDAOInterface{
 		return p;
 	}
 	
+	public String getCategory(int catID) {
+		String cat = null;
+		String sql = "select CategoryName from Categories where CategoryID = ?";
+		
+		Connection con = null;
+		try {
+			con = connection();
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setInt(1, catID);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				cat = rs.getString("CategoryName");
+			}
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
 
+		} finally {
+			try {
+	            if (con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return cat;
+	}
 }
