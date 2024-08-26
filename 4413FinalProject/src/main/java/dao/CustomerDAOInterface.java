@@ -31,6 +31,8 @@ public interface CustomerDAOInterface {
 	public void createCustomer(Customer c);
 	public void createAddress(Addresses a);
 	public Addresses getAddress(int addressID);
+	public void getCustAddresses(Customer c);
+	
 	
 
 }

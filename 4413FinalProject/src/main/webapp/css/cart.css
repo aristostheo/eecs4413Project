@@ -4,6 +4,42 @@ form {
 	padding: 10px;
 }
 
+.flex-container {
+	display: flex;
+	flex-wrap: wrap;
+} 
+
+#cart, #cartTotals {
+	padding: 0 40px;
+	flex: 1 1 auto;
+	/* border: black solid 1pt; */
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-radius: 7px;
+	border-style: hidden; /* hide standard table (collapsed) border */
+    /* box-shadow: 0 0 0 1px white; */
+    box-shadow: 2px 2px 10px silver;
+	background-color: aliceblue;
+	margin: 0 auto;
+	width:100%;
+	/* width: 90%;  */
+}
+
+#cartTotals table {
+	background-color: white;
+	/* width: 30%; */
+	 margin: 0 auto;
+	 width:100%;
+	 padding: 10px;
+}
+
+
+
+
+
 input[type="submit"] {
 	font-family: "Prata", serif;
 	padding: 15px;
@@ -63,35 +99,37 @@ img {
 	width: 100px;
 }
 
-#cart {
-	padding: 0 40px;
+.numCol {
+	text-align: right;
 }
 
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-	border-radius: 7px;
-	border-style: hidden; /* hide standard table (collapsed) border */
-    /* box-shadow: 0 0 0 1px white; */
-    box-shadow: 2px 2px 10px silver;
-	background-color: aliceblue;
-	border-left: none;
-	width: 70%;
-}
 
-#cartTotals table {
-	background-color: white;
-}
 
 #cartTotals table tr {
-	border: none;
+	 border: none;  
 
 }
 
-#cartTotals table > td, th {
+#cartTotals table td {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	 /* background: aliceblue; */
+
+}
+
+#totalCart td, #totalCart th {
+	padding: 10px 40px;
+}
+
+#totalCart th {
+	padding-top: 25px;
+	padding-bottom: 25px;
+}
+
+/* #cartTotals > table > th {
 	padding: 10px 20px;
 
-}
+} */
 	
 td, th {
 	padding: 10px 20px;
@@ -101,6 +139,15 @@ td, th {
 .prodImg {
 	padding-right: 0;
 	text-align: center;
+}
+
+#checkout a {
+	
+	display: flex;
+    justify-content: center; /* Centers the link horizontally */
+    align-items: center; /* Centers the link vertically */
+    height: 100%; /* Ensure the cell takes full height */
+    padding: 10px;
 }
 
 .prodName {
@@ -135,12 +182,12 @@ tr {
 	text-align: right;
 }
 
-/* .flex-container {
-	display: flex;
-} */
+h2 {
+	padding: 0 40px;
+}
 
-#cartTotals {
+/* #cartTotals {
 	float: right;
 	margin-top: -512px;
 	margin-right: 55px;
-}
+} */

@@ -15,9 +15,11 @@
 	
 	<jsp:include page="header.jsp" flush="true" />
 	
+	 <h2>Your Cart</h2>
+	 
 	<div class="flex-container">
 	<div id="cart">
-		 <h2>Your Cart</h2>
+		
 	 <table>
 	 	<tr>
             <th colspan="2">&ensp;&ensp;&ensp; Item</th>
@@ -59,10 +61,11 @@
 	 
          <br><br>         
        <a class="button" href="QueryServlet?action=SHOW+ALL+PRODUCTS"><i class="ri-corner-up-left-line"></i> Continue Shopping</a>   
+		<br><br><br> 
 	</div>
 	
 	<div id="cartTotals">
-		<table>
+		<table id="totalCart">
 			<c:set var="shipping" value="10.00" />
 			<c:set var="tax" value="50.00" />
 			<tr>
@@ -70,23 +73,25 @@
 			</tr>
 			<tr>
 				<td>Subtotal</td>
-				<td>$<fmt:formatNumber value="${cart.total}" type="number" maxFractionDigits="2" /></td>
+				<td class="numCol">$<fmt:formatNumber value="${cart.total}" type="number" maxFractionDigits="2" /></td>
 			</tr>
 			<tr>
 				<td>Shipping</td>
-				<td>$${shipping }</td>
+				<td class="numCol">$${shipping }</td>
 			</tr>
 			<tr>
 				<td>Tax</td>
-				<td>$${tax}</td>
+				<td class="numCol">$${tax}</td>
 			</tr>
 			<tr>
 				<th>Order Total</th>
-				<th>$<fmt:formatNumber value="${cart.total + shipping + tax}" type="number" maxFractionDigits="2" /></th>
+				<th class="numCol">$<fmt:formatNumber value="${cart.total + shipping + tax}" type="number" maxFractionDigits="2" /></th>
+			</tr>
+			<tr>
+				<td colspan="2" id="checkout"><a class="button"  href="CheckoutServlet">Checkout</a>  </td>  
 			</tr>
 		</table> 
-		<br><br>
-		<a class="button" href="CheckoutServlet">Checkout</a>       
+		   
        
 	</div>
 	

@@ -17,11 +17,11 @@
         <a class="left" href="HomeServlet" id="logo">CurrentTech</a>
         
         <c:if test="${isLoggedIn}"> 
-        	<a class="right" href="LoginServlet"> Logout : ${isLoggedIn}</a>
+        	<a class="right" href="LoginServlet"> Logout </a>
         </c:if>
         
         <c:if test="${not isLoggedIn}"> 
-        	<a class="right" href="LoginServlet"> Login : ${isLoggedIn}</a>
+        	<a class="right" href="LoginServlet"> Login </a>
         </c:if>
         
         <%-- <c:choose>

@@ -170,6 +170,41 @@ public class CustomerDAO implements CustomerDAOInterface {
 		
 	}
 	
+	public void getCustAddresses(Customer c) {
+		Addresses a = new Addresses();
+		
+		String sql = "select * from addresses where customerID= ?";
+
+		Connection con = connection();
+		try {
+			PreparedStatement statement = con.prepareStatement(sql);
+			statement.setInt(1, c.getCustomerId());
+			ResultSet r =  statement.executeQuery();
+			while (r.next()) {
+				a.setAddId(r.getInt(1));
+				a.setCustId(r.getInt(2));
+				a.setAddLine1(r.getString(3));
+				a.setAddLine2(r.getString(4));
+				a.setCity(r.getString(5));
+				a.setState(r.getString(6));
+				a.setZipCode(r.getString(7));
+				a.setCountry(r.getString(8));
+				c.setAddress(a);
+			}
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+	            if (con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+			
+		}
+	}
+	
 	public List<Customer> findAllCustomers() {
 		List<Customer> result = new ArrayList<Customer>();
 		String sql = "select * from Customers";
@@ -463,4 +498,5 @@ public class CustomerDAO implements CustomerDAOInterface {
 		return resultSet;
 	}
 
+	
 }

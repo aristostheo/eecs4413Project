@@ -38,7 +38,7 @@ public class HomeServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		if (session.getAttribute("session") == null) {
+		if ((Boolean)session.getAttribute("session") == null) {
 			ProductDAOInterface dao = new ProductDAO();
 			List<Category> allCategories = dao.findAllCategories();
 			List<String> allBrands = dao.findAllBrands();

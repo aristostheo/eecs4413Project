@@ -15,7 +15,10 @@
         <p>Password: <input type="password" name="password"/></p>
         <input type="submit" value="Submit"/><input type="reset" value="Clear"/>
     </form> 
-    <a href="AccountCreation.html">Create a New Account</a>
+    <!-- <form action="jsp/AccountCreation.jsp">
+    	<button type="submit">Create a New Account</button>
+    </form> -->
+    <a href="AccountCreationServlet">Create a New Account</a>
     <a href="AdminLogin.html">Log in as Admin</a>
     </div>
 </body>
