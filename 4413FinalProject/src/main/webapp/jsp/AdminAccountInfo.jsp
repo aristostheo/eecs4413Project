@@ -21,7 +21,7 @@
     	<input type="submit" name="adminAction" value="CUSTOMER INFORMATION">
     	<input type="submit" name="adminAction" value="UPDATE INVENTORY">
     </form>
-    <form action="Home.html">
+    <form action="LogoutServlet">
     	<input type="submit" value="LOG OUT"> 
     </form>
     

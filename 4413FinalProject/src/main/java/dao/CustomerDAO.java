@@ -148,4 +148,52 @@ public class CustomerDAO implements CustomerDAOInterface {
 		
 	}
 
+	
+	public ArrayList<Customer> getAllCustAndAddress() {
+		ArrayList<Customer> results = new ArrayList<>();
+		
+		String sql = "select customers.CustomerID, customers.FirstName, customers.LastName, "
+				+ "customers.Email, customers.Password, customers.phone, "
+				+ "addresses.AddressLine1, addresses.AddressLine2, addresses.City, "
+				+ "addresses.State, addresses.ZipCode, addresses.Country "
+				+ "from customers, addresses "
+				+ "where customers.AddressID = addresses.AddressID "
+				+ "order by customers.CustomerID;";
+
+		Connection con = connection();
+		try {
+			PreparedStatement statement = con.prepareStatement(sql);
+			ResultSet resultSet =  statement.executeQuery();
+			while (resultSet.next()) {
+				Customer cust = new Customer();
+	            cust.setCustomerId(resultSet.getInt("CustomerID"));
+	            cust.setFirstName(resultSet.getString("FirstName"));
+	            cust.setLastName(resultSet.getString("LastName"));
+	            cust.setPhoneNumber(resultSet.getLong("phone"));
+	            cust.setEmail(resultSet.getString("Email"));
+	            cust.setPassword(resultSet.getString("Password"));
+	            cust.setAddressLine1(resultSet.getString("AddressLine1"));
+	            cust.setAddressLine2(resultSet.getString("AddressLine2"));
+	            cust.setCity(resultSet.getString("City"));
+	            cust.setState(resultSet.getString("State"));
+	            cust.setZipCode(resultSet.getString("ZipCode"));
+	            cust.setCountry(resultSet.getString("Country"));
+	            
+	            results.add(cust);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+	            if (con != null) con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+			
+		}
+		return results;
+		
+	}
+
 }

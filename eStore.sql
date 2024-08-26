@@ -392,18 +392,10 @@ UNLOCK TABLES;
 
 -- Dump completed on 2024-08-23 19:55:03
 
-select purchaseorders.POID, products.BrandName, products.ProductName,
-categories.CategoryName, customers.FirstName, customers.LastName, 
-customers.Email, addresses.AddressLine1, addresses.AddressLine2,
-addresses.City, addresses.State, addresses.ZipCode, addresses.Country,
-purchaseorders.OrderDate, purchaseorders.TotalAmount, 
-purchaseorders.Status, purchaseorders.ExpectedDeliveryDate,
-purchaseorderdetails.Quantity
-from purchaseorders, products, categories, customers, addresses, 
-purchaseorderdetails
-where purchaseorders.POID = purchaseorderdetails.POID AND
-purchaseorders.CustomerID = customers.CustomerID AND
-purchaseorders.ShippingAddressID = addresses.AddressID AND
-purchaseorderdetails.ProductID = products.ProductID AND
-products.CategoryID = categories.CategoryID
-order by purchaseorders.POID;
+select customers.CustomerID, customers.FirstName, customers.LastName, 
+customers.Email, customers.Password, customers.phone, 
+addresses.AddressLine1, addresses.AddressLine2, addresses.City, 
+addresses.State, addresses.ZipCode, addresses.Country
+from customers, addresses
+where customers.AddressID = addresses.AddressID
+order by customers.CustomerID;
