@@ -21,8 +21,8 @@ public interface CustomerDAOInterface {
 	
 	public ArrayList<Customer> getAllCustAndAddress();
 	
-	public int changeCutomerFirstName(int id, String name);
-	public int changeCutomerLastName(int id, String name);
+	public int changeCustomerFirstName(int id, String name);
+	public int changeCustomerLastName(int id, String name);
 	public int changeCustEmailWithID(int id, String email);
 	public int changeCustPasswordWIthID(int id, String password);
 	public int changeCustPhoneNumWithID(int id, long number);

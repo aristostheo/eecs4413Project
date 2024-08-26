@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,11 +33,16 @@ public class AdminCustomerAccountChangeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		CustomerDAO cdao = new CustomerDAO();
 		AddressesDAO adao = new AddressesDAO();
 		// get all the elements
+		String customerID = request.getParameter("custID");
+		int custId = Integer.valueOf(customerID.substring(12));
+		//System.out.println(custId);
+		
+		int success = 0;
 		
 		String fname = request.getParameter("firstName");
 		String lname = request.getParameter("lastName");
@@ -50,15 +58,54 @@ public class AdminCustomerAccountChangeServlet extends HttpServlet {
 		
 		// figure out which ones aren't null
 		if (!fname.equals("")) {
-			
-		} else {
-			System.out.println("BOO");
+			success = cdao.changeCustomerFirstName(custId, fname);
 		}
 		
-		// run a bunch of customerDAOs to update everything
+		if (!lname.equals("")) {
+			success = cdao.changeCustomerLastName(custId, lname);
+		}
 		
+		if (!email.equals("")) {
+			success = cdao.changeCustEmailWithID(custId, email);
+		}
 		
-		// return to somewhere, with suceed message
+		if (!password.equals("")) {
+			success = cdao.changeCustPasswordWIthID(custId, password);
+		}
+		
+		if (!phoneNumber.equals("")) {
+			success = cdao.changeCustPhoneNumWithID(custId, Long.valueOf(phoneNumber));
+		}
+		
+		if (!addLine1.equals("")) {
+			success = adao.changeAddressLine1WithId(custId, addLine1);
+		}
+		
+		if (!addLine2.equals("")) {
+			success = adao.changeAddressLine2WithId(custId, addLine2);
+		}
+		
+		if (!city.equals("")) {
+			success = adao.changeCityWithId(custId, city);
+		}
+		
+		if (!state.equals("")) {
+			success = adao.changeStateWithId(custId, state);
+		}
+		
+		if (!zipCode.equals("")) {
+			success = adao.changeZipcodeWithId(custId, zipCode);
+		}
+		if (!country.equals("")) {
+			success = adao.changeCountryWithId(custId, country);
+		}
+		
+		// return to somewhere, with succeed message
+		response.setContentType("text/html");
+		PrintWriter pwriter = response.getWriter();
+		pwriter.print("<p><b>Change customer success!</b></p>");
+		RequestDispatcher back=request.getRequestDispatcher("ChangeInfoConfirmPage.html");
+		back.include(request, response); 
 		
 		
 		

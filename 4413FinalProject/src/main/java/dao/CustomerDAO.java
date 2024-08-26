@@ -197,7 +197,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 	}
 
 	@Override
-	public int changeCutomerFirstName(int id, String name) {
+	public int changeCustomerFirstName(int id, String name) {
 
 		String sql = "update customers set customers.FirstName = '" + name + "' where customers.CustomerID='" + id + "';";
 		Connection con = connection();
@@ -221,7 +221,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 	}
 
 	@Override
-	public int changeCutomerLastName(int id, String name) {
+	public int changeCustomerLastName(int id, String name) {
 		String sql = "update customers set customers.LastName = '" + name + "' where customers.CustomerID='" + id + "';";
 		Connection con = connection();
 		int resultSet = 0;
