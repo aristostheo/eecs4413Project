@@ -13,14 +13,14 @@ import model.Customer;
 /**
  * Servlet implementation class LogInServlet
  */
-@WebServlet("/LogInServlet")
-public class LogInServlet extends HttpServlet {
+@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogInServlet() {
+    public LoginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

@@ -20,11 +20,8 @@ public class ProductDAO implements ProductDAOInterface{
 	public static Connection connection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-<<<<<<< HEAD
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/newstore", "root", "EECS4413");
-=======
-			Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/4413project", "root", "xi3yyqokgCiPn_e");
->>>>>>> refs/remotes/origin/main
+
 			return con;
 		} catch (Exception e) {
 			System.out.println(e);
