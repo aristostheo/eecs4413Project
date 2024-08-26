@@ -135,7 +135,7 @@
         const cardNumber = document.getElementById('cardNumber').value;
         const amount = document.getElementById('amount').value;
 
-        fetch('/api/payment/process', {
+        fetch('/payment/process', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

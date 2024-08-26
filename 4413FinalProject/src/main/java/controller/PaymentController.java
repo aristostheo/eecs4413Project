@@ -10,6 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import dao.OrderDAO;
 import model.PaymentRequest;
 import model.PaymentResponse;
 //import model.OrderService;
@@ -22,7 +23,7 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @Inject
-//    private OrderService orderService;
+    private OrderDAO orderDao = new OrderDAO();
 
     @POST
     @Path("/process")
@@ -33,9 +34,8 @@ public class PaymentController {
 
         if (paymentSuccess) {
             try {
-//                int orderId = orderService.createOrder(request.getAmount());
-
-                int orderId = 1; // \TODO: replace with orderID of some orderService class
+                int orderId = orderDao.getAllOrderInformation().get(0).getOrderID();
+                System.out.println(orderId);
             	PaymentResponse response = new PaymentResponse("Order successfully placed!", request.getAmount(), orderId);
                 return Response.ok(response).build();
             } catch (Exception e) {
