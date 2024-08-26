@@ -100,3 +100,27 @@ input[type="text"] {
 
 
 
+#successMessage {
+	 margin-left: 200px;
+	 margin-top: 10px; 
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px; 
+    max-width: 100%;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none; /* Prevent interaction when hidden */
+}
+
+#crossMessage {
+	float: right;
+}
+

@@ -64,11 +64,13 @@
 							<td>$${e.price}</td>	
 						</tr>
 						<tr>
-							<td class="lastRow">	
-								<input type="hidden" name="cb" value="${e.id}"/>
-								<input type="hidden" name="todo" value="add" /> 
-								<input type="number" name="qty${e.id}" value="1" min="1"/>
-								<input type="submit" value="Add to Cart" />
+							<td class="lastRow">
+							<form method="get" action="CartServlet">	
+								<input type="hidden" name="productID" value="${e.id}"/>
+								<input type="hidden" name="todo" value="add" />
+								<input type="number" name="qty" value="1" min="1"/>
+								<input type="submit" value="Add to Cart"/>
+							</form>
 							</td>	
 						</tr>
 						
