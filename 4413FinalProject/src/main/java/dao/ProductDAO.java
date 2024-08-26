@@ -15,7 +15,7 @@ import model.Cart;
 import model.Category;
 import model.Customer;
 
-public abstract class ProductDAO implements ProductDAOInterface{
+public  class ProductDAO implements ProductDAOInterface{
 
 	public static Connection connection() {
 		try {
@@ -98,16 +98,10 @@ public abstract class ProductDAO implements ProductDAOInterface{
 		}
 		return result;
 	}
-<<<<<<< HEAD
 
 	public List<Product> getProductsByBrand(String brand) {
 		List<Product> result = new ArrayList<Product>();
-=======
-	// complete this method
-	public ArrayList<Product> getProductsByBrand(String brand) {
-		ArrayList<Product> result = new ArrayList<Product>();
->>>>>>> refs/heads/main
-		
+
 		String sql = "select * from Products where BrandName like '%" + brand.trim() + "'";
 
 		Connection con = connection();
@@ -212,7 +206,6 @@ public abstract class ProductDAO implements ProductDAOInterface{
 		 
 
 		String sql = "select * from products join categories on products.CategoryID = categories.CategoryID where categories.CategoryName='" + category + "';";
-<<<<<<< HEAD
 
 		Connection con = connection();
 		try {
@@ -249,51 +242,47 @@ public abstract class ProductDAO implements ProductDAOInterface{
 		}
 		return result;
 	}
-	public ArrayList<Product> findProductsByPrice(int price) {
-		ArrayList<Product> result = new ArrayList<Product>();
-		 
-
-		String sql = "select * from products where price <" + price+";";
-=======
->>>>>>> refs/heads/main
-
-		Connection con = null;
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore","root","EECS4413");
-			PreparedStatement statement = con.prepareStatement(sql);
-			ResultSet rs =  statement.executeQuery();
-			while (rs.next()) {
-				Product product = new Product();
-<<<<<<< HEAD
-=======
-				// populate book and author beans with needed info, and then set author to book
->>>>>>> refs/heads/main
-				product.setId(rs.getInt("ProductID"));
-				product.setBrand(rs.getString("BrandName"));
-				product.setName(rs.getString("ProductName"));
-				product.setCatID(rs.getInt("CategoryID"));				
-				product.setPrice(rs.getFloat("Price"));
-				product.setStockQty(rs.getInt("StockQuantity"));
-				product.setDesc(rs.getString("Description"));
-
-
-				
-				result.add(product);
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			try {
-	            if (con != null) con.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
-		return result;
-	}
+//	public ArrayList<Product> findProductsByPrice(int price) {
+//		ArrayList<Product> result = new ArrayList<Product>();
+//		 
+//
+//		String sql = "select * from products where price <" + price+";";
+//
+//
+//		Connection con = null;
+//		try {
+//			Class.forName("com.mysql.cj.jdbc.Driver");
+//			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore","root","EECS4413");
+//			PreparedStatement statement = con.prepareStatement(sql);
+//			ResultSet rs =  statement.executeQuery();
+//			while (rs.next()) {
+//				Product product = new Product();
+//
+//				product.setId(rs.getInt("ProductID"));
+//				product.setBrand(rs.getString("BrandName"));
+//				product.setName(rs.getString("ProductName"));
+//				product.setCatID(rs.getInt("CategoryID"));				
+//				product.setPrice(rs.getFloat("Price"));
+//				product.setStockQty(rs.getInt("StockQuantity"));
+//				product.setDesc(rs.getString("Description"));
+//
+//
+//				
+//				result.add(product);
+//			}
+//		} catch (Exception ex) {
+//			ex.printStackTrace();
+//		} finally {
+//			try {
+//	            if (con != null) con.close();
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			
+//		}
+//		return result;
+//	}
 	public ArrayList<Product> findProductsByPrice(int price) {
 		ArrayList<Product> result = new ArrayList<Product>();
 		 

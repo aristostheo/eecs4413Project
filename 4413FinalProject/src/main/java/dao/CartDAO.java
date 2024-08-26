@@ -12,6 +12,7 @@ import java.sql.Statement;
 import model.Cart;
 import model.CartItem;
 import model.Product;
+import dao.ProductDAOInterface;
 
 public class CartDAO implements CartDAOInterface {
 	

@@ -5,6 +5,7 @@ import java.sql.Date;
 
 public class PurchaseOrder implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private int purchaseID;
 	private int productID;
 	private String productName;

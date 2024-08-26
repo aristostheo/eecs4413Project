@@ -31,6 +31,7 @@ public class PaymentController {
 
         if (paymentSuccess) {
             try {
+            	int orderId = 1;
             	PaymentResponse response = new PaymentResponse("Order successfully placed!", request.getAmount(), orderId);
                 return Response.ok(response).build();
             } catch (Exception e) {

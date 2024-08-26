@@ -3,7 +3,8 @@ package model;
 import java.io.Serializable;
 
 public class PaymentResponse implements Serializable{
-    private String message;
+    private static final long serialVersionUID = 1L;
+	private String message;
     private double amount;
     private int orderId; // Add this field
 
