@@ -38,7 +38,7 @@ public class CheckoutServlet extends HttpServlet {
 			CustomerDAOInterface customerDAO = new CustomerDAO();
 			customerDAO.getCustAddresses(c);
 		} else {
-			RequestDispatcher r = request.getRequestDispatcher("/jsp/Login.jsp");
+			RequestDispatcher r = request.getRequestDispatcher("/jsp/LoginPage.jsp");
 			r.forward(request, response);
 		}
 		

@@ -79,11 +79,15 @@ public class QueryServlet extends HttpServlet {
 				System.out.println(searchQuery);
 				productList = dao.findProductByKeyword(searchQuery);
 			} else if (action.equals("SORT BY PRICE")) {
+				
 				System.out.println("Sort by price");
 				productList = dao.sortProductsPrice();
+				
 			} else if (action.equals("SORT BY NAME")) {
+				
 				System.out.println("Sort by name");
 				productList = dao.sortProductsName();
+				
 			} else if (action.equals("SHOW ALL PRODUCTS")) {
 				System.out.println("Show all products");
 				productList = dao.findAllProducts();
