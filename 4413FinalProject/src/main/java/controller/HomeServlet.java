@@ -38,6 +38,9 @@ public class HomeServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
+		String[] catImgs = {"https://t.ly/TZrcE", "https://t.ly/zQQ9r", "https://t.ly/vFoUV", "https://t.ly/mxYtu", "https://t.ly/JELEK"};
+		session.setAttribute("cartImgs", catImgs);
+		
 		if ((Boolean)session.getAttribute("session") == null) {
 			ProductDAOInterface dao = new ProductDAO();
 			List<Category> allCategories = dao.findAllCategories();
@@ -53,7 +56,7 @@ public class HomeServlet extends HttpServlet {
 			session.setAttribute("customer", anon);
 		}
 		
-		RequestDispatcher rd = getServletContext().getRequestDispatcher("/jsp/Home.jsp");
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/jsp/Home.jsp?home=true");
 		rd.forward(request, response);
 		
 	}

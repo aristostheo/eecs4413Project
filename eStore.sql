@@ -350,6 +350,34 @@ INSERT INTO `CartItem` (`CartID`, `ProductID`, `Quantity`) VALUES
 /*!40000 ALTER TABLE `CartItem` ENABLE KEYS */;
 UNLOCK TABLES;
 
+--
+-- Table structure for table `Fees`
+--
+
+DROP TABLE IF EXISTS `Fees`;
+/*!40101 SET @saved_cs_client = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Fees` (
+  `FeeID` int NOT NULL AUTO_INCREMENT,
+  `Shipping` decimal(10,2) DEFAULT NULL,  -- Shipping fee amount
+  `Tax` decimal(10,2) DEFAULT NULL,       -- Tax fee amount
+  PRIMARY KEY (`FeeID`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Fees`
+--
+
+LOCK TABLES `Fees` WRITE;
+/*!40000 ALTER TABLE `Fees` DISABLE KEYS */;
+INSERT INTO `Fees` (`Shipping`, `Tax`) VALUES
+(5.00, 2.50);
+/*!40000 ALTER TABLE `Fees` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;

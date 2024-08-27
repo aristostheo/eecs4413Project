@@ -82,7 +82,7 @@ p a:hover {
 } */
 
 #results {
-	display: flex;
+	/* display: flex; */
 	margin-left: 200px;
 	margin-top: 10px;
 	padding: 5px 20px;
@@ -90,12 +90,24 @@ p a:hover {
 	border: 1pt solid lavender;
 	border-radius: 7px;
 	background: ghostwhite;
-	
+}
+
+#results1 {
+	margin-left: 200px;
+	margin-top: 10px;
+	padding: 5px 20px;
+	background: white;
+	border: 1pt solid lavender;
+	border-radius: 7px;
+	background: ghostwhite;
+	max-height: calc(100vh - 215px);
+	overflow: auto;
 }
 
 #contents {
 	display: block;
 	max-height: 100%;
+	
 }
 
 .flex-container {
@@ -104,6 +116,11 @@ p a:hover {
     max-height: calc(100vh - 270px);
 	overflow: auto;
 }
+
+ .flex-container1 {
+	display: flex;
+	flex-wrap: wrap;
+} 
 
 .flex-item {
 	flex: 1 1 auto; /* Flex items take up 30% of the container's width */
@@ -136,7 +153,6 @@ p a:hover {
 .flex-item img {
 	 max-width: 100%;
 	 max-height: 100%;
-	 /* border: black solid 1px; */
 }
 .flex-item th {
 	text-align: left;
@@ -160,5 +176,20 @@ input[type="number"] {
 #resultHeader {
 	position: sticky;
 	margin-bottom: -5px;
+}
+
+#header {
+	position: sticky;
+	margin-bottom: -5px;
+}
+
+#banner img {
+	width: 100%;
+	
+}
+
+#banner {
+	display: block;
+	position: sticky;
 }
 

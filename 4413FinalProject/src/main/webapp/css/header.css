@@ -40,11 +40,14 @@ body {
 
  #logo {
  	font-weight: bolder;
+ 	color: white;
 	/* color: darkslateblue;
 	font-weight: bolder;
 	font-style: italic;
 	letter-spacing: 1px;
 	text-shadow: 7px -5px lavender; */
+	background-color: #272030;   
+    border-radius: 25px; 
  }  
 
 input, button {

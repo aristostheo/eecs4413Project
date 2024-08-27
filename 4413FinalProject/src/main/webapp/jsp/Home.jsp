@@ -80,8 +80,15 @@
         String successMessage = (String) session.getAttribute("successMessage");
         session.removeAttribute("successMessage"); // Remove message after displaying
     %>
+	<c:if test="${param.home}">
+		<jsp:include page="homeBanner.jsp" flush="true" />
+	</c:if>
 	
-	<jsp:include page="productView.jsp" flush="true" />
+	<c:if test="${not param.home}">
+		<jsp:include page="productView.jsp" flush="true" />
+	</c:if>
+	
+	<%-- <jsp:include page="productView.jsp" flush="true" /> --%>
 
 
 
