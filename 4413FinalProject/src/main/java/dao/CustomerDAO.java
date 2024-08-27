@@ -26,11 +26,8 @@ public class CustomerDAO implements CustomerDAOInterface {
 	public static Connection connection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-<<<<<<< HEAD
-			Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/4413project", "root", "EECS4413");
-=======
+
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore", "root", "EECS4413");
->>>>>>> refs/remotes/origin/main
 			System.out.println("Worked!");
 			return con;
 		} catch (Exception e) {
@@ -69,6 +66,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 	public void createCustomer(Customer c) {
 		String sql = "INSERT INTO customers (firstname, lastname, email, password, phone, addressID) VALUES (?, ?, ?, ?, ?, null)";
 		String setAddress = "UPDATE Customers addressID = ? WHERE CustomerID = ?";
+		Addresses add = new Addresses();
 		Connection con = null;
 		try {
 			con = connection();
@@ -193,7 +191,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 				a.setState(r.getString(6));
 				a.setZipCode(r.getString(7));
 				a.setCountry(r.getString(8));
-				c.setAddress(a);
+				c.setAddress(a.getAddId());
 			}
 			
 		} catch (Exception ex) {
@@ -229,7 +227,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 	            
 	            int addID = resultSet.getInt("AddressID");
 	            
-	            customer.setAddress(getAddress(addID));
+	            customer.setAddress(addID);
 	            customer.setPassword(resultSet.getString("Password"));
             
 
@@ -271,7 +269,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 	            
 	            int addID = resultSet.getInt("AddressID");
 	            
-	            cust.setAddress(getAddress(addID));
+	            cust.setAddress(addID);
 	            cust.setPassword(resultSet.getString("Password"));
 			}
 		} catch (Exception ex) {
@@ -368,7 +366,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 	            a.setState(resultSet.getString("State"));
 	            a.setZipCode(resultSet.getString("ZipCode"));
 	            a.setCountry(resultSet.getString("Country"));
-	            cust.setAddress(a);
+	            cust.setAddress(a.getAddId());
 	            results.add(cust);
 			}
 		} catch (Exception ex) {

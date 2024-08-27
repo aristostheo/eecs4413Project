@@ -150,7 +150,7 @@ public class Customer implements Serializable {
 	public Addresses getAddress() {
 		return address;
 	}
-	public void setAddress(Addresses address) {
-		this.address = address;
+	public void setAddress(int addressid) {
+		this.address.setAddId(addressid);
 	}
 }

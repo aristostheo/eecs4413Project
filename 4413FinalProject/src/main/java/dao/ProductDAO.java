@@ -11,6 +11,7 @@ import java.util.List;
 
 
 import model.Product;
+import model.Addresses;
 import model.Cart;
 import model.Category;
 import model.Customer;
@@ -20,12 +21,8 @@ public  class ProductDAO implements ProductDAOInterface{
 	public static Connection connection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-<<<<<<< HEAD
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/newstore", "root", "EECS4413");
 
-=======
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore", "root", "EECS4413");
->>>>>>> refs/remotes/origin/main
 			return con;
 		} catch (Exception e) {
 			System.out.println(e);
@@ -155,14 +152,14 @@ public  class ProductDAO implements ProductDAOInterface{
 			ResultSet resultSet =  statement.executeQuery();
 			while (resultSet.next()) {
 				Customer customer = new Customer();
-				
+				Addresses address = new Addresses();
 				
 	            customer.setCustomerId(resultSet.getInt("CustomerID"));
 	            customer.setFirstName(resultSet.getString("FirstName"));
 	            customer.setLastName(resultSet.getString("LastName"));
 	            customer.setPhoneNumber(resultSet.getInt("Phone"));
 	            customer.setEmail(resultSet.getString("Email"));
-	            customer.setAddress(resultSet.getString("AddressID"));
+	            customer.setAddress(resultSet.getInt("AddressID"));
 	            //customer.setPassword(resultSet.getString("Password"));
             
 

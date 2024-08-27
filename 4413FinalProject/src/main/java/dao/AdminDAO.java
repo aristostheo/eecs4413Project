@@ -24,11 +24,8 @@ public class AdminDAO implements AdminDAOInterface{
 	public static Connection connection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-<<<<<<< HEAD
-			Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/4413project", "root", "EECS4413");
-=======
+
 			Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/eStore", "root", "EECS4413");
->>>>>>> refs/remotes/origin/main
 			System.out.println("Worked!");
 			return con;
 		} catch (Exception e) {

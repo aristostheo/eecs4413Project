@@ -3,11 +3,9 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< HEAD
-=======
+
 import model.Category;
 import model.Customer;
->>>>>>> refs/remotes/origin/main
 import model.Product;
 
 public interface ProductDAOInterface {
