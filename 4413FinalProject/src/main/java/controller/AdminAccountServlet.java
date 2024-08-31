@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.AdminDAO;
 import model.Admin;
-import model.Customer;
 
 /**
  * Servlet implementation class AdminAccountServlet

@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,35 +10,16 @@ import java.sql.Statement;
 
 import model.Cart;
 import model.CartItem;
-import model.Product;
 
-public class CartDAO implements CartDAOInterface {
+public class CartDAO extends BaseDAO implements CartDAOInterface {
 	
-	static {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (ClassNotFoundException ex) {
-		}
-	}
-	
-	public static Connection connection() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore", "root", "EECS4413");
-//			System.out.println("Worked!");
-			return con;
-		} catch (Exception e) {
-			System.out.println(e);
-			return null;
-		}
-	}
 	
 	@Override
 	public Cart createCart(int customerID) {
 		Cart c = new Cart();
 		Connection con = null;
 		try {
-			con = connection();
+			con = getConnection();
 			PreparedStatement stmt = con.prepareStatement(
 					"insert into Cart(customerID) values (?)",
 					Statement.RETURN_GENERATED_KEYS);
@@ -72,7 +52,7 @@ public class CartDAO implements CartDAOInterface {
 		
 		Connection con = null;
 		try {
-			con = connection();
+			con = getConnection();
 			
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setInt(1, customerID);
@@ -106,7 +86,7 @@ public class CartDAO implements CartDAOInterface {
 				
 		Connection con = null;
 		try {
-			con = connection();
+			con = getConnection();
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setInt(1, c.getCartID());
 			ResultSet rs = stmt.executeQuery();
@@ -144,7 +124,7 @@ public class CartDAO implements CartDAOInterface {
 		CartItem cartItem = new CartItem();
 		Connection con = null;
 		try {
-			con = connection();
+			con = getConnection();
 			ProductDAOInterface productDAO = new ProductDAO();
 			
 			PreparedStatement stmt = con.prepareStatement(
@@ -180,7 +160,7 @@ public class CartDAO implements CartDAOInterface {
 		Integer cartItemID = null;
 		Connection con = null;
 		try {
-			con = connection();
+			con = getConnection();
 			
 			PreparedStatement stmt = con.prepareStatement(
 					"select * from CartItem where cartID = ? and productID = ?");
@@ -210,7 +190,7 @@ public class CartDAO implements CartDAOInterface {
 	public void updateCartItem(int cartItemID, int quantity) {
 		Connection con = null;
 		try {
-			con = connection();
+			con = getConnection();
 			
 			PreparedStatement stmt = con.prepareStatement(
 					"update CartItem set quantity = ? where cartItemID = ?");
@@ -235,7 +215,7 @@ public class CartDAO implements CartDAOInterface {
 	public void removeCartItem(int cartItemID) {
 		Connection con = null;
 		try {
-			con = connection();
+			con = getConnection();
 			
 			PreparedStatement stmt = con.prepareStatement(
 					"delete from CartItem where cartItemID = ?");

@@ -8,8 +8,7 @@
 <body>
 	<jsp:include page="header.jsp" flush="true" />
 	<div style="margin-left:50px;">
-	
-    <form action="AccountInfoServlet" method="post">
+    <form action="<%= request.getContextPath() %>/AccountInfoServlet" method="post">
         <h1>Login</h1>
         <p>Email: <input type="text" name="email"/></p>
         <p>Password: <input type="password" name="password"/></p>

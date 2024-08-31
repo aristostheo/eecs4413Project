@@ -34,7 +34,7 @@
 		</c:choose> --%> 
 		
 		
-		<a class="right" href="AccountInfoServlet"><i class="ri-user-3-line ri-lg"></i></a>
+		<a class="right" href="<%= request.getContextPath() %>/AccountInfoServlet"><i class="ri-user-3-line ri-lg"></i></a>
 		
         <%-- <c:if test="${isLoggedIn}"> 
         	<a class="right" href="/jsp/AccountInfo.jsp"><i class="ri-user-3-line ri-lg"></i></a>

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Category;
-import model.Customer;
 import model.Product;
 
 public interface ProductDAOInterface {

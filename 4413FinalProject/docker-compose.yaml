@@ -1,0 +1,39 @@
+
+services:
+
+  mysql:
+    container_name: mysql
+    hostname: mysql
+    image: mysql:8.0.39
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: EECS4413
+      MYSQL_DATABASE: eStore
+    volumes:
+      # Mount the folder with the SQL scripts to initialize the database
+      - ./scripts:/docker-entrypoint-initdb.d:ro
+      # Mount the folder to be used to store the database data
+      - ./data:/var/lib/mysql
+      # Mount the configuration file to configure the character and collation config
+      - ./dbcfg/my_conf.cnf:/etc/mysql/conf.d/my_conf.cnf
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-uroot", "-pEECS4413"]
+      interval: 10s
+      timeout: 60s
+      retries: 5
+
+  store-app:
+    image: docker.io/aristostheo/estore:v1.0.0
+    container_name: store-app
+    ports:
+      - "8080:8080"
+    environment:
+      DB_SERVER: mysql
+      DB_PORT: '3306'
+      DB_NAME: eStore
+      DB_USERID: shopadmin
+      DB_PASSWORD: EECS4413
+    restart: always
+    depends_on:
+      - mysql

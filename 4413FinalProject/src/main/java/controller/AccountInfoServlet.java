@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -48,9 +47,9 @@ public class AccountInfoServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		Customer customer = custdao.findCustomerByEmailPassword(email, password);
-		System.out.println(customer.getFullName());
 		
 		if (customer.getFirstName() != null) {
+			System.out.println(customer.getFullName());
 			session.setAttribute("customer", customer);
 			session.setAttribute("isLoggedIn", true);
 			purchaseHist = purdao.getPurchaseOrderbyCustID(customer.getCustomerId());
