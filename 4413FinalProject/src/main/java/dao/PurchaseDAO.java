@@ -1,36 +1,16 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import model.Product;
 import model.PurchaseOrder;
 
-public class PurchaseDAO implements PurchaseDAOInterface{
+public class PurchaseDAO extends BaseDAO implements PurchaseDAOInterface{
 	
-	static {
-		try {
-			Class.forName("org.sqlite.JDBC");
-		} catch (ClassNotFoundException ex) {
-		}
-	}
 
-
-	public static Connection connection() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/eStore", "root", "EECS4413");
-			System.out.println("Worked!");
-			return con;
-		} catch (Exception e) {
-			System.out.println(e);
-			return null;
-		}
-	}
 
 	public ArrayList<PurchaseOrder> getPurchaseOrderbyCustID(int id) {
 		ArrayList<PurchaseOrder> result = new ArrayList<PurchaseOrder>();
@@ -38,7 +18,7 @@ public class PurchaseDAO implements PurchaseDAOInterface{
 		String sql = "select * from purchaseorders where CustomerID = '" + id + "';";
 		Connection con = null;
 		try {
-			con = connection();
+			con = getConnection();
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
@@ -76,7 +56,7 @@ public class PurchaseDAO implements PurchaseDAOInterface{
 		String sql = "select * from purchaseorderdetails where POID ='" + id + "';";
 		Connection con = null;
 		try {
-			con = connection();
+			con = getConnection();
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {

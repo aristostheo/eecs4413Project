@@ -1,37 +1,16 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
-import model.Admin;
 import model.OrderDetails;
 
-public class OrderDAO implements OrderDAOInterface{
-
-	static {
-		try {
-			Class.forName("org.sqlite.JDBC");
-		} catch (ClassNotFoundException ex) {
-		}
-	}
+public class OrderDAO extends BaseDAO implements OrderDAOInterface{
 
 
-	public static Connection connection() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/eStore", "root", "EECS4413");
-			System.out.println("Worked!");
-			return con;
-		} catch (Exception e) {
-			System.out.println(e);
-			return null;
-		}
-	}
 	
 	
 	public ArrayList<OrderDetails> getAllOrderInformation() {
@@ -53,7 +32,7 @@ public class OrderDAO implements OrderDAOInterface{
 				+ "products.CategoryID = categories.CategoryID "
 				+ "order by purchaseorders.POID;";
 
-		Connection con = connection();
+		Connection con = getConnection();
 		try {
 			PreparedStatement statement = con.prepareStatement(sql);
 			ResultSet resultSet =  statement.executeQuery();

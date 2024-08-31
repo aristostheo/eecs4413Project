@@ -1,7 +1,5 @@
 package dao;
 
-import model.Addresses;
-
 public interface AddressesDAOInterface {
 	
 	public int changeAddressLine1WithId(int id, String addLine);

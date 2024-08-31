@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,22 +10,10 @@ import java.util.List;
 
 
 import model.Product;
-import model.Cart;
 import model.Category;
-import model.Customer;
 
-public class ProductDAO implements ProductDAOInterface{
+public class ProductDAO extends BaseDAO implements ProductDAOInterface{
 
-	public static Connection connection() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore", "root", "EECS4413");
-			return con;
-		} catch (Exception e) {
-			System.out.println(e);
-			return null;
-		}
-	}
 
 	public ArrayList<Product> findAllProducts() {
 		ArrayList<Product> result = new ArrayList<Product>();
@@ -34,7 +21,7 @@ public class ProductDAO implements ProductDAOInterface{
 		String sql = "select * from products;";
 		Connection con = null;
 		try {
-			con = connection();
+			con = getConnection();
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
@@ -72,7 +59,7 @@ public class ProductDAO implements ProductDAOInterface{
 		
 		String sql = "select * from categories;";
 				
-		Connection con = connection();
+		Connection con = getConnection();
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
@@ -105,7 +92,7 @@ public class ProductDAO implements ProductDAOInterface{
 		
 		String sql = "select * from Products where BrandName like '%" + brand.trim() + "'";
 
-		Connection con = connection();
+		Connection con = getConnection();
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
@@ -143,7 +130,7 @@ public class ProductDAO implements ProductDAOInterface{
 
 		Connection con = null;
 		try {
-			con = connection();
+			con = getConnection();
 			PreparedStatement statement = con.prepareStatement(sql);
 			ResultSet resultSet =  statement.executeQuery();
 			while (resultSet.next()) {
@@ -154,7 +141,9 @@ public class ProductDAO implements ProductDAOInterface{
 			ex.printStackTrace();
 		} finally {
 				try {
-		            if (con != null) con.close();
+		            if (con != null) {
+		            	con.close();
+		            }
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -168,13 +157,12 @@ public class ProductDAO implements ProductDAOInterface{
 
 		String sql = "select * from products join categories on products.CategoryID = categories.CategoryID where "+ "categories.CategoryName='" + category + "'";
 
-		Connection con = connection();
+		Connection con = getConnection();
 		try {
 			PreparedStatement statement = con.prepareStatement(sql);
 			ResultSet rs =  statement.executeQuery();
 			while (rs.next()) {
 				Product product = new Product();
-				Category category1 = new Category();
 
 				product.setId(rs.getInt("ProductID"));
 				product.setBrand(rs.getString("BrandName"));
@@ -184,12 +172,6 @@ public class ProductDAO implements ProductDAOInterface{
 				product.setStockQty(rs.getInt("StockQuantity"));
 				product.setDesc(rs.getString("Description"));
 				product.setImg(rs.getString("ImageURL"));
-//	            for(Category cat : this.findAllCategories()) {
-//	            	if(category.equals(cat.getDescription())) {
-//	            		product.setCatID(cat.getId());
-//	            		break;
-//	            	}
-//	            }
 				
 				result.add(product);
 			}
@@ -210,7 +192,7 @@ public class ProductDAO implements ProductDAOInterface{
 		ArrayList<Product> result = new ArrayList<>();
 		String sql = "select * from products order by Price;";
 		
-		Connection con = connection();
+		Connection con = getConnection();
 		try {
 			PreparedStatement statement = con.prepareStatement(sql);
 			ResultSet rs =  statement.executeQuery();
@@ -244,7 +226,7 @@ public class ProductDAO implements ProductDAOInterface{
 		ArrayList<Product> result = new ArrayList<>();
 		String sql = "select * from products order by ProductName;";
 		
-		Connection con = connection();
+		Connection con = getConnection();
 		try {
 			PreparedStatement statement = con.prepareStatement(sql);
 			ResultSet rs =  statement.executeQuery();
@@ -278,7 +260,7 @@ public class ProductDAO implements ProductDAOInterface{
 		Product prod = new Product();
 		String sql = "select * from products where ProductID ='" + id + "';";
 		
-		Connection con = connection();
+		Connection con = getConnection();
 		try {
 			PreparedStatement statement = con.prepareStatement(sql);
 			ResultSet rs =  statement.executeQuery();
@@ -313,7 +295,7 @@ public class ProductDAO implements ProductDAOInterface{
 		String sql = "select * from Products where BrandName like '%" + query + "%' "
 				+ "or ProductName like '%" + query + "%' or Description like '%" + query + "%';";
 		
-		Connection con = connection();
+		Connection con = getConnection();
 		try {
 			PreparedStatement statement = con.prepareStatement(sql);
 			ResultSet rs =  statement.executeQuery();
@@ -348,7 +330,7 @@ public class ProductDAO implements ProductDAOInterface{
 	    PreparedStatement statement = null;
 	    ResultSet generatedKeys = null;
 		try {
-			con = connection();
+			con = getConnection();
 			statement = con.prepareStatement(
 					"insert into Products (ProductName) values (?)",
 					Statement.RETURN_GENERATED_KEYS);
@@ -376,7 +358,7 @@ public class ProductDAO implements ProductDAOInterface{
 		Connection con = null;
 	    PreparedStatement statement = null;
 		try {
-			con = connection();
+			con = getConnection();
 			statement = con.prepareStatement("delete from product where ProductID=?");
 			statement.setLong(1, productid);
 			statement.execute();
@@ -399,7 +381,7 @@ public class ProductDAO implements ProductDAOInterface{
 		
 		Connection con = null;
 		try {
-			con = connection();
+			con = getConnection();
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setInt(1, productID);
 			ResultSet rs = stmt.executeQuery();
@@ -435,7 +417,7 @@ public class ProductDAO implements ProductDAOInterface{
 		
 		Connection con = null;
 		try {
-			con = connection();
+			con = getConnection();
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setInt(1, catID);
 			ResultSet rs = stmt.executeQuery();
@@ -459,7 +441,7 @@ public class ProductDAO implements ProductDAOInterface{
 	
 	public int changeQty(int productID, int newQty) {
 		String sql = "update products set products.StockQuantity ='" + newQty + "' where products.ProductID ='" + productID + "';";
-		Connection con = connection();
+		Connection con = getConnection();
 		int resultSet = 0;
 		try {
 			PreparedStatement statement = con.prepareStatement(sql);

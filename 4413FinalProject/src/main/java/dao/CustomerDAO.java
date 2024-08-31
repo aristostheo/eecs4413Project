@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,30 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Addresses;
-import model.Cart;
 import model.Customer;
 
-public class CustomerDAO implements CustomerDAOInterface {
+public class CustomerDAO extends BaseDAO implements CustomerDAOInterface {
 	
-	static {
-		try {
-			Class.forName("org.sqlite.JDBC");
-		} catch (ClassNotFoundException ex) {
-		}
-	}
 
-
-	public static Connection connection() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore", "root", "EECS4413");
-			System.out.println("Worked!");
-			return con;
-		} catch (Exception e) {
-			System.out.println(e);
-			return null;
-		}
-	}
 	
 	public Customer createAnonCustomer() {
 		String sql = "INSERT INTO customers (firstname, lastname, email, password, phone, addressID) VALUES (null, null, null, null, null, null)";
@@ -41,7 +21,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 		Customer c = new Customer();
 		Connection con = null;
 		try {
-			con = connection();
+			con = getConnection();
 			PreparedStatement stmt = con.prepareStatement(sql,
 					Statement.RETURN_GENERATED_KEYS);
 			stmt.executeUpdate();
@@ -67,7 +47,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 		String setAddress = "UPDATE Customers addressID = ? WHERE CustomerID = ?";
 		Connection con = null;
 		try {
-			con = connection();
+			con = getConnection();
 			PreparedStatement stmt = con.prepareStatement(sql,
 					Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, c.getFirstName());
@@ -102,10 +82,9 @@ public class CustomerDAO implements CustomerDAOInterface {
 	
 	public void createAddress(Addresses a) {
 		String sql = "INSERT INTO addresses (customerID, addressline1, addressline2, city, state, zipcode, country) VALUES (?, ?, ?, ?, ?, ?, ?)";
-		Integer addID = null;
 		Connection con = null;
 		try {
-			con = connection();
+			con = getConnection();
 			PreparedStatement stmt = con.prepareStatement(sql,
 					Statement.RETURN_GENERATED_KEYS);
 			stmt.setInt(1, a.getCustId());
@@ -139,7 +118,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 		
 		String sql = "select * from addresses where addressid= ?";
 
-		Connection con = connection();
+		Connection con = getConnection();
 		try {
 			PreparedStatement statement = con.prepareStatement(sql);
 			statement.setInt(1, addressID);
@@ -175,7 +154,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 		
 		String sql = "select * from addresses where customerID= ?";
 
-		Connection con = connection();
+		Connection con = getConnection();
 		try {
 			PreparedStatement statement = con.prepareStatement(sql);
 			statement.setInt(1, c.getCustomerId());
@@ -209,7 +188,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 		List<Customer> result = new ArrayList<Customer>();
 		String sql = "select * from Customers";
 
-		Connection con = connection();
+		Connection con = getConnection();
 		try {
 			PreparedStatement statement = con.prepareStatement(sql);
 			ResultSet resultSet =  statement.executeQuery();
@@ -220,7 +199,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 	            customer.setCustomerId(resultSet.getInt("CustomerID"));
 	            customer.setFirstName(resultSet.getString("FirstName"));
 	            customer.setLastName(resultSet.getString("LastName"));
-	            customer.setPhoneNumber(resultSet.getInt("Phone"));
+	            customer.setPhoneNumber(resultSet.getLong("Phone"));
 	            customer.setEmail(resultSet.getString("Email"));
 	            
 	            int addID = resultSet.getInt("AddressID");
@@ -250,7 +229,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 		
 		String sql = "select * from customers where email= ? and password= ?";
 
-		Connection con = connection();
+		Connection con = getConnection();
 		try {
 			PreparedStatement statement = con.prepareStatement(sql);
 			statement.setString(1, email.trim());
@@ -262,7 +241,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 	            System.out.println(resultSet.getString("FirstName"));
 	            cust.setFirstName(resultSet.getString("FirstName"));
 	            cust.setLastName(resultSet.getString("LastName"));
-	            cust.setPhoneNumber(resultSet.getInt("Phone"));
+	            cust.setPhoneNumber(resultSet.getLong("Phone"));
 	            cust.setEmail(resultSet.getString("Email"));
 	            
 	            int addID = resultSet.getInt("AddressID");
@@ -289,7 +268,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 	public int changeCustEmail(String ogEmail, String newEmail) {
 		
 		String sql = "update customers set customers.Email = '" + newEmail + "' where customers.Email='" + ogEmail + "';";
-		Connection con = connection();
+		Connection con = getConnection();
 		int resultSet = 0;
 		try {
 			PreparedStatement statement = con.prepareStatement(sql);
@@ -312,7 +291,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 	public int changeCustPassword(String ogPassword, String newPassword) {
 		
 		String sql = "update customers set customers.Password = '" + newPassword + "' where customers.Password='" + ogPassword + "';";
-		Connection con = connection();
+		Connection con = getConnection();
 		int resultSet = 0;
 		try {
 			PreparedStatement statement = con.prepareStatement(sql);
@@ -345,7 +324,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 				+ "where customers.AddressID = addresses.AddressID "
 				+ "order by customers.CustomerID;";
 
-		Connection con = connection();
+		Connection con = getConnection();
 		try {
 			PreparedStatement statement = con.prepareStatement(sql);
 			ResultSet resultSet =  statement.executeQuery();
@@ -386,7 +365,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 	public int changeCustomerFirstName(int id, String name) {
 
 		String sql = "update customers set customers.FirstName = '" + name + "' where customers.CustomerID='" + id + "';";
-		Connection con = connection();
+		Connection con = getConnection();
 		int resultSet = 0;
 		try {
 			PreparedStatement statement = con.prepareStatement(sql);
@@ -409,7 +388,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 	@Override
 	public int changeCustomerLastName(int id, String name) {
 		String sql = "update customers set customers.LastName = '" + name + "' where customers.CustomerID='" + id + "';";
-		Connection con = connection();
+		Connection con = getConnection();
 		int resultSet = 0;
 		try {
 			PreparedStatement statement = con.prepareStatement(sql);
@@ -432,7 +411,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 	@Override
 	public int changeCustEmailWithID(int id, String email) {
 		String sql = "update customers set customers.Email = '" + email + "' where customers.CustomerID='" + id + "';";
-		Connection con = connection();
+		Connection con = getConnection();
 		int resultSet = 0;
 		try {
 			PreparedStatement statement = con.prepareStatement(sql);
@@ -455,7 +434,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 	@Override
 	public int changeCustPasswordWIthID(int id, String password) {
 		String sql = "update customers set customers.Password = '" + password + "' where customers.CustomerID='" + id + "';";
-		Connection con = connection();
+		Connection con = getConnection();
 		int resultSet = 0;
 		try {
 			PreparedStatement statement = con.prepareStatement(sql);
@@ -478,7 +457,7 @@ public class CustomerDAO implements CustomerDAOInterface {
 	@Override
 	public int changeCustPhoneNumWithID(int id, long number) {
 		String sql = "update customers set customers.Phone = '" + number + "' where customers.CustomerID='" + id + "';";
-		Connection con = connection();
+		Connection con = getConnection();
 		int resultSet = 0;
 		try {
 			PreparedStatement statement = con.prepareStatement(sql);

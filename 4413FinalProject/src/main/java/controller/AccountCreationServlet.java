@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.ConnectionManager;
 import model.PasswordUtil;
 
 @WebServlet("/AccountCreationServlet")
@@ -58,14 +59,8 @@ public class AccountCreationServlet extends HttpServlet {
         ResultSet customerKeys = null;
 
         try {
-            System.out.println("Loading JDBC driver...");
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            
-            System.out.println("Setting connection timeout...");
-            DriverManager.setLoginTimeout(30); // Increased connection timeout
-            
             System.out.println("Establishing database connection...");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/eStore", "root", "EECS4413");
+            con = ConnectionManager.getConnection();
             con.setAutoCommit(false);
             
             System.out.println("Inserting address...");
@@ -122,7 +117,7 @@ public class AccountCreationServlet extends HttpServlet {
 
             con.commit();
             System.out.println("Transaction committed successfully.");
-            response.sendRedirect("./html/SuccessAccount.html");
+            response.sendRedirect("./SuccessAccount.html");
         } catch (SQLException e) {
             System.out.println("SQL error during account creation process.");
             e.printStackTrace();
