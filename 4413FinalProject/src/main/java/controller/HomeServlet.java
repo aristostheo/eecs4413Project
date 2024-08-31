@@ -38,7 +38,13 @@ public class HomeServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		String[] catImgs = {"https://t.ly/TZrcE", "https://t.ly/zQQ9r", "https://t.ly/vFoUV", "https://t.ly/mxYtu", "https://t.ly/JELEK"};
+		String[] catImgs = {
+				"https://p1.socds.net/llp/4708/photo_upload_63b8986cc1cd0-2023-01-06.png", 
+				"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mba13-midnight-select-202402?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1708367688034", 
+				"https://gadgetward.com/cdn/shop/files/SamsungGalaxyTabS85GSM-X706256GB8GBGraphite.1_800x.jpg?v=1705397553", 
+				"https://adminapi.applegadgetsbd.com/storage/media/large/Galaxy-Watch5-Pink-Gold-2134.jpg", 
+				"https://i5.walmartimages.com/asr/31c9cfb7-5657-4f74-8def-0491d21c4ae5.c6166a775e3e0211ba9e871cc836e61d.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"};
+		
 		session.setAttribute("cartImgs", catImgs);
 		
 		if ((Boolean)session.getAttribute("session") == null) {
