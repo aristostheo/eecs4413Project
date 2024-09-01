@@ -15,9 +15,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-CREATE USER 'shopadmin'@'%' IDENTIFIED BY 'EECS4413'; 
-GRANT ALL PRIVILEGES ON *.* TO 'shopadmin'@'%' WITH GRANT OPTION;
-
 --
 -- Table structure for table `Addresses`
 --
@@ -104,11 +101,7 @@ CREATE TABLE `Customers` (
 
 LOCK TABLES `Customers` WRITE;
 /*!40000 ALTER TABLE `Customers` DISABLE KEYS */;
-INSERT INTO `Customers` VALUES 
-(1,'John','Doe','john.doe@example.com','password123','1234567890',1),
-(2,'Jane','Smith','jane.smith@example.com',NULL,'0987654321',2),
-(3,'Aristos','Theo','aristos@my.yorku.ca','ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f','1234567890',2),
-(4,'Tom','Testing','tom@gmail.com','27cc6994fc1c01ce6659c6bddca9b69c4c6a9418065e612c69d110b3f7b11f8a','4167678888',3);
+INSERT INTO `Customers` VALUES (1,'John','Doe','john.doe@example.com','password123','1234567890',1),(2,'Jane','Smith','jane.smith@example.com',NULL,'0987654321',2),(3,'Aristos','Theo','aristos@my.yorku.ca','ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f','6789012345',2),(4,'Tom','Testing','tom@gmail.com','27cc6994fc1c01ce6659c6bddca9b69c4c6a9418065e612c69d110b3f7b11f8a','4167678888',3);
 /*!40000 ALTER TABLE `Customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,7 +221,20 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'Apple','iPhone 14',1,999.99,50,'Latest iPhone model','https://t.ly/TZrcE'),(2,'Apple','MacBook Air M2',2,1199.99,30,'Apple MacBook Air with M2 chip, 13-inch','https://t.ly/zQQ9r'),(3,'Samsung','Galaxy Tab S8',3,849.99,35,'Samsung Galaxy Tab S8 with 11-inch display, 128GB storage','https://t.ly/vFoUV'),(4,'Google','Pixel 7',1,699.99,40,'Google Pixel 7 with advanced AI features','https://t.ly/mvSAa'),(5,'Dell','XPS 13',2,999.99,25,'Dell XPS 13 with Intel i7, 16GB RAM, 512GB SSD','https://t.ly/agkhX'),(6,'Apple','iPad Air',3,599.99,50,'Apple iPad Air with A14 chip, 10.9-inch','https://t.ly/LHj2_'),(7,'Sony','WH-1000XM4',5,349.99,100,'Sony WH-1000XM4 noise-canceling headphones','https://t.ly/JELEK'),(8,'Microsoft','Surface Pro 8',3,1099.99,30,'Microsoft Surface Pro 8 with 13-inch display and detachable keyboard','https://t.ly/da7Aj'),(9,'Samsung','Galaxy Watch 5',4,299.99,40,'Samsung Galaxy Watch 5 with GPS, 44mm case','https://t.ly/mxYtu'),(10,'Anker','PowerCore 10000',5,29.99,200,'Anker PowerCore 10000mAh Portable Charger','https://t.ly/Wm6Ur'),(11,'Logitech','MX Master 3',5,99.99,150,'Logitech MX Master 3 Wireless Mouse','https://t.ly/9mSp7'),(12,'Apple','Watch Series 8',4,399.99,50,'Apple Watch Series 8 with GPS, 45mm case','https://t.ly/AcVWp'),(13,'Samsung','Galaxy Buds Pro',5,199.99,80,'Samsung Galaxy Buds Pro with active noise cancellation','https://t.ly/XghlF');
+INSERT INTO `products` VALUES 
+(1,'Apple','iPhone 14',1,999.99,50,'Latest iPhone model','https://p1.socds.net/llp/4708/photo_upload_63b8986cc1cd0-2023-01-06.png'),
+(2,'Apple','MacBook Air M2',2,1199.99,30,'Apple MacBook Air with M2 chip, 13-inch','https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mba13-midnight-select-202402?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1708367688034'),
+(3,'Samsung','Galaxy Tab S8',3,849.99,35,'Samsung Galaxy Tab S8 with 11-inch display, 128GB storage','https://gadgetward.com/cdn/shop/files/SamsungGalaxyTabS85GSM-X706256GB8GBGraphite.1_800x.jpg?v=1705397553'),
+(4,'Google','Pixel 7',1,699.99,40,'Google Pixel 7 with advanced AI features','https://www.mi4canada.com/wp-content/uploads/2022/10/Google-Pixel-7-Pro-hazel.jpg'),
+(5,'Dell','XPS 13',2,999.99,25,'Dell XPS 13 with Intel i7, 16GB RAM, 512GB SSD','https://www.broadwaylifestyle.com/media/catalog/product/m/a/main_image_20240530103457.jpeg?optimize=high&bg-color=255,255,255&fit=bounds&height=600&width=600&canvas=600:600'),
+(6,'Apple','iPad Air',3,599.99,50,'Apple iPad Air with A14 chip, 10.9-inch','https://m.media-amazon.com/images/I/31reJbshTLL.jpg'),
+(7,'Sony','WH-1000XM4',5,349.99,100,'Sony WH-1000XM4 noise-canceling headphones','https://i5.walmartimages.com/asr/31c9cfb7-5657-4f74-8def-0491d21c4ae5.c6166a775e3e0211ba9e871cc836e61d.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF'),
+(8,'Microsoft','Surface Pro 8',3,1099.99,30,'Microsoft Surface Pro 8 with 13-inch display and detachable keyboard','https://m.media-amazon.com/images/I/61xHYJW4rbL.jpg'),
+(9,'Samsung','Galaxy Watch 5',4,299.99,40,'Samsung Galaxy Watch 5 with GPS, 44mm case','https://adminapi.applegadgetsbd.com/storage/media/large/Galaxy-Watch5-Pink-Gold-2134.jpg'),
+(10,'Anker','PowerCore 10000',5,29.99,200,'Anker PowerCore 10000mAh Portable Charger','https://cdn.shopify.com/s/files/1/0493/7636/2660/products/A1617011.jpg?v=1642046302'),
+(11,'Logitech','MX Master 3',5,99.99,150,'Logitech MX Master 3 Wireless Mouse','https://cdn.shopify.com/s/files/1/0036/4806/1509/products/4e2592e7b13c10559aeb0f51a4c75ba7db083781_square3030952_1_d7c7ee85-ce84-4b37-8cff-ec6f353683c2_159x@2x.progressive.jpg?v=1710279267'),
+(12,'Apple','Watch Series 8',4,399.99,50,'Apple Watch Series 8 with GPS, 45mm case','https://i5.walmartimages.com/asr/13f61245-e9f3-496b-bac9-53c10f0de081.77b6fc877e371c9ac17a4dde99f32729.jpeg?odnHeight=2000&odnWidth=2000&odnBg=FFFFFF'),
+(13,'Samsung','Galaxy Buds Pro',5,199.99,80,'Samsung Galaxy Buds Pro with active noise cancellation','https://www.elekdirect.co.uk/wp-content/uploads/2021/09/1-3-600x800.png');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
